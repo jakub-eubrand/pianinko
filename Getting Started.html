@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Little Maestro — Getting Started</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0d0d1a;
+      color: #e8e8f0;
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(145deg, #1a0a2e 0%, #0d1a2e 50%, #0a1a0e 100%);
+      border-bottom: 1px solid #2a2a4a;
+      padding: 60px 24px 50px;
+      text-align: center;
+    }
+    .hero-icon { font-size: 72px; display: block; margin-bottom: 16px; }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: #9090b0;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Computer Required Banner ── */
+    .computer-banner {
+      background: linear-gradient(135deg, #1a0a0a, #2a1010);
+      border: 2px solid #ef4444;
+      border-radius: 14px;
+      padding: 20px 28px;
+      margin: 32px auto 0;
+      max-width: 620px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      text-align: left;
+    }
+    .computer-banner .icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .computer-banner h3 { font-size: 16px; font-weight: 800; color: #ef4444; margin-bottom: 6px; }
+    .computer-banner p { font-size: 14px; color: #c0a0a0; line-height: 1.6; }
+
+    /* ── Content ── */
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Section ── */
+    .section { margin-top: 48px; }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6060a0;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1e1e3a;
+    }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 16px; }
+    .step {
+      background: #12122a;
+      border: 1px solid #1e1e3a;
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 5px; color: #e8e8f0; }
+    .step-body p  { font-size: 14px; color: #8080a8; line-height: 1.6; }
+    .step-body code {
+      background: #1e1e3a;
+      color: #a78bfa;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-family: 'SF Mono', Menlo, monospace;
+    }
+
+    /* ── What's included ── */
+    .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+    .included-card {
+      background: #12122a;
+      border: 1px solid #1e1e3a;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+    }
+    .included-num {
+      font-size: 36px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .included-label { font-size: 13px; color: #8080a8; }
+
+    /* ── Tips ── */
+    .tips { display: flex; flex-direction: column; gap: 12px; }
+    .tip {
+      background: #12122a;
+      border: 1px solid #1e1e3a;
+      border-left: 3px solid #7c3aed;
+      border-radius: 0 12px 12px 0;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: #9090b8;
+      line-height: 1.6;
+    }
+    .tip strong { color: #e8e8f0; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 60px;
+      background: #0a0a18;
+      border-top: 1px solid #1e1e3a;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer p { font-size: 14px; color: #6060a0; line-height: 1.8; }
+    .footer a { color: #a78bfa; text-decoration: none; }
+    .footer .heart { color: #f472b6; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="hero-icon">🎹</span>
+    <h1>Welcome to Little Maestro</h1>
+    <p>A piano learning adventure for children — built by a dad for his daughter, now in your hands.</p>
+
+    <!-- Computer Required Notice -->
+    <div class="computer-banner">
+      <div class="icon">💻</div>
+      <div>
+        <h3>Computer Required</h3>
+        <p>Little Maestro is designed for use on a <strong style="color:#e8e8f0;">laptop or desktop computer</strong>. It does not work correctly on phones or tablets. Open <code style="background:#2a1010;color:#f87171;padding:2px 6px;border-radius:4px;font-size:13px;">Little Maestro App.html</code> in Chrome or Edge on your computer to get started.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- What's Included -->
+    <div class="section">
+      <div class="section-title">What's Included</div>
+      <div class="included-grid">
+        <div class="included-card">
+          <div class="included-num">135</div>
+          <div class="included-label">Songs &amp; Pieces</div>
+        </div>
+        <div class="included-card">
+          <div class="included-num">13</div>
+          <div class="included-label">Worlds to Explore</div>
+        </div>
+        <div class="included-card">
+          <div class="included-num">85</div>
+          <div class="included-label">Beginner Primer Songs</div>
+        </div>
+        <div class="included-card">
+          <div class="included-num">4</div>
+          <div class="included-label">Speed Settings</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Getting Started -->
+    <div class="section">
+      <div class="section-title">Getting Started in 3 Steps</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Open the App on Your Computer</h3>
+            <p>Find <code>Little Maestro App.html</code> in this folder. Double-click it — it opens directly in your web browser. <strong>Chrome or Edge recommended.</strong> No installation needed. Do not try to open it on a phone or tablet — it requires a computer keyboard or MIDI keyboard to function correctly.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Connect a Piano or Keyboard (Optional but Recommended)</h3>
+            <p>Connect a real piano or MIDI keyboard via USB before opening the app — it will detect it automatically. You can also play using your computer keyboard or the on-screen keys. A 25-key or 49-key USB MIDI keyboard is plenty for all beginner content.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Pick a World and Start Playing</h3>
+            <p>Click any song to start. Use <strong>Turtle</strong> speed for beginners, <strong>Normal</strong> for practice, and work up to <strong>Rocket</strong> speed as skills improve. Earn stars on each song to unlock the next world!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tips for Parents -->
+    <div class="section">
+      <div class="section-title">Tips for Parents &amp; Teachers</div>
+      <div class="tips">
+        <div class="tip">
+          <strong>Start slow, literally.</strong> Use Turtle speed (🐢) for all new songs. The goal is accuracy first — speed follows naturally. Most kids want to rush to Rocket 🚀 immediately — encourage them to earn 3 stars at Turtle speed before moving up.
+        </div>
+        <div class="tip">
+          <strong>Short sessions beat long ones.</strong> 10–15 minutes daily is more effective than an hour on weekends. The app is designed to make short sessions feel satisfying through the star and world progression.
+        </div>
+        <div class="tip">
+          <strong>For real piano students</strong>, Worlds 1, 2, and 3 (Primer Basics, Primer Two Hands, Primer Skills) align with standard beginner method book content. Start there before moving into the main song progression.
+        </div>
+        <div class="tip">
+          <strong>MIDI keyboard tip:</strong> Any USB MIDI keyboard works. A 25-key or 49-key keyboard is plenty for all beginner content. Full 88-key is not required — even a $40 mini keyboard gives the full experience.
+        </div>
+        <div class="tip">
+          <strong>Progress is saved in the browser.</strong> Always open the app in the same browser on the same computer. If you clear your browser history or cache, progress will reset. To back up progress, avoid clearing browser data on the computer you use for the app.
+        </div>
+        <div class="tip">
+          <strong>Want to add your own songs?</strong> The included <code>Customization Guide.md</code> explains exactly how to add songs, rename worlds, and adjust difficulty — no programming experience required.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>
+      Little Maestro was built by a dad who wanted his daughter to love music.<br />
+      She played for 6 hours on the first day. We hope your child does too. <span class="heart">♥</span>
+    </p>
+  </div>
+
+</body>
+</html>
