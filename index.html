@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aplikacja Pianinkowa Marysi 🎹</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="_assets/manifest.json" />
+  <meta name="theme-color" content="#8B5CF6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Pianinkowa Marysi" />
+  <link rel="apple-touch-icon" href="_assets/icon-192.svg" />
+
+  <!-- Google Fonts: Nunito (headings/display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- Aplikacja Pianinkowa Marysi — built in phases -->
+
+  <div id="app">
+
+    <!-- ============================================================
+         GLOBAL HEADER
+         Shown on all screens except login.
+         Phase 2: hidden via CSS. JS toggles display when a student
+         is selected.
+         ============================================================ -->
+    <header id="global-header" role="banner">
+
+      <!-- Left: compact logo -->
+      <a class="hdr-logo" href="#" onclick="return false;" aria-label="Aplikacja Pianinkowa Marysi">
+        <span class="hdr-logo-icon">🎹</span>
+        <span class="hdr-logo-text">Pianinkowa Marysi</span>
+      </a>
+
+      <!-- Center: active student identity (absolutely centered) -->
+      <div class="hdr-student" aria-label="Active student">
+        <div class="hdr-avatar hdr-student-avatar" id="hdr-avatar" aria-hidden="true"></div>
+        <span class="hdr-student-name" id="hdr-student-name">—</span>
+      </div>
+
+      <!-- Right: streak + music notes + parent lock -->
+      <div class="hdr-right">
+        <div class="hdr-stat streak" title="Seria ćwiczeń">
+          <span aria-hidden="true">🔥</span>
+          <span class="js-streak">7</span>
+        </div>
+        <div class="hdr-stat notes" title="Zdobyte nuty">
+          <span aria-hidden="true">🎵</span>
+          <span class="js-notes">142</span>
+        </div>
+        <!-- MIDI connection status pill — auto-updates via MIDIManager -->
+        <button
+          id="midi-status-pill"
+          class="midi-pill midi-pill--disconnected"
+          aria-label="Status połączenia MIDI. Kliknij po pomoc."
+          title="Kliknij po pomoc z połączeniem"
+        >🎹 Pianino niepodłączone</button>
+        <button class="hdr-lock-btn" title="Tryb rodzica" aria-label="Tryb rodzica">
+          🔒
+        </button>
+      </div>
+
+    </header>
+
+
+    <!-- ============================================================
+         SCREEN 1: LOGIN
+         Welcome + student selection.
+         Visible at Phase 2.
+         ============================================================ -->
+    <main id="screen-login" class="screen active" role="main" aria-label="Student selection">
+      <div class="login-wrap">
+
+        <!-- Hero: treble clef + title + subtitle -->
+        <div class="login-hero">
+
+          <!-- Treble Clef — hand-coded SVG (G clef) -->
+          <div class="clef-wrap" aria-hidden="true">
+            <svg
+              viewBox="0 0 64 186"
+              xmlns="http://www.w3.org/2000/svg"
+              width="52"
+              height="152"
+              fill="none"
+              aria-hidden="true"
+            >
+              <!--
+                G Clef / Treble Clef
+                Anatomy:
+                  1. Top curl — the decorative head spiraling right
+                  2. Oval loop — circles around the G line (staff line 2)
+                  3. Vertical stem — descends through the staff
+                  4. Bottom tail — curls under the staff
+              -->
+
+              <!-- 1. Top curl -->
+              <path
+                d="M 33 6
+                   C 42 6 50 14 50 26
+                   C 50 36 44 44 36 50"
+                stroke="#7C3AED"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <!-- 2. Main loop (oval around G line) -->
+              <path
+                d="M 36 50
+                   C 52 54 60 68 58 84
+                   C 56 100 44 110 32 110
+                   C 20 110 12 102 12 92
+                   C 12 82 20 76 30 78
+                   C 38 80 44 88 40 98
+                   C 38 104 32 106 28 102"
+                stroke="#7C3AED"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <!-- 3. Vertical stem (top curl down to tail) -->
+              <line
+                x1="33" y1="6"
+                x2="33" y2="168"
+                stroke="#7C3AED"
+                stroke-width="5"
+                stroke-linecap="round"
+              />
+
+              <!-- 4. Bottom tail curl -->
+              <path
+                d="M 33 168
+                   C 20 172 12 180 14 190
+                   C 16 200 26 204 36 200
+                   C 46 196 52 186 48 176
+                   C 45 168 38 164 33 168"
+                stroke="#7C3AED"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <h1 class="login-title">
+            Little <span class="accent">Maestro</span>
+          </h1>
+          <p class="login-subtitle">Twoja muzyczna podróż zaczyna się tutaj</p>
+
+        </div><!-- /login-hero -->
+
+
+        <!-- Student selector -->
+        <div class="login-students">
+          <span class="login-students-label">Kto dzisiaj ćwiczy?</span>
+
+          <!-- Populated dynamically by renderLoginScreen() — Phase 5 -->
+          <div class="avatar-grid" role="list" aria-label="Profile uczniów"></div>
+
+          <!-- Inline Add Student form (shown when Add card is clicked) -->
+          <div id="add-student-form" role="form" aria-label="Stwórz nowy profil">
+            <p class="form-title">Nowy profil 🎵</p>
+
+            <div>
+              <label class="form-label" for="form-name">Imię</label>
+              <input
+                id="form-name"
+                class="form-name-input"
+                type="text"
+                maxlength="20"
+                placeholder="Wpisz imię…"
+                autocomplete="off"
+              />
+            </div>
+
+            <div>
+              <label class="form-label">Wybierz awatar</label>
+              <div class="avatar-picker" role="group" aria-label="Wybór awatara">
+                <!-- Populated by _buildAddForm() -->
+              </div>
+            </div>
+
+            <div>
+              <label class="form-label">Ulubiony kolor</label>
+              <div class="color-swatch-grid" role="group" aria-label="Wybór koloru">
+                <!-- Populated by _buildAddForm() -->
+              </div>
+            </div>
+
+            <p class="form-error" role="alert" aria-live="polite"></p>
+
+            <div class="form-btn-row">
+              <button type="button" class="btn-cancel" onclick="closeAddForm()">Anuluj</button>
+              <button type="button" class="btn-create" onclick="_submitAddForm()">Stwórz profil 🌟</button>
+            </div>
+          </div>
+        </div><!-- /login-students -->
+
+
+        <!-- Parent Mode link -->
+        <button class="login-parent-btn" aria-label="Tryb rodzica">
+          🔒 &nbsp;Tryb rodzica
+        </button>
+
+        <!-- Import zone: drag a student JSON file here -->
+        <div class="login-import-zone" id="login-import-zone" role="button" tabindex="0" aria-label="Importuj profil">
+          <span class="login-import-zone-icon">📥</span>
+          Importuj profil — przeciągnij plik tutaj lub kliknij
+        </div>
+
+      </div><!-- /login-wrap -->
+    </main>
+
+
+    <!-- ============================================================
+         SCREEN 2: HOME DASHBOARD
+         Per-user stats, progress overview, and quick navigation.
+         ============================================================ -->
+    <section
+      id="screen-home"
+      class="screen"
+      aria-label="Ekran główny"
+    >
+      <div class="screen-content home-content" id="home-screen-content">
+        <!-- Populated by renderHomeScreen() at runtime -->
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SCREEN 3: PRE-CURRICULUM
+         "The Music ABC" — 5 foundational mini-lessons.
+         Built in Phase 10.
+         ============================================================ -->
+    <section
+      id="screen-precurriculum"
+      class="screen"
+      aria-label="Podstawy muzyki"
+    >
+      <div class="screen-content">
+        <div class="precurr-scroll">
+          <div class="precurr-wrap" id="precurr-container">
+            <!-- Populated by MiniLessons.render() at runtime -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SCREEN 3: QUEST MAP
+         World map with scrollable song bubble path.
+         Built in Phase 9.
+         ============================================================ -->
+    <section
+      id="screen-questmap"
+      class="screen"
+      aria-label="Mapa piosenek"
+    >
+      <div class="screen-content">
+        <div class="questmap-scroll">
+          <div class="questmap-path" id="questmap-path-container">
+            <!-- Populated by renderQuestMap() at runtime -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SCREEN 4: LESSON
+         Three-column layout: sheet music | Melody | piano.
+         Built across Phases 6, 7, 8, 10.
+         ============================================================ -->
+    <section
+      id="screen-lesson"
+      class="screen"
+      aria-label="Lekcja"
+    >
+      <!-- Falling Notes Highway — Guitar Hero overlay (Phase 4) -->
+      <!-- Lives outside the grid so it can overlay everything freely -->
+      <div id="falling-notes-highway" class="fn-highway fn-highway--hidden">
+        <div class="fn-hud">
+          <span class="fn-score" id="fn-score-display">Punkty: 0</span>
+          <span class="fn-streak" id="fn-streak-display"></span>
+        </div>
+      </div>
+
+      <div class="screen-content">
+
+        <!-- Left panel: Sheet music — VexFlow (Phase 7) -->
+        <div class="lesson-panel lesson-panel--sheet" id="lesson-panel-sheet">
+
+          <!-- Panel header: song title + toggles -->
+          <div class="sheet-header">
+            <span class="sheet-song-title" id="sheet-song-title">Wybierz piosenkę</span>
+            <div class="sheet-header-toggles">
+              <button class="sheet-toggle-btn" id="sheet-bg-toggle" title="Toggle white background" onclick="LessonEngine._toggleSheetBg(this)">☀️ White</button>
+              <button class="sheet-toggle-btn" id="piano-vis-toggle" title="Pokaż/ukryj pianino" onclick="LessonEngine._togglePiano(this)">🎹 Pianino</button>
+              <span class="sheet-mode-pill" id="sheet-mode-pill">Full View</span>
+            </div>
+          </div>
+
+          <!-- Scrollable notation area -->
+          <div class="sheet-scroll" id="lesson-sheet-music">
+            <!-- SheetMusic.render() targets this element -->
+            <div class="sheet-loading">
+              <div class="ph-icon" style="font-size:48px;opacity:0.15;">🎼</div>
+            </div>
+          </div>
+
+          <!-- Notation legend (World 1 only) -->
+          <div class="notation-legend legend--hidden" id="notation-legend" aria-label="Note value guide">
+            <span class="legend-title">Note Guide</span>
+            <div class="legend-item">
+              <span class="legend-note legend-quarter"><span class="legend-notehead"></span></span>
+              <span class="legend-text">Quarter = 1 beat</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-note legend-half"><span class="legend-notehead"></span></span>
+              <span class="legend-text">Half = 2 beats</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-note legend-whole"><span class="legend-notehead"></span></span>
+              <span class="legend-text">Whole = 4 beats</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Center panel: Melody mascot (Phase 8) -->
+        <div id="lesson-panel-melody">
+          <!-- Melody.mount('lesson-panel-melody') populates this at runtime -->
+        </div>
+
+        <!-- Right panel: On-screen piano keyboard (Phase 6) -->
+        <div class="lesson-panel lesson-panel--keyboard" id="lesson-panel-keyboard">
+          <span class="lesson-kb-label">Piano</span>
+          <div class="keyboard-container" id="lesson-keyboard"></div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SCREEN 5: TROPHY ROOM
+         Gallery of completed songs with star ratings.
+         Built in Phase 11.
+         ============================================================ -->
+    <section
+      id="screen-trophyroom"
+      class="screen"
+      aria-label="Trofea"
+    >
+      <div class="screen-content">
+        <div class="trophy-header">
+          <div class="trophy-header-title">🏆 Trofea</div>
+          <div class="trophy-header-count" id="trophy-count">0 Songs</div>
+        </div>
+        <div class="trophy-scroll">
+          <div id="trophy-grid-container">
+            <!-- Populated by renderTrophyRoom() at runtime -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SCREEN 6: PARENT MODE
+         PIN-protected dashboard — history, marks, export.
+         Built in Phase 11.
+         ============================================================ -->
+    <section
+      id="screen-parentmode"
+      class="screen"
+      aria-label="Tryb rodzica"
+    >
+      <div class="screen-content" style="position:relative;padding:0;">
+        <div id="pm-container" style="display:flex;flex-direction:column;height:100%;width:100%;">
+          <!-- Populated by ParentDashboard.render() at runtime -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SCREEN 7: FREE PLAY
+         Open keyboard — explore freely, no lesson structure.
+         Built in Phase 6.
+         ============================================================ -->
+    <section
+      id="screen-freeplay"
+      class="screen"
+      aria-label="Wolna gra"
+    >
+      <div class="screen-content">
+        <div class="freeplay-layout">
+          <h2 class="freeplay-title">Wolna gra 🎹</h2>
+          <p class="freeplay-sub">Graj co chcesz — bez stresu, sama muzyka</p>
+          <div class="freeplay-keyboard-wrap">
+            <div class="keyboard-container" id="freeplay-keyboard"></div>
+          </div>
+          <div id="freeplay-note-name" class="freeplay-note-display" aria-live="polite" aria-atomic="true">—</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SCREEN 8: SETTINGS
+         Tempo, session length, note names, parent PIN.
+         Built in Phase 11.
+         ============================================================ -->
+    <section
+      id="screen-settings"
+      class="screen"
+      aria-label="Ustawienia"
+    >
+      <div class="screen-content" style="padding:0;">
+        <div class="settings-scroll">
+          <div class="settings-wrap" id="settings-container">
+            <!-- Populated by SettingsScreen.render() at runtime -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SCREEN 9: RECITAL MODE
+         Student picks any song (even locked) as their recital piece.
+         Detailed scoring — per-note accuracy, timing, streak.
+         ============================================================ -->
+    <section
+      id="screen-recital"
+      class="screen"
+      aria-label="Recital"
+    >
+      <div class="screen-content" id="recital-content">
+        <!-- Populated by RecitalManager.render() -->
+        <div class="recital-placeholder">
+          <div style="font-size:48px;opacity:0.2;">🎤</div>
+          <div style="font-family:var(--font-heading);font-size:16px;color:var(--color-text-muted);margin-top:8px;">Ładowanie trybu recitalu…</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         BOTTOM NAVIGATION
+         Shown on all screens except login.
+         Phase 2: hidden via CSS. JS toggles on student select.
+         ============================================================ -->
+    <nav id="bottom-nav" role="navigation" aria-label="Main navigation">
+
+      <button class="nav-item active" data-target="screen-home" aria-current="page">
+        <span class="nav-icon" aria-hidden="true">🏠</span>
+        <span class="nav-label">Start</span>
+      </button>
+
+      <button class="nav-item" data-target="screen-questmap">
+        <span class="nav-icon" aria-hidden="true">🗺️</span>
+        <span class="nav-label">Piosenki</span>
+      </button>
+
+      <button class="nav-item" data-target="screen-lesson">
+        <span class="nav-icon" aria-hidden="true">🎹</span>
+        <span class="nav-label">Ćwicz</span>
+      </button>
+
+      <button class="nav-item" data-target="screen-trophyroom">
+        <span class="nav-icon" aria-hidden="true">🏆</span>
+        <span class="nav-label">Trofea</span>
+      </button>
+
+      <button class="nav-item" data-target="screen-recital">
+        <span class="nav-icon" aria-hidden="true">🎤</span>
+        <span class="nav-label">Recital</span>
+      </button>
+
+      <button class="nav-item" data-target="screen-settings">
+        <span class="nav-icon" aria-hidden="true">⚙️</span>
+        <span class="nav-label">Ustawienia</span>
+      </button>
+
+    </nav>
+
+  </div><!-- /#app -->
+
+
+
+  <!-- ============================================================
+       MIDI CONNECTION MODAL
+       Shown when pill is clicked while disconnected
+       ============================================================ -->
+  <div
+    id="midi-modal-overlay"
+    class="midi-modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="midi-modal-title"
+    aria-hidden="true"
+  >
+    <div class="midi-modal-card">
+
+      <div class="midi-modal-header">
+        <h2 class="midi-modal-title" id="midi-modal-title">🎹 Podłącz pianino</h2>
+        <button class="midi-modal-close midi-modal-close" aria-label="Zamknij">✕</button>
+      </div>
+
+      <!-- OS tabs -->
+      <div class="midi-modal-tab-row" role="tablist">
+        <button class="midi-tab-btn active" id="tab-mac" role="tab" aria-selected="true"
+          onclick="document.getElementById('steps-mac').style.display='flex';
+                   document.getElementById('steps-win').style.display='none';
+                   document.querySelectorAll('.midi-tab-btn').forEach(b=>b.classList.remove('active'));
+                   this.classList.add('active');">
+          🍎 Mac
+        </button>
+        <button class="midi-tab-btn" id="tab-win" role="tab" aria-selected="false"
+          onclick="document.getElementById('steps-mac').style.display='none';
+                   document.getElementById('steps-win').style.display='flex';
+                   document.querySelectorAll('.midi-tab-btn').forEach(b=>b.classList.remove('active'));
+                   this.classList.add('active');">
+          🪟 Windows
+        </button>
+      </div>
+
+      <!-- Mac steps -->
+      <div id="steps-mac" class="midi-modal-steps" role="tabpanel" aria-labelledby="tab-mac">
+        <div class="midi-step">
+          <div class="midi-step-num">1</div>
+          <div class="midi-step-text">Weź kabel <strong>USB-B do USB-A</strong> (standardowy kabel do drukarki).</div>
+        </div>
+        <div class="midi-step">
+          <div class="midi-step-num">2</div>
+          <div class="midi-step-text">Podłącz <strong>wtyk USB-B</strong> z tyłu pianina CLP-735R — port oznaczony <strong>"USB TO HOST"</strong>.</div>
+        </div>
+        <div class="midi-step">
+          <div class="midi-step-num">3</div>
+          <div class="midi-step-text">Podłącz <strong>wtyk USB-A</strong> do Maca.</div>
+        </div>
+        <div class="midi-step">
+          <div class="midi-step-num">4</div>
+          <div class="midi-step-text">Kliknij <strong>"Zezwól"</strong> gdy Chrome zapyta o dostęp do MIDI. Znaczek zmieni kolor na zielony automatycznie.</div>
+        </div>
+      </div>
+
+      <!-- Windows steps -->
+      <div id="steps-win" class="midi-modal-steps" role="tabpanel" aria-labelledby="tab-win" style="display:none;">
+        <div class="midi-step">
+          <div class="midi-step-num">1</div>
+          <div class="midi-step-text">Pobierz <strong>Yamaha Steinberg USB Driver</strong> z <strong>yamaha.com</strong> i zainstaluj.</div>
+        </div>
+        <div class="midi-step">
+          <div class="midi-step-num">2</div>
+          <div class="midi-step-text"><strong>Uruchom komputer ponownie</strong> po instalacji sterownika.</div>
+        </div>
+        <div class="midi-step">
+          <div class="midi-step-num">3</div>
+          <div class="midi-step-text">Podłącz kabel <strong>USB-B do USB-A</strong>: USB-B do portu <strong>"USB TO HOST"</strong> na pianinie, USB-A do komputera.</div>
+        </div>
+        <div class="midi-step">
+          <div class="midi-step-num">4</div>
+          <div class="midi-step-text">Otwórz tę stronę w <strong>Chrome lub Edge</strong> i kliknij <strong>"Zezwól"</strong> gdy pojawi się pytanie o dostęp do MIDI.</div>
+        </div>
+      </div>
+
+      <div class="midi-modal-note">
+        💡 <strong>Porada:</strong> Brak dźwięku z pianina? Upewnij się że pianino jest włączone i Chrome jest aktywnym oknem przy podłączaniu.
+      </div>
+
+    </div><!-- /midi-modal-card -->
+  </div><!-- /midi-modal-overlay -->
+
+
+  <!-- ============================================================
+       MIDI TEST PANEL
+       Hidden floating panel — toggle from settings.
+       Shows rolling log of last 10 MIDI events.
+       ============================================================ -->
+  <aside id="midi-test-panel" aria-label="MIDI Test Log" aria-hidden="true">
+    <div class="midi-test-header">
+      <span class="midi-test-title">MIDI Event Log</span>
+      <button class="midi-test-close-btn" onclick="toggleMIDITestPanel()" aria-label="Close MIDI log">✕</button>
+    </div>
+    <div id="midi-test-log">
+      <span class="midi-log-empty">Waiting for MIDI input…</span>
+    </div>
+    <div class="midi-test-status-row">
+      <div class="midi-test-dot dot-disconnected" id="midi-test-dot"></div>
+      <span id="midi-test-status-label">Piano not connected</span>
+    </div>
+  </aside>
+
+
+
+  <!-- ============================================================
+       PHASE 5: FIRST-TIME WELCOME OVERLAY
+       Shown when no users exist in localStorage.
+       ============================================================ -->
+  <div id="welcome-overlay" aria-live="polite" aria-label="Witaj w Aplikacji Piankowej Marysi">
+    <div class="welcome-icon" aria-hidden="true">🎹</div>
+    <h2 class="welcome-title">Witaj w Aplikacji Piankowej!</h2>
+    <p class="welcome-sub">Stwórzmy Twój pierwszy profil.</p>
+  </div>
+
+
+  <!-- ============================================================
+       PHASE 5: PARENT PIN MODAL
+       Shown when Parent Mode or delete requires PIN.
+       ============================================================ -->
+  <div id="pin-modal" role="dialog" aria-modal="true" aria-label="Wymagany PIN rodzica">
+    <div class="pin-modal-card">
+      <div class="pin-lock-icon" aria-hidden="true">🔒</div>
+      <h2 class="pin-modal-heading">Tryb rodzica</h2>
+      <p class="pin-modal-msg"></p>
+      <input
+        type="password"
+        class="pin-input"
+        maxlength="8"
+        inputmode="numeric"
+        placeholder="····"
+        aria-label="Wpisz PIN"
+      />
+      <p class="pin-error" role="alert">Nieprawidłowy PIN. Spróbuj ponownie.</p>
+      <div class="pin-btn-row">
+        <button type="button" class="btn-cancel" onclick="_hidePinModal()">Anuluj</button>
+        <button type="button" class="btn-create" onclick="_submitPin()">Odblokuj 🔓</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Libraries -->
+  <script src="lib/vexflow.min.js"></script>
+  <script src="lib/soundfont.min.js"></script>
+
+  <!-- Application modules (order matters) -->
+  <script src="js/songs.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/midi.js"></script>
+  <script src="js/user-manager.js"></script>
+  <script src="js/falling-notes.js"></script>
+  <script src="js/piano-keyboard.js"></script>
+  <script src="js/sheet-music.js"></script>
+  <script src="js/screens.js"></script>
+  <script src="js/lesson-engine.js"></script>
+  <script src="js/mini-lessons.js"></script>
+  <script src="js/screens-extra.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+</html>

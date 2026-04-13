@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Little Maestro 🎹</title>
+  <title>Aplikacja Pianinkowa Marysi 🎹</title>
 
   <!-- PWA -->
   <link rel="manifest" href="_assets/manifest.json" />
   <meta name="theme-color" content="#8B5CF6" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Little Maestro" />
+  <meta name="apple-mobile-web-app-title" content="Pianinkowa Marysi" />
   <link rel="apple-touch-icon" href="_assets/icon-192.svg" />
 
   <!-- Google Fonts: Nunito (headings/display) + Inter (body) -->
@@ -3931,7 +3931,7 @@
       background: rgba(16,185,129,0.08);
     }
 
-    /* "Next Song Unlocked!" reveal card */
+    /* "Nowa piosenka odblokowana!" reveal card */
     .next-song-reveal {
       position: fixed;
       inset: 0;
@@ -6133,7 +6133,7 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
 </head>
 
 <body>
-  <!-- Little Maestro App — built in phases -->
+  <!-- Aplikacja Pianinkowa Marysi — built in phases -->
 
   <div id="app">
 
@@ -6146,9 +6146,9 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <header id="global-header" role="banner">
 
       <!-- Left: compact logo -->
-      <a class="hdr-logo" href="#" onclick="return false;" aria-label="Little Maestro home">
+      <a class="hdr-logo" href="#" onclick="return false;" aria-label="Aplikacja Pianinkowa Marysi">
         <span class="hdr-logo-icon">🎹</span>
-        <span class="hdr-logo-text">Little Maestro</span>
+        <span class="hdr-logo-text">Pianinkowa Marysi</span>
       </a>
 
       <!-- Center: active student identity (absolutely centered) -->
@@ -6159,11 +6159,11 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
 
       <!-- Right: streak + music notes + parent lock -->
       <div class="hdr-right">
-        <div class="hdr-stat streak" title="Practice streak">
+        <div class="hdr-stat streak" title="Seria ćwiczeń">
           <span aria-hidden="true">🔥</span>
           <span class="js-streak">7</span>
         </div>
-        <div class="hdr-stat notes" title="Music Notes earned">
+        <div class="hdr-stat notes" title="Zdobyte nuty">
           <span aria-hidden="true">🎵</span>
           <span class="js-notes">142</span>
         </div>
@@ -6171,10 +6171,10 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
         <button
           id="midi-status-pill"
           class="midi-pill midi-pill--disconnected"
-          aria-label="MIDI connection status. Click to see setup instructions."
-          title="Click for connection help"
-        >🎹 Piano Not Connected</button>
-        <button class="hdr-lock-btn" title="Parent Mode" aria-label="Open Parent Mode">
+          aria-label="Status połączenia MIDI. Kliknij po pomoc."
+          title="Kliknij po pomoc z połączeniem"
+        >🎹 Pianino niepodłączone</button>
+        <button class="hdr-lock-btn" title="Tryb rodzica" aria-label="Tryb rodzica">
           🔒
         </button>
       </div>
@@ -6265,44 +6265,44 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
           <h1 class="login-title">
             Little <span class="accent">Maestro</span>
           </h1>
-          <p class="login-subtitle">Your Musical Journey Begins</p>
+          <p class="login-subtitle">Twoja muzyczna podróż zaczyna się tutaj</p>
 
         </div><!-- /login-hero -->
 
 
         <!-- Student selector -->
         <div class="login-students">
-          <span class="login-students-label">Who's practicing today?</span>
+          <span class="login-students-label">Kto dzisiaj ćwiczy?</span>
 
           <!-- Populated dynamically by renderLoginScreen() — Phase 5 -->
-          <div class="avatar-grid" role="list" aria-label="Student profiles"></div>
+          <div class="avatar-grid" role="list" aria-label="Profile uczniów"></div>
 
           <!-- Inline Add Student form (shown when Add card is clicked) -->
-          <div id="add-student-form" role="form" aria-label="Create new student profile">
-            <p class="form-title">New Student 🎵</p>
+          <div id="add-student-form" role="form" aria-label="Stwórz nowy profil">
+            <p class="form-title">Nowy profil 🎵</p>
 
             <div>
-              <label class="form-label" for="form-name">Name</label>
+              <label class="form-label" for="form-name">Imię</label>
               <input
                 id="form-name"
                 class="form-name-input"
                 type="text"
                 maxlength="20"
-                placeholder="Enter student name…"
+                placeholder="Wpisz imię…"
                 autocomplete="off"
               />
             </div>
 
             <div>
-              <label class="form-label">Choose an Avatar</label>
-              <div class="avatar-picker" role="group" aria-label="Avatar options">
+              <label class="form-label">Wybierz awatar</label>
+              <div class="avatar-picker" role="group" aria-label="Wybór awatara">
                 <!-- Populated by _buildAddForm() -->
               </div>
             </div>
 
             <div>
-              <label class="form-label">Favorite Color</label>
-              <div class="color-swatch-grid" role="group" aria-label="Color options">
+              <label class="form-label">Ulubiony kolor</label>
+              <div class="color-swatch-grid" role="group" aria-label="Wybór koloru">
                 <!-- Populated by _buildAddForm() -->
               </div>
             </div>
@@ -6310,22 +6310,22 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
             <p class="form-error" role="alert" aria-live="polite"></p>
 
             <div class="form-btn-row">
-              <button type="button" class="btn-cancel" onclick="closeAddForm()">Cancel</button>
-              <button type="button" class="btn-create" onclick="_submitAddForm()">Create Profile 🌟</button>
+              <button type="button" class="btn-cancel" onclick="closeAddForm()">Anuluj</button>
+              <button type="button" class="btn-create" onclick="_submitAddForm()">Stwórz profil 🌟</button>
             </div>
           </div>
         </div><!-- /login-students -->
 
 
         <!-- Parent Mode link -->
-        <button class="login-parent-btn" aria-label="Open Parent Mode">
-          🔒 &nbsp;Parent Mode
+        <button class="login-parent-btn" aria-label="Tryb rodzica">
+          🔒 &nbsp;Tryb rodzica
         </button>
 
         <!-- Import zone: drag a student JSON file here -->
-        <div class="login-import-zone" id="login-import-zone" role="button" tabindex="0" aria-label="Import student profile">
+        <div class="login-import-zone" id="login-import-zone" role="button" tabindex="0" aria-label="Importuj profil">
           <span class="login-import-zone-icon">📥</span>
-          Import a student — drag their file here, or tap to browse
+          Importuj profil — przeciągnij plik tutaj lub kliknij
         </div>
 
       </div><!-- /login-wrap -->
@@ -6339,7 +6339,7 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <section
       id="screen-home"
       class="screen"
-      aria-label="Home Dashboard"
+      aria-label="Ekran główny"
     >
       <div class="screen-content home-content" id="home-screen-content">
         <!-- Populated by renderHomeScreen() at runtime -->
@@ -6355,7 +6355,7 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <section
       id="screen-precurriculum"
       class="screen"
-      aria-label="Pre-Curriculum: The Music ABC"
+      aria-label="Podstawy muzyki"
     >
       <div class="screen-content">
         <div class="precurr-scroll">
@@ -6375,7 +6375,7 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <section
       id="screen-questmap"
       class="screen"
-      aria-label="Quest Map"
+      aria-label="Mapa piosenek"
     >
       <div class="screen-content">
         <div class="questmap-scroll">
@@ -6395,13 +6395,13 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <section
       id="screen-lesson"
       class="screen"
-      aria-label="Lesson"
+      aria-label="Lekcja"
     >
       <!-- Falling Notes Highway — Guitar Hero overlay (Phase 4) -->
       <!-- Lives outside the grid so it can overlay everything freely -->
       <div id="falling-notes-highway" class="fn-highway fn-highway--hidden">
         <div class="fn-hud">
-          <span class="fn-score" id="fn-score-display">Score: 0</span>
+          <span class="fn-score" id="fn-score-display">Punkty: 0</span>
           <span class="fn-streak" id="fn-streak-display"></span>
         </div>
       </div>
@@ -6413,10 +6413,10 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
 
           <!-- Panel header: song title + toggles -->
           <div class="sheet-header">
-            <span class="sheet-song-title" id="sheet-song-title">Select a song to begin</span>
+            <span class="sheet-song-title" id="sheet-song-title">Wybierz piosenkę</span>
             <div class="sheet-header-toggles">
               <button class="sheet-toggle-btn" id="sheet-bg-toggle" title="Toggle white background" onclick="LessonEngine._toggleSheetBg(this)">☀️ White</button>
-              <button class="sheet-toggle-btn" id="piano-vis-toggle" title="Show/hide piano" onclick="LessonEngine._togglePiano(this)">🎹 Piano</button>
+              <button class="sheet-toggle-btn" id="piano-vis-toggle" title="Pokaż/ukryj pianino" onclick="LessonEngine._togglePiano(this)">🎹 Pianino</button>
               <span class="sheet-mode-pill" id="sheet-mode-pill">Full View</span>
             </div>
           </div>
@@ -6471,11 +6471,11 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <section
       id="screen-trophyroom"
       class="screen"
-      aria-label="Trophy Room"
+      aria-label="Trofea"
     >
       <div class="screen-content">
         <div class="trophy-header">
-          <div class="trophy-header-title">🏆 Trophy Room</div>
+          <div class="trophy-header-title">🏆 Trofea</div>
           <div class="trophy-header-count" id="trophy-count">0 Songs</div>
         </div>
         <div class="trophy-scroll">
@@ -6495,7 +6495,7 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <section
       id="screen-parentmode"
       class="screen"
-      aria-label="Parent Mode"
+      aria-label="Tryb rodzica"
     >
       <div class="screen-content" style="position:relative;padding:0;">
         <div id="pm-container" style="display:flex;flex-direction:column;height:100%;width:100%;">
@@ -6513,12 +6513,12 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <section
       id="screen-freeplay"
       class="screen"
-      aria-label="Free Play"
+      aria-label="Wolna gra"
     >
       <div class="screen-content">
         <div class="freeplay-layout">
-          <h2 class="freeplay-title">Free Play 🎹</h2>
-          <p class="freeplay-sub">Play anything — no pressure, just music</p>
+          <h2 class="freeplay-title">Wolna gra 🎹</h2>
+          <p class="freeplay-sub">Graj co chcesz — bez stresu, sama muzyka</p>
           <div class="freeplay-keyboard-wrap">
             <div class="keyboard-container" id="freeplay-keyboard"></div>
           </div>
@@ -6536,7 +6536,7 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
     <section
       id="screen-settings"
       class="screen"
-      aria-label="Settings"
+      aria-label="Ustawienia"
     >
       <div class="screen-content" style="padding:0;">
         <div class="settings-scroll">
@@ -6562,7 +6562,7 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
         <!-- Populated by RecitalManager.render() -->
         <div class="recital-placeholder">
           <div style="font-size:48px;opacity:0.2;">🎤</div>
-          <div style="font-family:var(--font-heading);font-size:16px;color:var(--color-text-muted);margin-top:8px;">Loading Recital Mode…</div>
+          <div style="font-family:var(--font-heading);font-size:16px;color:var(--color-text-muted);margin-top:8px;">Ładowanie trybu recitalu…</div>
         </div>
       </div>
     </section>
@@ -6577,22 +6577,22 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
 
       <button class="nav-item active" data-target="screen-home" aria-current="page">
         <span class="nav-icon" aria-hidden="true">🏠</span>
-        <span class="nav-label">Home</span>
+        <span class="nav-label">Start</span>
       </button>
 
       <button class="nav-item" data-target="screen-questmap">
         <span class="nav-icon" aria-hidden="true">🗺️</span>
-        <span class="nav-label">Songs</span>
+        <span class="nav-label">Piosenki</span>
       </button>
 
       <button class="nav-item" data-target="screen-lesson">
         <span class="nav-icon" aria-hidden="true">🎹</span>
-        <span class="nav-label">Practice</span>
+        <span class="nav-label">Ćwicz</span>
       </button>
 
       <button class="nav-item" data-target="screen-trophyroom">
         <span class="nav-icon" aria-hidden="true">🏆</span>
-        <span class="nav-label">Trophies</span>
+        <span class="nav-label">Trofea</span>
       </button>
 
       <button class="nav-item" data-target="screen-recital">
@@ -6602,7 +6602,7 @@ body.theme--light #import-error-toast    { background: #FFFBF0; }
 
       <button class="nav-item" data-target="screen-settings">
         <span class="nav-icon" aria-hidden="true">⚙️</span>
-        <span class="nav-label">Settings</span>
+        <span class="nav-label">Ustawienia</span>
       </button>
 
     </nav>
@@ -13272,7 +13272,434 @@ const SONGS = [
       { note: 'D3', duration: 'eighth',  hand: 'right', finger: 4 },
       { note: 'C3', duration: 'whole',   hand: 'left',  finger: 5 },
     ],
-  }
+  },
+
+  // ================================================================
+  // WORLD 14 — PIOSENKI SANAH
+  // Uproszczone melodie polskiego popu dla Marysi
+  // ================================================================
+
+  // --- 1. Szampan ---
+  {
+    id: 201,
+    title: "Szampan",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "\"Szampan\" to jeden z największych hitów Sanah — piosenka o tęsknocie i miłości. Sanah gra na skrzypcach od 5 roku życia!",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 56, normal: 76, rabbit: 96, rocket: 112 },
+    notes: [
+      // Refren uproszczony: "Szam-pan, szam-pan..."
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      // Druga fraza
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      // Powtórzenie refrenu
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 2. Ten Stan ---
+  {
+    id: 202,
+    title: "Ten Stan",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "\"Ten Stan\" ma ponad 200 milionów wyświetleń na YouTube! Sanah napisała tę piosenkę w zaledwie kilka godzin.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 54, normal: 72, rabbit: 92, rocket: 108 },
+    notes: [
+      // "Ten stan, gdy ty na mnie patrzysz..."
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      // "i ja nie wiem co mam robić..."
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      // "ten stan..."
+      { note: 'A4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+      // Coda
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 4 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 3. Nic dwa razy ---
+  {
+    id: 203,
+    title: "Nic dwa razy",
+    composer: "Sanah (sł. W. Szymborska)",
+    world: 14,
+    difficulty: 2,
+    funFact: "Tekst tej piosenki to wiersz Wisławy Szymborskiej — polskiej noblistki! Sanah dała mu nowe życie jako piosence.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 52, normal: 68, rabbit: 88, rocket: 104 },
+    notes: [
+      // "Nic dwa razy się nie zdarza..."
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      // "i z tego powodu..."
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      // Druga zwrotka
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
+      // Zakończenie
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 4. Ostatnia nadzieja ---
+  {
+    id: 204,
+    title: "Ostatnia nadzieja",
+    composer: "Sanah ft. Kwiat Jabłoni",
+    world: 14,
+    difficulty: 2,
+    funFact: "Ta piosenka to duet z rodzeństwem Kwiat Jabłoni. Nagrana na żywo w jednym ujęciu — czujesz w niej prawdziwe emocje!",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 50, normal: 66, rabbit: 84, rocket: 100 },
+    notes: [
+      // Melodia delikatna, balladowa
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      // Refren
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+      // Outro
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 5. Ale jazz! ---
+  {
+    id: 205,
+    title: "Ale jazz!",
+    composer: "Sanah ft. Vito Bambino",
+    world: 14,
+    difficulty: 2,
+    funFact: "\"Ale jazz!\" łączy pop z jazzowymi harmoniami. Sanah studiowała skrzypce w Akademii Muzycznej w Katowicach!",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 58, normal: 80, rabbit: 100, rocket: 116 },
+    notes: [
+      // Energiczny motyw
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      // "Ale jazz!"
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 1 },
+      // Bridge
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 6. Cześć, jak się masz? ---
+  {
+    id: 206,
+    title: "Cześć, jak się masz?",
+    composer: "Sanah ft. Miętha",
+    world: 14,
+    difficulty: 2,
+    funFact: "Sanah i Miętha nagrały tę piosenkę w jeden dzień. Pokazuje że muzyka najlepsza jest gdy jest spontaniczna!",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 56, normal: 76, rabbit: 96, rocket: 112 },
+    notes: [
+      // "Cześć, jak się masz?"
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
+      // Odpowiedź
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
+      // Zakończenie refrenu
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 7. Szary świat ---
+  {
+    id: 207,
+    title: "Szary świat",
+    composer: "Sanah ft. Kwiat Jabłoni",
+    world: 14,
+    difficulty: 2,
+    funFact: "Kolejna współpraca z Kwiatem Jabłoni — tym razem o szukaniu kolorów w szarym świecie. Idealna melodia do grania wieczorem.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 50, normal: 66, rabbit: 84, rocket: 100 },
+    notes: [
+      // Melancholijna melodia
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'whole',   hand: 'right', finger: 1 },
+      // Refren
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 8. Etc. ---
+  {
+    id: 208,
+    title: "Etc.",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "\"Etc.\" to skrót od \"et cetera\" — i tak dalej. Sanah uwielbia bawić się słowami w swoich piosenkach!",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 60, normal: 84, rabbit: 104, rocket: 120 },
+    notes: [
+      // Taneczny, dyskotekowy motyw
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      // Hook
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 4 },
+      // Powtórzenie z wariacją
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 9. Melodia ---
+  {
+    id: 209,
+    title: "Melodia",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "Piosenka o melodii, którą grasz na pianinie — jak pięknie się to układa! Sanah mówi że każdy człowiek ma w sobie swoją melodię.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 52, normal: 70, rabbit: 88, rocket: 104 },
+    notes: [
+      // Liryczna, spokojna
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'whole',   hand: 'right', finger: 2 },
+      // Refren
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      // Outro
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 10. Eldorado ---
+  {
+    id: 210,
+    title: "Eldorado",
+    composer: "Sanah ft. Daria Zawiałow",
+    world: 14,
+    difficulty: 2,
+    funFact: "Eldorado to mityczne miasto ze złota. Sanah i Daria Zawiałow razem tworzą muzyczne złoto — dwa mocne głosy w jednej piosence!",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 56, normal: 76, rabbit: 96, rocket: 112 },
+    notes: [
+      // Mocny wstęp
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      // "Eldorado"
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 1 },
+      // Refren
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
+    ],
+  },
+
 ];
 
 
@@ -13703,8 +14130,8 @@ const AudioEngine = (() => {
     <div class="midi-modal-card">
 
       <div class="midi-modal-header">
-        <h2 class="midi-modal-title" id="midi-modal-title">🎹 Connect Your Piano</h2>
-        <button class="midi-modal-close midi-modal-close" aria-label="Close">✕</button>
+        <h2 class="midi-modal-title" id="midi-modal-title">🎹 Podłącz pianino</h2>
+        <button class="midi-modal-close midi-modal-close" aria-label="Zamknij">✕</button>
       </div>
 
       <!-- OS tabs -->
@@ -13729,19 +14156,19 @@ const AudioEngine = (() => {
       <div id="steps-mac" class="midi-modal-steps" role="tabpanel" aria-labelledby="tab-mac">
         <div class="midi-step">
           <div class="midi-step-num">1</div>
-          <div class="midi-step-text">Get a <strong>USB-B to USB-A cable</strong> (standard printer cable).</div>
+          <div class="midi-step-text">Weź kabel <strong>USB-B do USB-A</strong> (standardowy kabel do drukarki).</div>
         </div>
         <div class="midi-step">
           <div class="midi-step-num">2</div>
-          <div class="midi-step-text">Plug the <strong>USB-B end</strong> into the back of the CLP-735R — the port labeled <strong>"USB TO HOST"</strong>.</div>
+          <div class="midi-step-text">Podłącz <strong>wtyk USB-B</strong> z tyłu pianina CLP-735R — port oznaczony <strong>"USB TO HOST"</strong>.</div>
         </div>
         <div class="midi-step">
           <div class="midi-step-num">3</div>
-          <div class="midi-step-text">Plug the <strong>USB-A end</strong> into your Mac.</div>
+          <div class="midi-step-text">Podłącz <strong>wtyk USB-A</strong> do Maca.</div>
         </div>
         <div class="midi-step">
           <div class="midi-step-num">4</div>
-          <div class="midi-step-text">Click <strong>"Allow"</strong> when Chrome asks for MIDI access. The badge will turn green automatically.</div>
+          <div class="midi-step-text">Kliknij <strong>"Zezwól"</strong> gdy Chrome zapyta o dostęp do MIDI. Znaczek zmieni kolor na zielony automatycznie.</div>
         </div>
       </div>
 
@@ -13749,24 +14176,24 @@ const AudioEngine = (() => {
       <div id="steps-win" class="midi-modal-steps" role="tabpanel" aria-labelledby="tab-win" style="display:none;">
         <div class="midi-step">
           <div class="midi-step-num">1</div>
-          <div class="midi-step-text">Download the <strong>Yamaha Steinberg USB Driver</strong> from <strong>yamaha.com</strong> and install it.</div>
+          <div class="midi-step-text">Pobierz <strong>Yamaha Steinberg USB Driver</strong> z <strong>yamaha.com</strong> i zainstaluj.</div>
         </div>
         <div class="midi-step">
           <div class="midi-step-num">2</div>
-          <div class="midi-step-text"><strong>Restart your computer</strong> after the driver installs.</div>
+          <div class="midi-step-text"><strong>Uruchom komputer ponownie</strong> po instalacji sterownika.</div>
         </div>
         <div class="midi-step">
           <div class="midi-step-num">3</div>
-          <div class="midi-step-text">Connect the <strong>USB-B to USB-A cable</strong>: USB-B into <strong>"USB TO HOST"</strong> on the piano, USB-A into your PC.</div>
+          <div class="midi-step-text">Podłącz kabel <strong>USB-B do USB-A</strong>: USB-B do portu <strong>"USB TO HOST"</strong> na pianinie, USB-A do komputera.</div>
         </div>
         <div class="midi-step">
           <div class="midi-step-num">4</div>
-          <div class="midi-step-text">Open this page in <strong>Chrome or Edge</strong> and click <strong>"Allow"</strong> when asked for MIDI access.</div>
+          <div class="midi-step-text">Otwórz tę stronę w <strong>Chrome lub Edge</strong> i kliknij <strong>"Zezwól"</strong> gdy pojawi się pytanie o dostęp do MIDI.</div>
         </div>
       </div>
 
       <div class="midi-modal-note">
-        💡 <strong>Tip:</strong> No sound from the piano? Make sure the piano is powered on and Chrome is the active window when you plug in.
+        💡 <strong>Porada:</strong> Brak dźwięku z pianina? Upewnij się że pianino jest włączone i Chrome jest aktywnym oknem przy podłączaniu.
       </div>
 
     </div><!-- /midi-modal-card -->
@@ -14009,7 +14436,7 @@ function _updateStatusUI() {
       cls   = 'midi-pill--warn';
       break;
     default: // disconnected
-      label = '🎹 Piano Not Connected';
+      label = '🎹 Pianino niepodłączone';
       cls   = 'midi-pill--disconnected';
   }
 
@@ -14048,7 +14475,7 @@ function _updateTestPanel() {
   if (!log) return;
   const events = MIDIManager.getLog();
   if (events.length === 0) {
-    log.innerHTML = '<span class="midi-log-empty">Waiting for MIDI input…</span>';
+    log.innerHTML = '<span class="midi-log-empty">Czekam na sygnał MIDI…</span>';
   } else {
     log.innerHTML = events.map(e =>
       `<div class="midi-log-entry">${e}</div>`
@@ -14105,10 +14532,10 @@ document.addEventListener('DOMContentLoaded', () => {
       label.textContent = MIDIManager.getDeviceName() || 'Connected';
     } else if (s === 'unsupported') {
       dot.classList.add('dot-unsupported');
-      label.textContent = 'Web MIDI not supported';
+      label.textContent = 'Web MIDI nie jest wspierane';
     } else {
       dot.classList.add('dot-disconnected');
-      label.textContent = 'Piano not connected';
+      label.textContent = 'Pianino niepodłączone';
     }
   }
   // Patch _updateStatusUI to also refresh test panel dot
@@ -14121,16 +14548,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ── Polish note name display ──────────────────────────────────────
+// Internal data stays English (C,D,E,F,G,A,B). Display uses Polish/German system.
+// B→H, Bb→B, sharps→is suffix, flats→es suffix (special cases: Es, As, B)
+function noteDisplayPL(noteName) {
+  if (!noteName) return '';
+  const n = noteName.replace(/\d+$/, ''); // strip octave
+  const map = {
+    'B': 'H', 'B#': 'His',
+    'Bb': 'B', 'A#': 'B',
+    'C#': 'Cis', 'Db': 'Des',
+    'D#': 'Dis', 'Eb': 'Es',
+    'F#': 'Fis', 'Gb': 'Ges',
+    'G#': 'Gis', 'Ab': 'As',
+  };
+  return map[n] || n;
+}
+
   </script>
 
   <!-- ============================================================
        PHASE 5: FIRST-TIME WELCOME OVERLAY
        Shown when no users exist in localStorage.
        ============================================================ -->
-  <div id="welcome-overlay" aria-live="polite" aria-label="Welcome to Little Maestro">
+  <div id="welcome-overlay" aria-live="polite" aria-label="Witaj w Aplikacji Piankowej Marysi">
     <div class="welcome-icon" aria-hidden="true">🎹</div>
-    <h2 class="welcome-title">Welcome to Little Maestro!</h2>
-    <p class="welcome-sub">Let&#8217;s set up your first student.</p>
+    <h2 class="welcome-title">Witaj w Aplikacji Piankowej!</h2>
+    <p class="welcome-sub">Stwórzmy Twój pierwszy profil.</p>
   </div>
 
 
@@ -14138,10 +14582,10 @@ document.addEventListener('DOMContentLoaded', () => {
        PHASE 5: PARENT PIN MODAL
        Shown when Parent Mode or delete requires PIN.
        ============================================================ -->
-  <div id="pin-modal" role="dialog" aria-modal="true" aria-label="Parent PIN required">
+  <div id="pin-modal" role="dialog" aria-modal="true" aria-label="Wymagany PIN rodzica">
     <div class="pin-modal-card">
       <div class="pin-lock-icon" aria-hidden="true">🔒</div>
-      <h2 class="pin-modal-heading">Parent Mode</h2>
+      <h2 class="pin-modal-heading">Tryb rodzica</h2>
       <p class="pin-modal-msg"></p>
       <input
         type="password"
@@ -14149,12 +14593,12 @@ document.addEventListener('DOMContentLoaded', () => {
         maxlength="8"
         inputmode="numeric"
         placeholder="····"
-        aria-label="Enter PIN"
+        aria-label="Wpisz PIN"
       />
-      <p class="pin-error" role="alert">Incorrect PIN. Try again.</p>
+      <p class="pin-error" role="alert">Nieprawidłowy PIN. Spróbuj ponownie.</p>
       <div class="pin-btn-row">
-        <button type="button" class="btn-cancel" onclick="_hidePinModal()">Cancel</button>
-        <button type="button" class="btn-create" onclick="_submitPin()">Unlock 🔓</button>
+        <button type="button" class="btn-cancel" onclick="_hidePinModal()">Anuluj</button>
+        <button type="button" class="btn-create" onclick="_submitPin()">Odblokuj 🔓</button>
       </div>
     </div>
   </div>
@@ -14201,10 +14645,10 @@ document.addEventListener('DOMContentLoaded', () => {
           },
           parentNotes: [],
           settings: {
-            tempoPreference: 'normal',
-            sessionLength: 15,
+            tempoPreference: 'turtle',
+            sessionLength: 20,
             leftHandUnlocked: false,
-            showNoteNames: true,
+            showNoteNames: false,
             parentPin: '1234',
           },
         };
@@ -14230,9 +14674,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function createUser(name, avatar, color) {
         const idx = _getIndex();
-        if (idx.length >= 6) throw new Error('Maximum 6 profiles reached');
+        if (idx.length >= 6) throw new Error('Maksymalnie 6 profili');
         if (idx.some(n => n.toLowerCase() === name.toLowerCase())) {
-          throw new Error('A student named "' + name + '" already exists');
+          throw new Error('Uczeń o imieniu "' + name + '" już istnieje');
         }
         const profile = _defaultProfile(name, avatar, color);
         localStorage.setItem(_key(name), JSON.stringify(profile));
@@ -14296,7 +14740,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = data.profile.name;
         const idx  = _getIndex();
         if (!idx.some(n => n.toLowerCase() === name.toLowerCase())) {
-          if (idx.length >= 6) throw new Error('Maximum 6 profiles reached');
+          if (idx.length >= 6) throw new Error('Maksymalnie 6 profili');
           idx.push(name);
           _saveIndex(idx);
         }
@@ -14408,16 +14852,16 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.cssText = '--card-color:' + color + ';--card-glow:' + glow + ';';
 
         const streakHtml = currentStreak > 0
-          ? '<span class="ava-streak" aria-label="' + currentStreak + ' day streak">🔥 ' + currentStreak + '</span>'
+          ? '<span class="ava-streak" aria-label="' + currentStreak + ' dni z rzędu">🔥 ' + currentStreak + '</span>'
           : '';
 
         card.innerHTML =
           '<div class="ava-circle" style="--card-color:' + color + ';" aria-hidden="true">' + _escHtml(avatar) + '</div>' +
           '<span class="ava-name">' + _escHtml(name) + '</span>' +
-          '<span class="ava-progress">World ' + currentWorld + ' · Song ' + currentSong + '</span>' +
+          '<span class="ava-progress">Świat ' + currentWorld + ' · Piosenka ' + currentSong + '</span>' +
           streakHtml +
           '<div class="ava-accent-bar"></div>' +
-          '<button class="ava-delete-btn" aria-label="Delete ' + _escHtml(name) + '" title="Delete student">🗑</button>';
+          '<button class="ava-delete-btn" aria-label="Usuń ' + _escHtml(name) + '" title="Usuń ucznia">🗑</button>';
 
         // Click to load
         card.addEventListener('click', e => {
@@ -14472,7 +14916,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (parentBtn) {
         parentBtn.onclick = () => _showPinModal(
           () => showScreen('parentmode'),
-          'Enter Parent PIN to access Parent Mode'
+          'Wpisz PIN rodzica'
         );
       }
 
@@ -14492,7 +14936,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const avatarEl = document.querySelector('.hdr-student-avatar');
           if (nameEl)   nameEl.textContent   = user.profile.name;
           if (avatarEl) avatarEl.textContent  = user.profile.avatar;
-          showScreen('home');
+          // New profile → go to quest map (Sanah world visible immediately)
+          if (window._isNewProfile) {
+            window._isNewProfile = false;
+            showScreen('questmap');
+          } else {
+            showScreen('home');
+          }
         } catch(err) {
           console.error('[LM] Load user failed:', err);
           card.classList.remove('card-loading');
@@ -14533,14 +14983,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const color  = form._selectedColor;
       const errEl  = form.querySelector('.form-error');
 
-      if (!name)   { errEl.textContent = 'Please enter a name.';     errEl.style.display = 'block'; return; }
-      if (!avatar) { errEl.textContent = 'Please pick an avatar.';    errEl.style.display = 'block'; return; }
-      if (!color)  { errEl.textContent = 'Please pick a color.';      errEl.style.display = 'block'; return; }
+      if (!name)   { errEl.textContent = 'Wpisz imię.';               errEl.style.display = 'block'; return; }
+      if (!avatar) { errEl.textContent = 'Wybierz awatar.';           errEl.style.display = 'block'; return; }
+      if (!color)  { errEl.textContent = 'Wybierz kolor.';            errEl.style.display = 'block'; return; }
       errEl.style.display = 'none';
 
       try {
         UserManager.createUser(name, avatar, color);
         form.classList.remove('form--visible');
+        window._isNewProfile = true; // flag: skip home, go to Sanah
         renderLoginScreen();
         // Auto-load the newly created user
         setTimeout(() => {
@@ -14560,7 +15011,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const modal = document.getElementById('pin-modal');
       if (!modal) {
         // Fallback: browser prompt
-        const pin = prompt((message || '') + '\n\nEnter Parent PIN:');
+        const pin = prompt((message || '') + '\n\nEnter PIN rodzica:');
         const users = UserManager.getAllUsers();
         const validPin = users.length > 0 && users[0].settings
           ? (users[0].settings.parentPin || '1234') : '1234';
@@ -14605,11 +15056,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Delete confirmation ───────────────────────────────────────
     function _confirmDeleteUser(name) {
       _showPinModal(() => {
-        if (confirm('Delete "' + name + '"? This cannot be undone.')) {
+        if (confirm('Usunąć "' + name + '"? Tej operacji nie można cofnąć.')) {
           UserManager.deleteUser(name);
           renderLoginScreen();
         }
-      }, 'Enter Parent PIN to delete "' + name + '"');
+      }, 'Wpisz PIN rodzica żeby usunąć "' + name + '"');
     }
 
 
@@ -14946,8 +15397,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const xf  = _xFrac(n.note);
         const w   = _noteWidth(n.note, cw);
         const x   = xf * cw - w / 2;
-        const letter  = _norm(n.note).replace(/\d/, '');
-        const color   = NOTE_COLORS[letter] || '#8B5CF6';
+        const _letter = _norm(n.note).replace(/\d/, '');
+        const letter  = typeof noteDisplayPL === 'function' ? noteDisplayPL(n.note) : _letter;
+        const color   = NOTE_COLORS[_letter] || '#8B5CF6';
 
         const nearHit = Math.max(0, 1 - Math.abs(songTime - n.hitTime) / 400);
 
@@ -15094,7 +15546,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function _updateScoreUI() {
       const sc = document.getElementById('fn-score-display');
-      if (sc) sc.textContent = `Score: ${_score}`;
+      if (sc) sc.textContent = `Punkty: ${_score}`;
       const st = document.getElementById('fn-streak-display');
       if (st) {
         if (_streak >= 2) {
@@ -15118,7 +15570,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const stars  = acc >= 0.90 ? 3 : acc >= 0.70 ? 2 : 1;
       const pct    = Math.round(acc * 100);
 
-      const titles = ['Keep Practicing! 💪', 'Nice Work! 👍', 'AMAZING! 🌟'];
+      const titles = ['Ćwicz dalej! 💪', 'Nieźle! 👍', 'ŚWIETNIE! 🌟'];
       const title  = titles[stars - 1];
 
       const starHtml = [1,2,3].map(i =>
@@ -15131,11 +15583,11 @@ document.addEventListener('DOMContentLoaded', () => {
       screen.innerHTML = `
         <div class="fn-star-title">${title}</div>
         <div class="fn-star-row">${starHtml}</div>
-        <div class="fn-star-score">Score: ${_score} &nbsp;|&nbsp; Best streak: ${_bestStreak}</div>
-        <div class="fn-star-accuracy">${pct}% accuracy</div>
+        <div class="fn-star-score">Punkty: ${_score} &nbsp;|&nbsp; Najlepsza seria: ${_bestStreak}</div>
+        <div class="fn-star-accuracy">${pct}% celność</div>
         <div class="fn-star-buttons">
-          <button class="fn-star-btn fn-star-btn--again" onclick="LessonEngine._showPlayAgainModal()">↺ Play Again</button>
-          <button class="fn-star-btn fn-star-btn--continue" onclick="LessonEngine._callParent()">Continue →</button>
+          <button class="fn-star-btn fn-star-btn--again" onclick="LessonEngine._showPlayAgainModal()">↺ Zagraj ponownie</button>
+          <button class="fn-star-btn fn-star-btn--continue" onclick="LessonEngine._callParent()">Dalej →</button>
         </div>`;
       hw.appendChild(screen);
 
@@ -15222,8 +15674,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B',
       };
 
-      // Note names for display labels
-      const WHITE_NAMES = ['C','D','E','F','G','A','B'];
+      // Note names for display labels (Polish: B→H)
+      const WHITE_NAMES = ['C','D','E','F','G','A','H'];
 
       // Registered containers: { id → { el, keyMap } }
       const _containers = {};
@@ -15287,13 +15739,14 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.setAttribute('aria-label', note.replace('#', ' sharp '));
 
           const noteLetter = note.replace(/\d/, '');
+          const noteLetterPL = typeof noteDisplayPL === 'function' ? noteDisplayPL(note) : noteLetter;
           const isC = noteLetter === 'C';
           const isMiddleC = note === 'C4';
 
-          // Note name label
+          // Note name label (Polish)
           const labelEl = document.createElement('span');
           labelEl.className = 'pk-label' + (_showNoteLabels ? '' : ' pk-label--hidden');
-          labelEl.textContent = noteLetter;
+          labelEl.textContent = noteLetterPL;
           btn.appendChild(labelEl);
 
           // Finger number span (hidden until setFingerNumbers called)
@@ -15520,7 +15973,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update free play note display
         const noteDisplay = document.getElementById('freeplay-note-name');
-        if (noteDisplay) noteDisplay.textContent = fullNote;
+        if (noteDisplay) noteDisplay.textContent = noteDisplayPL(fullNote);
       });
 
       // onNoteOff: remove playing highlight from that key
@@ -15673,7 +16126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container) return;
 
         if (!VF) {
-          container.innerHTML = '<div class="sheet-error"><div class="ph-icon" style="font-size:32px;opacity:.3;">🎼</div><span>Sheet music loading…</span></div>';
+          container.innerHTML = '<div class="sheet-error"><div class="ph-icon" style="font-size:32px;opacity:.3;">🎼</div><span>Ładowanie nut…</span></div>';
           // Retry up to 20 times (10 s) waiting for VexFlow CDN to load
           let _retries = 0;
           const _retry = setInterval(() => {
@@ -15684,7 +16137,7 @@ document.addEventListener('DOMContentLoaded', () => {
               render(containerId, songId, options);
             } else if (_retries >= 20) {
               clearInterval(_retry);
-              container.innerHTML = '<div class="sheet-error"><div class="ph-icon" style="font-size:32px;opacity:.3;">🎼</div><span>Sheet music unavailable (no internet)</span></div>';
+              container.innerHTML = '<div class="sheet-error"><div class="ph-icon" style="font-size:32px;opacity:.3;">🎼</div><span>Nuty niedostępne (brak internetu)</span></div>';
             }
           }, 500);
           return;
@@ -15692,11 +16145,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const song = SONGS.find(s => s.id === songId);
         if (!song) {
-          container.innerHTML = '<div class="sheet-error"><span>Song not found</span></div>';
+          container.innerHTML = '<div class="sheet-error"><span>Nie znaleziono piosenki</span></div>';
           return;
         }
 
-        container.innerHTML = '<div class="sheet-loading"><div class="sheet-loading-spinner"></div><span>Rendering…</span></div>';
+        container.innerHTML = '<div class="sheet-loading"><div class="sheet-loading-spinner"></div><span>Renderowanie…</span></div>';
 
         // Defer one frame so loading spinner renders before heavy work
         requestAnimationFrame(() => {
@@ -15704,7 +16157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             _doRender(VF, container, song, containerId, songId, options);
           } catch(err) {
             console.error('[SheetMusic] VexFlow error:', err);
-            container.innerHTML = '<div class="sheet-error"><div class="ph-icon" style="font-size:32px;opacity:.3;">🎼</div><span>Could not render notation</span></div>';
+            container.innerHTML = '<div class="sheet-error"><div class="ph-icon" style="font-size:32px;opacity:.3;">🎼</div><span>Nie można wyrenderować nut</span></div>';
           }
         });
       }
@@ -15810,7 +16263,7 @@ document.addEventListener('DOMContentLoaded', () => {
               // Note name below (if enabled) — use Annotation
               if (_s.showNames) {
                 try {
-                  const noteLetter = n.note.replace(/\d/, '');
+                  const noteLetter = typeof noteDisplayPL === 'function' ? noteDisplayPL(n.note) : n.note.replace(/\d/, '');
                   const ann = new VF.Annotation(noteLetter);
                   ann.setFont('Arial', 9, 'bold');
                   if (ann.setVerticalJustification) {
@@ -15973,12 +16426,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // All 6 emotional states and their face configuration
       const STATES = {
-        idle:      { eyes: 'normal', mouth: 'smile',    brows: 'neutral',  color: '#A78BFA', msg: ['♪  ♫  ♪', 'Ready to play!', 'Pick a song!'] },
-        excited:   { eyes: 'wide',   mouth: 'open',     brows: 'raised',   color: '#F59E0B', msg: ['Woohoo! 🎉', 'Let\'s go!', 'You got this!'] },
-        correct:   { eyes: 'happy',  mouth: 'grin',     brows: 'raised',   color: '#10B981', msg: ['Perfect! ✨', 'Amazing! ⭐', 'Keep going!'] },
-        wrong:     { eyes: 'sad',    mouth: 'frown',    brows: 'worried',  color: '#EF4444', msg: ['Try again!', 'Almost! 💪', 'You can do it'] },
-        thinking:  { eyes: 'squint', mouth: 'hmm',      brows: 'thinking', color: '#60A5FA', msg: ['Hmm…', 'Let me see…', 'Which note?'] },
-        celebrate: { eyes: 'star',   mouth: 'huge',     brows: 'raised',   color: '#F59E0B', msg: ['AMAZING! 🌟', 'YOU DID IT! 🎊', 'SUPERSTAR! ⭐'] },
+        idle:      { eyes: 'normal', mouth: 'smile',    brows: 'neutral',  color: '#A78BFA', msg: ['♪  ♫  ♪', 'Gotowa do gry!', 'Wybierz piosenkę!'] },
+        excited:   { eyes: 'wide',   mouth: 'open',     brows: 'raised',   color: '#F59E0B', msg: ['Juhu! 🎉', 'Zaczynamy!', 'Dasz radę!'] },
+        correct:   { eyes: 'happy',  mouth: 'grin',     brows: 'raised',   color: '#10B981', msg: ['Perfekcyjnie! ✨', 'Świetnie! ⭐', 'Tak trzymaj!'] },
+        wrong:     { eyes: 'sad',    mouth: 'frown',    brows: 'worried',  color: '#EF4444', msg: ['Spróbuj jeszcze raz!', 'Prawie! 💪', 'Dasz radę!'] },
+        thinking:  { eyes: 'squint', mouth: 'hmm',      brows: 'thinking', color: '#60A5FA', msg: ['Hmm…', 'Zobaczmy…', 'Jaka nuta?'] },
+        celebrate: { eyes: 'star',   mouth: 'huge',     brows: 'raised',   color: '#F59E0B', msg: ['ŚWIETNIE! 🌟', 'UDAŁO SIĘ! 🎊', 'GWIAZDA! ⭐'] },
       };
 
       const _s = {
@@ -16223,21 +16676,22 @@ document.addEventListener('DOMContentLoaded', () => {
         let world = worlds.find(w => w.id === song.world);
         if (!world) {
           const WORLD_META = {
-            1:  { icon: '🎀', title: 'World 1',  subtitle: 'Primer Basics',      color: '--world-1'  },
-            2:  { icon: '🎈', title: 'World 2',  subtitle: 'Primer Two Hands',   color: '--world-2'  },
-            3:  { icon: '🎠', title: 'World 3',  subtitle: 'Primer Skills',      color: '--world-3'  },
-            4:  { icon: '🌱', title: 'World 4',  subtitle: 'First Notes',        color: '--world-4'  },
-            5:  { icon: '⭐', title: 'World 5',  subtitle: 'Simple Melodies',    color: '--world-5'  },
-            6:  { icon: '🎵', title: 'World 6',  subtitle: 'Growing Range',      color: '--world-6'  },
-            7:  { icon: '🥁', title: 'World 7',  subtitle: 'Two Hands',          color: '--world-7'  },
-            8:  { icon: '🎶', title: 'World 8',  subtitle: 'Harmony',            color: '--world-8'  },
-            9:  { icon: '🎹', title: 'World 9',  subtitle: 'Maestro',            color: '--world-9'  },
-            10: { icon: '🎸', title: 'World 10', subtitle: 'Rock Star',          color: '--world-10' },
-            11: { icon: '⚔️', title: 'World 11', subtitle: 'Legend',             color: '--world-11' },
-            12: { icon: '🏆', title: 'World 12', subtitle: 'Grandmaster',        color: '--world-12' },
-            13: { icon: '💎', title: 'World 13', subtitle: 'Virtuoso',           color: '--world-13' },
+            1:  { icon: '🎀', title: 'Świat 1',  subtitle: 'Pierwsze kroki',       color: '--world-1'  },
+            2:  { icon: '🎈', title: 'Świat 2',  subtitle: 'Dwie ręce',            color: '--world-2'  },
+            3:  { icon: '🎠', title: 'Świat 3',  subtitle: 'Umiejętności',         color: '--world-3'  },
+            4:  { icon: '🌱', title: 'Świat 4',  subtitle: 'Pierwsze nuty',        color: '--world-4'  },
+            5:  { icon: '⭐', title: 'Świat 5',  subtitle: 'Proste melodie',       color: '--world-5'  },
+            6:  { icon: '🎵', title: 'Świat 6',  subtitle: 'Szerszy zakres',       color: '--world-6'  },
+            7:  { icon: '🥁', title: 'Świat 7',  subtitle: 'Obie ręce',            color: '--world-7'  },
+            8:  { icon: '🎶', title: 'Świat 8',  subtitle: 'Harmonia',             color: '--world-8'  },
+            9:  { icon: '🎹', title: 'Świat 9',  subtitle: 'Maestro',              color: '--world-9'  },
+            10: { icon: '🎸', title: 'Świat 10', subtitle: 'Gwiazda rocka',        color: '--world-10' },
+            11: { icon: '⚔️', title: 'Świat 11', subtitle: 'Legenda',              color: '--world-11' },
+            12: { icon: '🏆', title: 'Świat 12', subtitle: 'Arcymistrz',           color: '--world-12' },
+            13: { icon: '💎', title: 'Świat 13', subtitle: 'Wirtuoz',              color: '--world-13' },
+            14: { icon: '🎤', title: 'Sanah',    subtitle: 'Piosenki Sanah',       color: '--world-1'  },
           };
-          const meta = WORLD_META[song.world] || { icon: '🎵', title: `World ${song.world}`, subtitle: '' };
+          const meta = WORLD_META[song.world] || { icon: '🎵', title: `Świat ${song.world}`, subtitle: '' };
           world = { id: song.world, ...meta, songs: [] };
           worlds.push(world);
         }
@@ -16259,7 +16713,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let html = `
         <div class="questmap-precurr-banner">
           <span class="banner-stars">✦ ✦ ✦</span>
-          <span>Your Musical Journey</span>
+          <span>Twoja muzyczna podróż</span>
           <span class="banner-stars">✦ ✦ ✦</span>
         </div>`;
 
@@ -16333,8 +16787,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="questmap-world-banner world-banner--bonus questmap-bonus-section">
             <span class="world-banner-icon">⭐</span>
             <div>
-              <div class="world-banner-title">Special Unlocks</div>
-              <div class="world-banner-subtitle">Play any time — no lock required</div>
+              <div class="world-banner-title">Specjalne odblokowania</div>
+              <div class="world-banner-subtitle">Graj kiedy chcesz — bez blokady</div>
             </div>
           </div>`;
 
@@ -16426,7 +16880,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // ── Time-of-day greeting ────────────────────────────────────
       const hour = new Date().getHours();
-      const timeGreeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+      const timeGreeting = hour < 12 ? 'Dzień dobry' : hour < 17 ? 'Cześć' : 'Dobry wieczór';
 
       // ── Format practice time ────────────────────────────────────
       const mins  = stats.totalPracticeMinutes || 0;
@@ -16448,7 +16902,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="home-streak-badge">
             <div class="home-streak-num">🔥 ${stats.streak || 0}</div>
-            <div class="home-streak-label">Day Streak</div>
+            <div class="home-streak-label">Seria dni</div>
           </div>
         </div>
 
@@ -16456,7 +16910,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="home-continue" onclick="if(typeof LessonEngine!=='undefined'){LessonEngine.startLesson(${continueSong?.id || 1});if(typeof showScreen!=='undefined')showScreen('lesson');}">
           <div class="home-continue-icon">🎵</div>
           <div class="home-continue-text">
-            <div class="home-continue-label">Continue Learning</div>
+            <div class="home-continue-label">Kontynuuj naukę</div>
             <div class="home-continue-title">${continueSong?.title || 'Hot Cross Buns'}</div>
           </div>
           <div class="home-continue-arrow">▶</div>
@@ -16467,52 +16921,52 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="home-stat-card">
             <span class="home-stat-icon">🎵</span>
             <span class="home-stat-num">${stats.notes || 0}</span>
-            <span class="home-stat-label">Notes</span>
+            <span class="home-stat-label">Nuty</span>
           </div>
           <div class="home-stat-card">
             <span class="home-stat-icon">🎼</span>
             <span class="home-stat-num">${completedCount}</span>
-            <span class="home-stat-label">Songs</span>
+            <span class="home-stat-label">Piosenki</span>
           </div>
           <div class="home-stat-card">
             <span class="home-stat-icon">⏱️</span>
             <span class="home-stat-num">${timeDisplay}</span>
-            <span class="home-stat-label">Practice</span>
+            <span class="home-stat-label">Ćwiczenia</span>
           </div>
           <div class="home-stat-card">
             <span class="home-stat-icon">🏆</span>
             <span class="home-stat-num">${stats.bestStreak || stats.streak || 0}</span>
-            <span class="home-stat-label">Best</span>
+            <span class="home-stat-label">Najlepsze</span>
           </div>
         </div>
 
         <!-- Quick nav -->
-        <div class="home-section-title">Explore</div>
+        <div class="home-section-title">Odkrywaj</div>
         <div class="home-nav-grid">
           <button class="home-nav-card" onclick="if(typeof showScreen!=='undefined'){showScreen('questmap');if(typeof renderQuestMap!=='undefined')renderQuestMap();}">
             <span class="home-nav-card-icon">🗺️</span>
-            <span class="home-nav-card-title">Song Map</span>
-            <span class="home-nav-card-desc">Pick a song and start your lesson</span>
+            <span class="home-nav-card-title">Mapa piosenek</span>
+            <span class="home-nav-card-desc">Wybierz piosenkę i zacznij lekcję</span>
           </button>
           <button class="home-nav-card" onclick="if(typeof showScreen!=='undefined')showScreen('freeplay');">
             <span class="home-nav-card-icon">🎹</span>
-            <span class="home-nav-card-title">Free Play</span>
-            <span class="home-nav-card-desc">Play any notes — just for fun</span>
+            <span class="home-nav-card-title">Wolna gra</span>
+            <span class="home-nav-card-desc">Graj co chcesz — dla zabawy</span>
           </button>
           <button class="home-nav-card" onclick="if(typeof showScreen!=='undefined')showScreen('trophyroom');">
             <span class="home-nav-card-icon">🏆</span>
-            <span class="home-nav-card-title">Trophies</span>
-            <span class="home-nav-card-desc">See Addison's achievements</span>
+            <span class="home-nav-card-title">Trofea</span>
+            <span class="home-nav-card-desc">Twoje osiągnięcia</span>
           </button>
-          <button class="home-nav-card" onclick="if(typeof showScreen!=='undefined')showScreen('precurriculum');">
+          <button class="home-nav-card" onclick="if(typeof showScreen!=='undefined')showScreen('precurriculum');" style="opacity:0.5;order:99;">
             <span class="home-nav-card-icon">📖</span>
-            <span class="home-nav-card-title">Learn Basics</span>
-            <span class="home-nav-card-desc">Notes, rhythm, and music ABCs</span>
+            <span class="home-nav-card-title">Podstawy muzyki</span>
+            <span class="home-nav-card-desc">Nuty, rytm i alfabet muzyczny</span>
           </button>
         </div>
 
         <!-- Song progress -->
-        <div class="home-section-title">Songs Progress</div>
+        <div class="home-section-title">Postępy w piosenkach</div>
         <div class="home-songs-list">
           ${mainSongs.map((song, idx) => {
             const stars = songProgress[song.id] || 0;
@@ -16524,7 +16978,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="home-song-emoji">${song.emoji || (idx===0?'🎵':idx===1?'🐑':idx===2?'⭐':'🎶')}</span>
               <div class="home-song-info">
                 <div class="home-song-title">${song.title}</div>
-                <div class="home-song-sub">${song.composer} · ${stars > 0 ? 'Completed' : isLocked ? 'Locked' : 'In Progress'}</div>
+                <div class="home-song-sub">${song.composer} · ${stars > 0 ? 'Ukończone' : isLocked ? 'Zablokowane' : 'W trakcie'}</div>
               </div>
               ${isLocked
                 ? `<span class="home-song-locked">🔒</span>`
@@ -16587,7 +17041,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isBonusSong = song.isBonus || song.alwaysUnlocked;
         const isLocked = !isBonusSong && !completedSongs.has(songId) && songId !== currentSongId;
         if (isLocked) {
-          Melody.speak('Finish earlier songs first! 🔒', 2000);
+          Melody.speak('Najpierw ukończ wcześniejsze piosenki! 🔒', 2000);
           Melody.setState('thinking');
           setTimeout(() => Melody.setState('idle'), 2500);
           return;
@@ -16886,21 +17340,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Update count badge
       const countEl = document.getElementById('trophy-count');
-      if (countEl) countEl.textContent = `${completedEntries.length} Songs`;
+      if (countEl) countEl.textContent = `${completedEntries.length} Piosenek`;
 
       // Empty state
       if (completedEntries.length === 0) {
         container.innerHTML = `
           <div class="trophy-empty">
             <div class="trophy-empty-icon">🏆</div>
-            <div class="trophy-empty-title">No trophies yet!</div>
-            <div class="trophy-empty-subtitle">Complete songs on the Quest Map<br>to earn trophies here.</div>
+            <div class="trophy-empty-title">Brak trofeów!</div>
+            <div class="trophy-empty-subtitle">Ukończ piosenki na Mapie piosenek<br>żeby zdobyć trofea.</div>
           </div>`;
         return;
       }
 
       // Build grid
-      const WORLD_NAMES = { 1:'World 1', 2:'World 2', 3:'World 3', 4:'World 4', 5:'World 5', 6:'World 6' };
+      const WORLD_NAMES = { 1:'Świat 1', 2:'Świat 2', 3:'Świat 3', 4:'Świat 4', 5:'Świat 5', 6:'Świat 6' };
 
       const cards = completedEntries.map(({ songId, song, data }) => {
         const stars     = data.stars || 0;
@@ -16910,7 +17364,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const worldNum  = song ? song.world : '';
         const worldName = WORLD_NAMES[worldNum] || '';
         const dateStr   = data.completedAt
-          ? new Date(data.completedAt).toLocaleDateString('en-US', { month:'short', day:'numeric' })
+          ? new Date(data.completedAt).toLocaleDateString('pl-PL', { month:'short', day:'numeric' })
           : '';
 
         return `
@@ -16947,7 +17401,7 @@ document.addEventListener('DOMContentLoaded', () => {
         companion.setAttribute('aria-label', 'Melody mascot');
         companion.onclick = () => {
           Melody.setState('excited');
-          Melody.speak('Hi there! 🎵', 2000);
+          Melody.speak('Hej! 🎵', 2000);
           setTimeout(() => Melody.setState('idle'), 2500);
         };
         // Insert before first child of hdr-right
@@ -16966,7 +17420,7 @@ document.addEventListener('DOMContentLoaded', () => {
           _origShowScreen(screenId);
           if (screenId === 'questmap')   { setTimeout(QuestMap.render, 220); }
           if (screenId === 'trophyroom') { setTimeout(renderTrophyRoom, 220); }
-          if (screenId === 'lesson')     { Melody.setState('excited'); Melody.speak('Let\'s play! 🎵', 2000); setTimeout(()=>Melody.setState('idle'),2500); }
+          if (screenId === 'lesson')     { Melody.setState('excited'); Melody.speak('Zaczynamy! 🎵', 2000); setTimeout(()=>Melody.setState('idle'),2500); }
         };
       }
 
@@ -17088,7 +17542,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bar.className = 'lesson-controls-bar';
         bar.innerHTML = `
           <!-- Back to home button -->
-          <button class="lesson-back-home-btn" onclick="LessonEngine._confirmExit()" title="Leave lesson">← Home</button>
+          <button class="lesson-back-home-btn" onclick="LessonEngine._confirmExit()" title="Wróć">← Wróć</button>
           <!-- Tempo group -->
           <div class="tempo-group" id="lesson-tempo-group">
             <button class="tempo-btn" data-tempo="turtle" onclick="LessonEngine.setTempo('turtle')">🐢</button>
@@ -17200,8 +17654,8 @@ document.addEventListener('DOMContentLoaded', () => {
         _s.phase = 1;
         const meta = _meta(_s.songId);
 
-        _setPhaseUI('Phase 1 · Meet the Song', true, '');
-        _setProgress(0, 5, 'Lesson');
+        _setPhaseUI('Krok 1 · Poznaj piosenkę', true, '');
+        _setProgress(0, 5, 'Lekcja');
         Melody.setState('thinking');
         Melody.speak(meta.fact, 0);
 
@@ -17213,10 +17667,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="meet-card">
             <div class="meet-card-era">${meta.era}</div>
             <div class="meet-card-title">${_s.song.title}</div>
-            <div class="meet-card-composer">${_s.song.composer || 'Traditional'}</div>
+            <div class="meet-card-composer">${_s.song.composer || 'Tradycyjna'}</div>
             <div class="meet-card-fact">${meta.fact}</div>
             <button class="lesson-btn lesson-btn--primary" style="margin-top:8px;" onclick="LessonEngine._endPhase1()">
-              Start Listening →
+              Posłuchaj →
             </button>
           </div>`;
 
@@ -17258,30 +17712,30 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.innerHTML = `
           <div class="input-mode-modal">
             <div class="input-mode-emoji">🎹</div>
-            <div class="input-mode-title">Ready to play?</div>
-            <div class="input-mode-subtitle">${_s.song?.title ? '"' + _s.song.title + '"' : 'Let\'s go!'}</div>
+            <div class="input-mode-title">Gotowa do gry?</div>
+            <div class="input-mode-subtitle">${_s.song?.title ? '"' + _s.song.title + '"' : 'Zaczynamy!'}</div>
 
-            <div class="input-mode-section-label">How will you play?</div>
+            <div class="input-mode-section-label">Jak chcesz grać?</div>
             <div class="input-mode-choices">
               <button class="input-mode-btn" id="mode-btn-screen">
                 <span class="input-mode-btn-icon">👆</span>
-                <span class="input-mode-btn-label">Tap the Screen</span>
-                <span class="input-mode-btn-sub">Tap keys on the<br>on-screen keyboard</span>
+                <span class="input-mode-btn-label">Klawisze na ekranie</span>
+                <span class="input-mode-btn-sub">Klikaj klawisze<br>na ekranie</span>
               </button>
               <button class="input-mode-btn${midiConnected ? '' : ' input-mode-btn--disabled'}" id="mode-btn-piano">
                 <span class="input-mode-btn-icon">🎹</span>
-                <span class="input-mode-btn-label">Real Piano</span>
-                <span class="input-mode-btn-sub">${midiConnected ? 'Play on your<br>connected keyboard' : 'No keyboard<br>detected'}</span>
+                <span class="input-mode-btn-label">Prawdziwe pianino</span>
+                <span class="input-mode-btn-sub">${midiConnected ? 'Graj na<br>podłączonym pianinie' : 'Nie wykryto<br>pianina'}</span>
               </button>
             </div>
-            ${!midiConnected ? '<div class="input-mode-no-midi">Connect a MIDI keyboard via USB to enable Real Piano mode.</div>' : ''}
+            ${!midiConnected ? '<div class="input-mode-no-midi">Podłącz pianino USB żeby grać na prawdziwym instrumencie.</div>' : ''}
 
             <div class="input-mode-divider"></div>
-            <div class="input-mode-section-label">Speed</div>
+            <div class="input-mode-section-label">Tempo</div>
             <div class="input-mode-tempo-row">
-              <button class="input-mode-tempo-btn" data-tempo="turtle">🐢<br><span>Slow</span></button>
-              <button class="input-mode-tempo-btn input-mode-tempo-btn--active" data-tempo="normal">▶<br><span>Normal</span></button>
-              <button class="input-mode-tempo-btn" data-tempo="rabbit">🚀<br><span>Fast</span></button>
+              <button class="input-mode-tempo-btn" data-tempo="turtle">🐢<br><span>Wolno</span></button>
+              <button class="input-mode-tempo-btn input-mode-tempo-btn--active" data-tempo="normal">▶<br><span>Normalnie</span></button>
+              <button class="input-mode-tempo-btn" data-tempo="rabbit">🚀<br><span>Szybko</span></button>
             </div>
           </div>`;
 
@@ -17384,7 +17838,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btn) {
           btn.classList.toggle('metro-btn--on', _s.metronomeEnabled);
           btn.querySelector('.metro-label').textContent =
-            _s.metronomeEnabled ? 'Metro: On' : 'Metro: Off';
+            _s.metronomeEnabled ? 'Metro: Wł.' : 'Metro: Wył.';
         }
         if (_s.phase === 4) {
           if (_s.metronomeEnabled) _startMetronome();
@@ -17401,13 +17855,13 @@ document.addEventListener('DOMContentLoaded', () => {
         _s.phase      = 1; // listen is still "pre-play" logically
         _s.listenCount = 0;
 
-        _setPhaseUI('Phase 2 · Listen', true,
-          `<button class="listen-instruction" id="listen-ready-btn" disabled onclick="LessonEngine._advancePhase2()">I'm Ready to Learn →</button>
-           <button class="lesson-btn" onclick="LessonEngine._replayListen()">↺ Replay</button>`);
-        _setProgress(1, 5, 'Lesson');
+        _setPhaseUI('Krok 2 · Słuchaj', true,
+          `<button class="listen-instruction" id="listen-ready-btn" disabled onclick="LessonEngine._advancePhase2()">Jestem gotowa →</button>
+           <button class="lesson-btn" onclick="LessonEngine._replayListen()">↺ Powtórz</button>`);
+        _setProgress(1, 5, 'Lekcja');
 
         Melody.setState('excited');
-        Melody.speak('Just listen! 🎵', 3000);
+        Melody.speak('Posłuchaj! 🎵', 3000);
 
         // Render sheet music
         if (typeof SheetMusic !== 'undefined') {
@@ -17436,7 +17890,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (readyBtn && readyBtn.disabled) {
             readyBtn.disabled = false;
             Melody.setState('idle');
-            Melody.speak('Ready when you are! ✨', 3000);
+            Melody.speak('Gotowa kiedy chcesz! ✨', 3000);
           }
         }, 3000);
 
@@ -17458,11 +17912,19 @@ document.addEventListener('DOMContentLoaded', () => {
           const readyBtn = document.getElementById('listen-ready-btn');
           if (readyBtn) readyBtn.disabled = false;
           Melody.setState('idle');
-          Melody.speak(_s.listenCount === 1 ? 'Replay if you like! 🎵' : 'Ready when you are! ✨', 3000);
+          Melody.speak(_s.listenCount === 1 ? 'Posłuchaj jeszcze raz! 🎵' : 'Gotowa kiedy chcesz! ✨', 3000);
         });
       }
 
-      function _advancePhase2() { _stopPlayback(); _startPhase3(); }
+      function _advancePhase2() {
+        _stopPlayback();
+        // Sanah world (14+): skip note learning, go straight to falling notes (Suzuki method)
+        if (_s.song && _s.song.world >= 14) {
+          _startPhase4();
+          return;
+        }
+        _startPhase3();
+      }
 
       // ══════════════════════════════════════════════════════════
       //  PHASE 3 — LEARN THE NOTES
@@ -17475,9 +17937,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const rhNotes = _rhNotes();
         _s.totalCount = rhNotes.length;
 
-        _setPhaseUI('Phase 3 · Learn the Notes', false,
-          `<button class="lesson-btn lesson-btn--danger" onclick="LessonEngine._triggerStuck()">I'm Stuck 🆘</button>`);
-        _setProgress(0, _s.totalCount, 'Notes');
+        _setPhaseUI('Krok 3 · Naucz się nut', false,
+          `<button class="lesson-btn lesson-btn--danger" onclick="LessonEngine._triggerStuck()">Potrzebuję pomocy 🆘</button>`);
+        _setProgress(0, _s.totalCount, 'Nuty');
 
         // Note instruction banner
         _showNoteInstructionBanner();
@@ -17517,7 +17979,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const note     = rhNotes[_s.noteIndex];
-        const noteName = note.note.replace(/\d/, '').replace('#', '♯').replace('b', '♭');
+        const noteName = noteDisplayPL(note.note);
         const finger   = note.finger || '';
 
         if (typeof SheetMusic !== 'undefined')    SheetMusic.highlightNote(_s.noteIndex);
@@ -17527,13 +17989,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const banner = document.getElementById('note-instruction-banner');
         if (banner) {
           banner.innerHTML = `
-            Find this note → <span class="note-instruction-note-name">${noteName}</span>
-            ${finger ? `<span style="color:var(--color-text-muted);font-size:10px;">&nbsp;finger&nbsp;${finger}</span>` : ''}
-            &nbsp;&nbsp;Play the glowing key!`;
+            Znajdź nutę → <span class="note-instruction-note-name">${noteName}</span>
+            ${finger ? `<span style="color:var(--color-text-muted);font-size:10px;">&nbsp;palec&nbsp;${finger}</span>` : ''}
+            &nbsp;&nbsp;Zagraj świecący klawisz!`;
         }
 
-        Melody.speak(`Find ${noteName}! 🎵`, 3000);
-        _setProgress(_s.noteIndex, _s.totalCount, 'Notes');
+        Melody.speak(`Znajdź ${noteName}! 🎵`, 3000);
+        _setProgress(_s.noteIndex, _s.totalCount, 'Nuty');
       }
 
       function _handleNoteInput(playedNote) {
@@ -17571,7 +18033,7 @@ document.addEventListener('DOMContentLoaded', () => {
             PianoKeyboard.highlightNext(_normalize(expected)); // keep gold key glowing
           }
           Melody.setState('wrong');
-          Melody.speak('Almost! Try the gold key 🔑', 2000);
+          Melody.speak('Prawie! Spróbuj złoty klawisz 🔑', 2000);
           setTimeout(() => { if (_s.phase === 3) { Melody.setState('thinking'); } }, 2200);
         }
       }
@@ -17584,15 +18046,15 @@ document.addEventListener('DOMContentLoaded', () => {
           panel.id        = 'stuck-panel';
           panel.className = 'stuck-panel';
           panel.innerHTML = `
-            <span class="stuck-label">🐢 Slowing down to turtle speed — just focus on the next 4 notes!</span>
-            <button class="lesson-btn" onclick="document.getElementById('stuck-panel').classList.remove('panel--visible')">Got It</button>`;
+            <span class="stuck-label">🐢 Zwalniam tempo — skup się na kolejnych 4 nutach!</span>
+            <button class="lesson-btn" onclick="document.getElementById('stuck-panel').classList.remove('panel--visible')">OK</button>`;
           const sheet = document.getElementById('lesson-panel-sheet');
           if (sheet) sheet.appendChild(panel);
         }
         setTimeout(() => panel.classList.add('panel--visible'), 10);
         _s.tempo = 'turtle';
         Melody.setState('thinking');
-        Melody.speak('Take it slow! 🐢', 2500);
+        Melody.speak('Spokojnie! 🐢', 2500);
         setTimeout(() => Melody.setState('idle'), 3000);
         // Update tempo UI
         document.querySelectorAll('.tempo-btn').forEach(b => b.classList.toggle('active', b.dataset.tempo === 'turtle'));
@@ -17613,18 +18075,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const banner = document.getElementById('note-instruction-banner');
         if (banner) banner.classList.add('banner--hidden');
 
-        _setPhaseUI('Phase 4 · Play Along', false,
+        _setPhaseUI('Krok 4 · Graj!', false,
           `<button class="metro-btn metro-btn--on" id="metro-toggle-btn" onclick="LessonEngine._toggleMetronome()">
              <span class="metro-dot" id="metro-dot"></span>
-             <span class="metro-label">Metro: On</span>
+             <span class="metro-label">Metro: Wł.</span>
            </button>`);
-        _setProgress(3, 5, 'Lesson');
+        _setProgress(3, 5, 'Lekcja');
 
         // Show the falling notes highway
         if (typeof FallingNotes !== 'undefined') FallingNotes.show();
 
         Melody.setState('excited');
-        Melody.speak('Watch the notes fall — play when they hit the line! 🎹', 4000);
+        Melody.speak('Patrz na spadające nuty — graj gdy dotrą do linii! 🎹', 4000);
 
         _doPlayAlong();
       }
@@ -17654,13 +18116,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // onComplete callback — Melody reacts to star rating
             if (results.stars === 3) {
               Melody.setState('celebrate');
-              Melody.speak('PERFECT! You\'re a star! 🌟', 3000);
+              Melody.speak('PERFEKCYJNIE! Jesteś gwiazdą! 🌟', 3000);
             } else if (results.stars === 2) {
               Melody.setState('excited');
-              Melody.speak('Great job! Keep it up! 💪', 3000);
+              Melody.speak('Świetna robota! Tak trzymaj! 💪', 3000);
             } else {
               Melody.setState('idle');
-              Melody.speak('Nice try! Play again — you\'ve got this! 🎵', 3000);
+              Melody.speak('Niezły wynik! Zagraj jeszcze raz — dasz radę! 🎵', 3000);
             }
             // Store accuracy for Phase 5 parent review
             _s.correctCount = results.hits;
@@ -17720,10 +18182,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide the falling notes highway when leaving Phase 4
         if (typeof FallingNotes !== 'undefined') FallingNotes.hide();
         _setPhaseUI('Phase 5 · Parent Review', true, '');
-        _setProgress(4, 5, 'Lesson');
+        _setProgress(4, 5, 'Lekcja');
 
         Melody.setState('celebrate');
-        Melody.speak('Time to show off! 🌟', 0);
+        Melody.speak('Czas zabłysnąć! 🌟', 0);
 
         const acc = _s.totalCount > 0
           ? Math.round((_s.correctCount / _s.totalCount) * 100) : 0;
@@ -17741,41 +18203,41 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="parent-review-stats">
               <div class="parent-stat">
                 <div class="parent-stat-value">${_s.song.title.split(' ')[0]}</div>
-                <div class="parent-stat-label">Song</div>
+                <div class="parent-stat-label">Piosenka</div>
               </div>
               <div class="parent-stat">
                 <div class="parent-stat-value">${_s.playCount}×</div>
-                <div class="parent-stat-label">Played</div>
+                <div class="parent-stat-label">Zagrane</div>
               </div>
               <div class="parent-stat">
                 <div class="parent-stat-value">${_s.correctCount}</div>
-                <div class="parent-stat-label">Correct</div>
+                <div class="parent-stat-label">Poprawne</div>
               </div>
               <div class="parent-stat">
                 <div class="parent-stat-value">${acc}%</div>
-                <div class="parent-stat-label">Accuracy</div>
+                <div class="parent-stat-label">Celność</div>
               </div>
             </div>
 
             <div class="parent-pin-row">
-              <span style="font-family:var(--font-heading);font-size:12px;font-weight:700;color:var(--color-text-muted);">Parent PIN:</span>
+              <span style="font-family:var(--font-heading);font-size:12px;font-weight:700;color:var(--color-text-muted);">PIN rodzica:</span>
               <input class="parent-pin-input" id="parent-review-pin" type="password" maxlength="4" inputmode="numeric" placeholder="••••" onkeyup="LessonEngine._checkParentPin(this.value)"/>
             </div>
 
             <div id="parent-star-btns" style="display:none;">
               <div class="star-rating-btns">
-                <div style="font-family:var(--font-heading);font-size:12px;font-weight:700;color:var(--color-text-muted);text-align:center;margin-bottom:4px;">Rate this performance:</div>
+                <div style="font-family:var(--font-heading);font-size:12px;font-weight:700;color:var(--color-text-muted);text-align:center;margin-bottom:4px;">Oceń wykonanie:</div>
                 <button class="star-rating-btn" onclick="LessonEngine._awardStars(1)">
                   <span class="sr-stars">⭐☆☆</span>
-                  <span class="sr-label">Keep Practicing — not quite yet</span>
+                  <span class="sr-label">Ćwicz dalej — jeszcze nie teraz</span>
                 </button>
                 <button class="star-rating-btn" onclick="LessonEngine._awardStars(2)">
                   <span class="sr-stars">⭐⭐☆</span>
-                  <span class="sr-label">Getting There — one more session</span>
+                  <span class="sr-label">Coraz lepiej — jeszcze jedna sesja</span>
                 </button>
                 <button class="star-rating-btn sr--3star" onclick="LessonEngine._awardStars(3)">
                   <span class="sr-stars">⭐⭐⭐</span>
-                  <span class="sr-label">Passed! Amazing! Move On!</span>
+                  <span class="sr-label">Zaliczone! Świetnie! Dalej!</span>
                 </button>
               </div>
             </div>
@@ -17829,11 +18291,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           // Partial — encourage and return to lesson
           Melody.setState('excited');
-          Melody.speak('Keep practicing! You\'ll get it! 💪', 3000);
+          Melody.speak('Ćwicz dalej! Dasz radę! 💪', 3000);
           GamificationManager.awardNotes(stars === 2 ? 20 : 10, 'lesson attempt');
-          _setPhaseUI('Phase 4 · Play Along', false,
-            `<button class="lesson-btn" onclick="LessonEngine._showPlayAgainModal()">↺ Play Again</button>
-             <button class="lesson-btn lesson-btn--primary" onclick="LessonEngine._callParent()">Call a Parent 👨‍👩‍👧 →</button>`);
+          _setPhaseUI('Krok 4 · Graj!', false,
+            `<button class="lesson-btn" onclick="LessonEngine._showPlayAgainModal()">↺ Zagraj ponownie</button>
+             <button class="lesson-btn lesson-btn--primary" onclick="LessonEngine._callParent()">Pokaż rodzicowi 👨‍👩‍👧 →</button>`);
           _s.phase = 4;
           Melody.setState('idle');
         }
@@ -17879,7 +18341,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reveal.innerHTML = `
           <div class="next-song-card">
             <div class="next-song-card-icon">🔓</div>
-            <div class="next-song-card-title">Next Song Unlocked!</div>
+            <div class="next-song-card-title">Nowa piosenka odblokowana!</div>
             <div class="next-song-card-name">${next.emoji || '🎵'} ${next.title}</div>
           </div>`;
         document.body.appendChild(reveal);
@@ -17950,7 +18412,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!scroll) return;
         const isOn = scroll.classList.toggle('sheet-bg--light');
         btn.classList.toggle('toggle-on', isOn);
-        btn.textContent = isOn ? '🌙 Dark' : '☀️ White';
+        btn.textContent = isOn ? '🌙 Ciemne' : '☀️ Jasne';
       }
 
       // ── Piano visibility toggle ───────────────────────────────
@@ -17960,7 +18422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isHidden = panel.style.display === 'none';
         panel.style.display = isHidden ? '' : 'none';
         btn.classList.toggle('toggle-on', !isHidden);
-        btn.textContent = isHidden ? '🎹 Piano' : '🙈 Piano';
+        btn.textContent = isHidden ? '🎹 Pianino' : '🙈 Pianino';
         // Expand sheet panel to fill space when piano hidden
         const sheetPanel = document.getElementById('lesson-panel-sheet');
         if (sheetPanel) sheetPanel.style.flex = isHidden ? '' : '1 1 100%';
@@ -17975,11 +18437,11 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.innerHTML = `
           <div class="lesson-exit-modal">
             <div class="lesson-exit-modal-icon">🏠</div>
-            <div class="lesson-exit-modal-title">Leave this lesson?</div>
-            <div class="lesson-exit-modal-sub">Your progress so far won't be saved.</div>
+            <div class="lesson-exit-modal-title">Wyjść z lekcji?</div>
+            <div class="lesson-exit-modal-sub">Dotychczasowy postęp nie zostanie zapisany.</div>
             <div class="lesson-exit-modal-btns">
-              <button class="lesson-btn lesson-btn--danger" onclick="LessonEngine._doExit()">Yes, go home</button>
-              <button class="lesson-btn lesson-btn--primary" onclick="document.getElementById('lesson-exit-modal-overlay')?.remove()">Keep playing</button>
+              <button class="lesson-btn lesson-btn--danger" onclick="LessonEngine._doExit()">Tak, wyjdź</button>
+              <button class="lesson-btn lesson-btn--primary" onclick="document.getElementById('lesson-exit-modal-overlay')?.remove()">Graj dalej</button>
             </div>
           </div>`;
         document.body.appendChild(overlay);
@@ -18006,16 +18468,16 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.innerHTML = `
           <div class="lesson-exit-modal" style="border-color:rgba(124,58,237,0.4);max-width:360px;">
             <div class="lesson-exit-modal-icon">🎵</div>
-            <div class="lesson-exit-modal-title">Play Again</div>
-            <div class="lesson-exit-modal-sub">Choose how you'd like to practice:</div>
+            <div class="lesson-exit-modal-title">Zagraj ponownie</div>
+            <div class="lesson-exit-modal-sub">Jak chcesz ćwiczyć?</div>
             <div class="lesson-exit-modal-btns" style="flex-direction:column;gap:8px;">
               <button class="lesson-btn lesson-btn--primary" style="width:100%;padding:10px 14px;font-size:13px;"
                 onclick="document.getElementById('lesson-mode-select-overlay')?.remove(); LessonEngine._replayListen();">
-                🎧 Listen to the Song
+                🎧 Posłuchaj piosenki
               </button>
               <button class="lesson-btn" style="width:100%;padding:10px 14px;font-size:13px;"
                 onclick="document.getElementById('lesson-mode-select-overlay')?.remove(); LessonEngine._replaySheetMode();">
-                🎼 Read Sheet Music
+                🎼 Czytaj nuty
               </button>
               <button class="lesson-btn" style="width:100%;padding:10px 14px;font-size:13px;"
                 onclick="document.getElementById('lesson-mode-select-overlay')?.remove(); LessonEngine._replayPlayAlong();">
@@ -18023,7 +18485,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </button>
             </div>
             <button class="lesson-btn lesson-btn--danger" style="font-size:11px;"
-              onclick="document.getElementById('lesson-mode-select-overlay')?.remove();">Cancel</button>
+              onclick="document.getElementById('lesson-mode-select-overlay')?.remove();">Anuluj</button>
           </div>`;
         document.body.appendChild(overlay);
       }
@@ -18159,7 +18621,7 @@ document.addEventListener('DOMContentLoaded', () => {
         staffCard.innerHTML = _drawStaff(card);
 
         if (hintEl)   { hintEl.classList.remove('hint--visible'); hintEl.textContent = ''; }
-        if (instrEl)  instrEl.textContent = 'Play this note on your piano!';
+        if (instrEl)  instrEl.textContent = 'Zagraj tę nutę na pianinie!';
 
         _s.hintShown = false;
         if (_s.hintTimer) clearTimeout(_s.hintTimer);
@@ -18168,8 +18630,8 @@ document.addEventListener('DOMContentLoaded', () => {
         _s.hintTimer = setTimeout(() => {
           if (_s.hintShown) return;
           _s.hintShown = true;
-          if (hintEl) { hintEl.textContent = `Hint: It's ${card.label}!`; hintEl.classList.add('hint--visible'); }
-          Melody.speak(`It's ${card.label}! 🎵`, 2000);
+          if (hintEl) { hintEl.textContent = `Podpowiedź: To ${card.label}!`; hintEl.classList.add('hint--visible'); }
+          Melody.speak(`To ${card.label}! 🎵`, 2000);
         }, 6000);
 
         _updateDots();
@@ -18244,14 +18706,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const pct = Math.round((_s.score.correct / total) * 100);
         container.innerHTML = `
           <div class="flashcard-header">
-            <div class="flashcard-title">🎉 Warm-Up Complete!</div>
+            <div class="flashcard-title">🎉 Rozgrzewka gotowa!</div>
           </div>
           <div class="flashcard-score">
             <div class="fc-score-big">${_s.score.correct}/${total}</div>
-            <div class="fc-score-label">Correct on first try</div>
-            <div class="fc-score-award">+${10 + notes} ♪ Music Notes earned!</div>
+            <div class="fc-score-label">Poprawne za pierwszym razem</div>
+            <div class="fc-score-award">+${10 + notes} ♪ Zdobyte nuty!</div>
             <button class="lesson-btn lesson-btn--primary" style="margin-top:8px;" onclick="FlashcardGame.close()">
-              Start Lesson! 🎹 →
+              Zacznij lekcję! 🎹 →
             </button>
           </div>`;
       }
@@ -18271,19 +18733,19 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.innerHTML = `
           <div class="flashcard-container" id="flashcard-container">
             <div class="flashcard-header">
-              <div class="flashcard-title">🎹 Note Warm-Up</div>
+              <div class="flashcard-title">🎹 Rozgrzewka</div>
               <div class="flashcard-counter" id="fc-counter">1 / 5</div>
             </div>
             <div class="flashcard-dots" id="fc-dots"></div>
             <div class="flashcard-staff-card" id="fc-staff-card"></div>
             <div class="flashcard-hint" id="fc-hint"></div>
-            <div class="flashcard-instruction" id="fc-instruction">Play this note on your piano!</div>
-            <button class="lesson-btn" onclick="FlashcardGame.skip()">Skip →</button>
+            <div class="flashcard-instruction" id="fc-instruction">Zagraj tę nutę na pianinie!</div>
+            <button class="lesson-btn" onclick="FlashcardGame.skip()">Pomiń →</button>
           </div>`;
         document.body.appendChild(overlay);
 
         Melody.setState('thinking');
-        Melody.speak('Which note is this? 🎵', 3000);
+        Melody.speak('Jaka to nuta? 🎵', 3000);
 
         // Wire MIDI
         const handlerId = Date.now();
@@ -18327,15 +18789,20 @@ document.addEventListener('DOMContentLoaded', () => {
         _s.userId    = userId;
         _s.startTime = Date.now();
 
-        // Phase 1: Flashcard warmup
-        FlashcardGame.show(() => {
+        // Phase 1: Flashcard warmup (skip for Sanah/film worlds — Suzuki method)
+        const currentSong = typeof LessonEngine !== 'undefined' && LessonEngine._currentSong
+          ? LessonEngine._currentSong() : null;
+        const skipWarmup = currentSong && currentSong.world >= 14;
+        const afterWarmup = () => {
           // Phase 2: Review last passed song (abbreviated)
           _reviewLastSong(() => {
             // Phase 3: New work — lesson for current song
             _startNewWork();
             // Phase 4: Free play timer wired inside lesson end
           });
-        });
+        };
+        if (skipWarmup) { afterWarmup(); }
+        else { FlashcardGame.show(afterWarmup); }
       }
 
       function _reviewLastSong(onDone) {
@@ -18360,10 +18827,10 @@ document.addEventListener('DOMContentLoaded', () => {
         notice.style.cssText = `position:fixed;inset:0;z-index:950;display:flex;align-items:center;justify-content:center;background:rgba(10,5,20,0.85);backdrop-filter:blur(6px);`;
         notice.innerHTML = `<div style="background:var(--color-surface);border:2px solid rgba(124,58,237,0.4);border-radius:16px;padding:32px;text-align:center;max-width:340px;display:flex;flex-direction:column;gap:16px;">
           <div style="font-size:36px;">🔄</div>
-          <div style="font-family:var(--font-heading);font-size:20px;font-weight:900;color:var(--color-text);">Quick Review!</div>
-          <div style="font-family:var(--font-heading);font-size:13px;color:var(--color-text-muted);">Let's replay the last song you learned</div>
-          <button class="lesson-btn lesson-btn--primary" onclick="this.closest('[style]').remove(); window._sessionReviewDone();">Start Review →</button>
-          <button class="lesson-btn" onclick="this.closest('[style]').remove(); window._sessionReviewDone();">Skip Review</button>
+          <div style="font-family:var(--font-heading);font-size:20px;font-weight:900;color:var(--color-text);">Szybka powtórka!</div>
+          <div style="font-family:var(--font-heading);font-size:13px;color:var(--color-text-muted);">Powtórzmy ostatnią piosenkę</div>
+          <button class="lesson-btn lesson-btn--primary" onclick="this.closest('[style]').remove(); window._sessionReviewDone();">Zacznij powtórkę →</button>
+          <button class="lesson-btn" onclick="this.closest('[style]').remove(); window._sessionReviewDone();">Pomiń powtórkę</button>
         </div>`;
         document.body.appendChild(notice);
         window._sessionReviewDone = onDone;
@@ -18427,27 +18894,27 @@ document.addEventListener('DOMContentLoaded', () => {
         card.innerHTML = `
           <div class="session-summary-card">
             <div style="font-size:48px;">🎵</div>
-            <div class="session-summary-title">Great Session, Addison!</div>
+            <div class="session-summary-title">Świetna sesja!</div>
             <div class="session-summary-stats">
               <div class="session-stat">
                 <div class="session-stat-value">${durationMin || 1}</div>
-                <div class="session-stat-label">Minutes</div>
+                <div class="session-stat-label">Minuty</div>
               </div>
               <div class="session-stat">
                 <div class="session-stat-value">${totalSessions}</div>
-                <div class="session-stat-label">Sessions</div>
+                <div class="session-stat-label">Sesje</div>
               </div>
               <div class="session-stat">
                 <div class="session-stat-value">${totalNotes}</div>
-                <div class="session-stat-label">♪ Notes</div>
+                <div class="session-stat-label">♪ Nuty</div>
               </div>
               <div class="session-stat">
                 <div class="session-stat-value">🔥</div>
-                <div class="session-stat-label">Streak</div>
+                <div class="session-stat-label">Seria</div>
               </div>
             </div>
             <button class="lesson-btn lesson-btn--primary" onclick="this.closest('.session-summary-overlay').remove(); if(typeof showScreen==='function') showScreen('home');">
-              See Quest Map 🗺️
+              Mapa piosenek 🗺️
             </button>
           </div>`;
         document.body.appendChild(card);
@@ -18547,7 +19014,7 @@ document.addEventListener('DOMContentLoaded', () => {
         GamificationManager.awardNotes(20, 'all mini-lessons');
         GamificationManager.showCelebration('songPass', { stars: 3 });
         Melody.reactCelebrate();
-        Melody.speak('World 1 is now unlocked! 🎉', 0);
+        Melody.speak('Świat 1 odblokowany! 🎉', 0);
       }
 
       // ── Update progress dots ──────────────────────────────────
@@ -18577,19 +19044,19 @@ document.addEventListener('DOMContentLoaded', () => {
         let interacted = false;
         const linePositions = [10, 27, 44, 61, 78]; // % of canvas height
         return `
-          <div class="precurr-desc">A staff is <strong>5 lines</strong> where music lives!</div>
+          <div class="precurr-desc">Pięciolinia to <strong>5 linii</strong> na których mieszka muzyka!</div>
           <div class="staff-canvas" id="staff-canvas-l1">
             ${linePositions.map((pct, i) => `
               <div class="staff-line-anim" id="staff-line-${i}"
                    style="top:${pct}%"
                    onclick="MiniLessons._glowLine(${i})"
-                   title="Line ${i+1}">
-                <span style="position:absolute;left:4px;top:-14px;font-family:var(--font-heading);font-size:9px;font-weight:700;color:var(--color-text-muted);opacity:0;" id="staff-label-${i}">Line ${i+1}</span>
+                   title="Linia ${i+1}">
+                <span style="position:absolute;left:4px;top:-14px;font-family:var(--font-heading);font-size:9px;font-weight:700;color:var(--color-text-muted);opacity:0;" id="staff-label-${i}">Linia ${i+1}</span>
               </div>`).join('')}
           </div>
-          <div class="precurr-desc" id="l1-msg">Tap each line to make it glow! ✨</div>
+          <div class="precurr-desc" id="l1-msg">Kliknij każdą linię żeby zaświeciła! ✨</div>
           <button class="precurr-complete-btn" id="precurr-btn-0" onclick="MiniLessons._completeLocked(0)">
-            ✓ I understand — Next!
+            ✓ Rozumiem — Dalej!
           </button>`;
       }
 
@@ -18622,7 +19089,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // ══════════════════════════════════════════════════════════
       function _buildLesson2() {
         return `
-          <div class="precurr-desc">This curly symbol means we use our <strong>RIGHT hand!</strong></div>
+          <div class="precurr-desc">Ten zawijasek oznacza że gramy <strong>PRAWĄ ręką!</strong></div>
           <div class="clef-svg-container">
             <svg viewBox="0 0 100 180" width="80" height="144">
               <!-- Staff lines context -->
@@ -18641,7 +19108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="precurr-desc">Trace it with your finger below! 👇</div>
+          <div class="precurr-desc">Narysuj go palcem poniżej! 👇</div>
           <div class="clef-trace-area" id="clef-trace-area"
                onmousemove="MiniLessons._traceClef(event)"
                ontouchmove="MiniLessons._traceClef(event)"
@@ -18652,7 +19119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </svg>
           </div>
           <button class="precurr-complete-btn btn--ready" id="precurr-btn-1" onclick="MiniLessons._completeLocked(1)">
-            ✓ I traced it — Next!
+            ✓ Rozumiem — Dalej!
           </button>`;
       }
 
@@ -18690,7 +19157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function _buildLesson3() {
         return `
-          <div class="precurr-desc">Music only uses <strong>7 letters</strong> — then starts over!</div>
+          <div class="precurr-desc">Muzyka używa tylko <strong>7 liter</strong> — potem zaczyna od nowa!</div>
           <div class="music-alphabet-row" id="alpha-row">
             ${ALPHA_NAMES.map((l, i) => `
               <div class="alpha-letter" data-idx="${i}" onclick="MiniLessons._playAlpha(${i})">${l}</div>
@@ -18703,9 +19170,9 @@ document.addEventListener('DOMContentLoaded', () => {
               ).join('')}
             </div>
           </div>
-          <div class="precurr-desc" id="l3-played-msg">Tap any letter to hear it! 🎵</div>
+          <div class="precurr-desc" id="l3-played-msg">Kliknij dowolną literę żeby ją usłyszeć! 🎵</div>
           <button class="precurr-complete-btn" id="precurr-btn-2" onclick="MiniLessons._completeLocked(2)">
-            ✓ I know the alphabet — Next!
+            ✓ Umiem — Dalej!
           </button>`;
       }
 
@@ -18719,7 +19186,7 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => el.classList.replace('letter--active','letter--played'), 400);
         }
         _alphaPlayed.add(idx);
-        Melody.speak(`That's ${ALPHA_NAMES[idx]}! 🎵`, 1500);
+        Melody.speak(`To ${ALPHA_NAMES[idx]}! 🎵`, 1500);
         // Enable complete after 3 letters played
         if (_alphaPlayed.size >= 3) {
           const btn = document.getElementById('precurr-btn-2');
@@ -18739,15 +19206,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function _buildLesson4() {
         return `
-          <div class="precurr-desc">♩ Quarter note = <strong>walks fast</strong>&nbsp;&nbsp;𝅗𝅥 Half note = <strong>walks slow</strong></div>
+          <div class="precurr-desc">♩ Ćwierćnuta = <strong>idzie szybko</strong>&nbsp;&nbsp;𝅗𝅥 Półnuta = <strong>idzie wolno</strong></div>
           <div class="rhythm-pattern-dots" id="rp-dots">
             ${RHYTHM_PATTERNS.map((_,i) => `<div class="rp-dot" id="rp-dot-${i}"></div>`).join('')}
           </div>
           <div class="rhythm-display" id="rhythm-display"></div>
-          <button class="rhythm-clap-btn" id="clap-btn" onclick="MiniLessons._clap()" title="Clap!">👏</button>
-          <div class="precurr-desc" id="rhythm-msg">Listen, then clap along!</div>
+          <button class="rhythm-clap-btn" id="clap-btn" onclick="MiniLessons._clap()" title="Klaskaj!">👏</button>
+          <div class="precurr-desc" id="rhythm-msg">Posłuchaj, potem wyklaskaj!</div>
           <button class="precurr-complete-btn" id="precurr-btn-3" onclick="MiniLessons._completeLocked(3)">
-            ✓ I got the rhythm — Next!
+            ✓ Super — Dalej!
           </button>`;
       }
 
@@ -18803,7 +19270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pat     = RHYTHM_PATTERNS[patternIdx];
         state.step    = 0;
         const msgEl   = document.getElementById('rhythm-msg');
-        if (msgEl) msgEl.textContent = 'Now you clap it!';
+        if (msgEl) msgEl.textContent = 'Teraz Ty wyklaskaj!';
 
         let askStep = 0;
         const askInterval = setInterval(() => {
@@ -18815,16 +19282,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pattern passed
                 const next = patternIdx + 1;
                 if (next < RHYTHM_PATTERNS.length) {
-                  if (msgEl) msgEl.textContent = '✓ Great! Next pattern!';
+                  if (msgEl) msgEl.textContent = '✓ Super! Następny wzór!';
                   setTimeout(() => _startRhythm(next), 800);
                 } else {
-                  if (msgEl) msgEl.textContent = '🎉 Amazing rhythm!';
+                  if (msgEl) msgEl.textContent = '🎉 Świetny rytm!';
                   const btn = document.getElementById('precurr-btn-3');
                   if (btn) btn.classList.add('btn--ready');
                   Melody.reactCelebrate();
                 }
               } else {
-                if (msgEl) msgEl.textContent = 'Try again!';
+                if (msgEl) msgEl.textContent = 'Spróbuj jeszcze raz!';
                 state.correct = 0;
                 setTimeout(() => _startRhythm(patternIdx), 1000);
               }
@@ -18872,7 +19339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                        style="left:${i * wPct}%;width:${wPct}%"
                        data-note="${note}"
                        onclick="MiniLessons._hitMC('${note}')">
-                    ${isMiddleC ? `<div class="mc-label" style="left:50%;transform:translateX(-50%)">Middle C</div>` : ''}
+                    ${isMiddleC ? `<div class="mc-label" style="left:50%;transform:translateX(-50%)">Środkowe C</div>` : ''}
                   </div>`;
         }).join('');
         const blacks = MC_BLACK_NOTES.map(({ note, after }) => {
@@ -18889,16 +19356,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrowL = (c4idx + 0.2) * wPct;
 
         return `
-          <div class="precurr-desc"><strong>Middle C</strong> is your home base! Always start here.</div>
+          <div class="precurr-desc"><strong>Środkowe C</strong> to Twój punkt wyjścia! Zawsze zacznij tutaj.</div>
           <div style="position:relative;width:100%;max-width:420px;">
             <div class="mc-arrow" id="mc-arrow" style="left:${arrowL}%;transform:translateX(-50%);">👇</div>
             <div class="middle-c-keyboard" id="mc-keyboard">
               ${whites}${blacks}
             </div>
           </div>
-          <div class="precurr-desc" id="l5-msg">Find <strong>Middle C</strong> and tap it! 🎹</div>
+          <div class="precurr-desc" id="l5-msg">Znajdź <strong>środkowe C</strong> i kliknij je! 🎹</div>
           <button class="precurr-complete-btn" id="precurr-btn-4" onclick="MiniLessons._completeLocked(4)">
-            ✓ I found it — Let's play!
+            ✓ Znalazłam — Dalej!
           </button>`;
       }
 
@@ -18911,7 +19378,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const arrow = document.getElementById('mc-arrow');
           if (arrow) arrow.remove();
           const msg = document.getElementById('l5-msg');
-          if (msg) msg.innerHTML = '🎉 You found <strong>Middle C</strong>! That\'s your home base forever!';
+          if (msg) msg.innerHTML = '🎉 Znalazłaś <strong>środkowe C</strong>! To Twój punkt wyjścia na zawsze!';
           const btn = document.getElementById('precurr-btn-4');
           if (btn) btn.classList.add('btn--ready');
           Melody.reactCelebrate();
@@ -18919,7 +19386,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Also wire MIDI for Middle C detection
         } else {
-          Melody.speak('Not that one — look for the arrow! 👇', 1500);
+          Melody.speak('Nie ten — szukaj strzałki! 👇', 1500);
         }
       }
 
@@ -18932,11 +19399,11 @@ document.addEventListener('DOMContentLoaded', () => {
         _load();
 
         const LESSONS = [
-          { title: 'What is a Staff?',        builder: _buildLesson1 },
-          { title: 'Meet the Treble Clef',    builder: _buildLesson2 },
-          { title: 'The Musical Alphabet',    builder: _buildLesson3 },
-          { title: 'Quarter & Half Notes',    builder: _buildLesson4 },
-          { title: 'Where is Middle C?',       builder: _buildLesson5 },
+          { title: 'Co to pięciolinia?',        builder: _buildLesson1 },
+          { title: 'Klucz wiolinowy',    builder: _buildLesson2 },
+          { title: 'Alfabet muzyczny',    builder: _buildLesson3 },
+          { title: 'Ćwierćnuta i półnuta',    builder: _buildLesson4 },
+          { title: 'Gdzie jest środkowe C?',       builder: _buildLesson5 },
         ];
 
         const dots = `<div class="precurr-dots">
@@ -19020,7 +19487,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `
           <div class="pm-pin-screen" id="pm-pin-screen">
             <div style="font-size:40px;">🔒</div>
-            <div class="pm-pin-title">Parent Mode</div>
+            <div class="pm-pin-title">Tryb rodzica</div>
             <div class="pm-pin-dots" id="pm-pin-dots">
               <div class="pm-pin-dot" id="pm-pd-0"></div>
               <div class="pm-pin-dot" id="pm-pd-1"></div>
@@ -19044,7 +19511,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (_pin.lockedUntil > now) {
           const secs = Math.ceil((_pin.lockedUntil - now) / 1000);
           const err  = document.getElementById('pm-pin-err');
-          if (err) err.textContent = `Locked — wait ${secs}s`;
+          if (err) err.textContent = `Zablokowane — poczekaj ${secs}s`;
           return;
         }
         if (_pin.entered.length >= 4) return;
@@ -19091,10 +19558,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const err = document.getElementById('pm-pin-err');
           if (_pin.attempts >= 3) {
             _pin.lockedUntil = Date.now() + 30000;
-            if (err) err.textContent = 'Too many attempts — wait 30s';
+            if (err) err.textContent = 'Za dużo prób — poczekaj 30s';
             _pin.attempts = 0;
           } else {
-            if (err) err.textContent = `Wrong PIN — ${3 - _pin.attempts} attempt${3 - _pin.attempts === 1 ? '' : 's'} left`;
+            if (err) err.textContent = `Błędny PIN — ${3 - _pin.attempts === 1 ? 'pozostała' : 'pozostały'} ${3 - _pin.attempts} ${3 - _pin.attempts === 1 ? 'próba' : 'próby'}`;
           }
         }
       }
@@ -19106,11 +19573,11 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = `
           <div class="pm-dashboard" id="pm-dashboard">
             <div class="pm-tabs" id="pm-tabs">
-              <button class="pm-tab active" onclick="ParentDashboard._tab(0)">Overview</button>
-              <button class="pm-tab" onclick="ParentDashboard._tab(1)">History</button>
-              <button class="pm-tab" onclick="ParentDashboard._tab(2)">Notes</button>
-              <button class="pm-tab" onclick="ParentDashboard._tab(3)">Settings</button>
-              <button class="pm-tab" onclick="ParentDashboard._tab(4)">Data</button>
+              <button class="pm-tab active" onclick="ParentDashboard._tab(0)">Przegląd</button>
+              <button class="pm-tab" onclick="ParentDashboard._tab(1)">Historia</button>
+              <button class="pm-tab" onclick="ParentDashboard._tab(2)">Notatki</button>
+              <button class="pm-tab" onclick="ParentDashboard._tab(3)">Ustawienia</button>
+              <button class="pm-tab" onclick="ParentDashboard._tab(4)">Dane</button>
             </div>
             <div class="pm-panels">
               <div class="pm-panel panel--active" id="pm-panel-0">${_buildOverview()}</div>
@@ -19157,48 +19624,48 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="pm-student-avatar">${profile.avatar || '🎵'}</div>
             <div>
               <div class="pm-student-name">${active ? active.profile.name : '—'}</div>
-              <div class="pm-student-level">${currentSong ? `Working on: ${currentSong.title}` : 'All songs complete!'}</div>
+              <div class="pm-student-level">${currentSong ? `Teraz: ${currentSong.title}` : 'Wszystkie piosenki ukończone!'}</div>
             </div>
           </div>
 
           <div class="pm-stat-grid">
             <div class="pm-stat-cell">
               <div class="pm-stat-val">${completedCount}</div>
-              <div class="pm-stat-lbl">Songs Done</div>
+              <div class="pm-stat-lbl">Piosenek</div>
             </div>
             <div class="pm-stat-cell">
               <div class="pm-stat-val">🔥 ${streak}</div>
-              <div class="pm-stat-lbl">Day Streak</div>
+              <div class="pm-stat-lbl">Seria dni</div>
             </div>
             <div class="pm-stat-cell">
               <div class="pm-stat-val">${practiceMin}</div>
-              <div class="pm-stat-lbl">Min Practiced</div>
+              <div class="pm-stat-lbl">Min ćwiczeń</div>
             </div>
             <div class="pm-stat-cell">
               <div class="pm-stat-val">${sessions}</div>
-              <div class="pm-stat-lbl">Sessions</div>
+              <div class="pm-stat-lbl">Sesje</div>
             </div>
             <div class="pm-stat-cell">
               <div class="pm-stat-val">${longestStreak}</div>
-              <div class="pm-stat-lbl">Best Streak</div>
+              <div class="pm-stat-lbl">Najl. seria</div>
             </div>
             <div class="pm-stat-cell">
               <div class="pm-stat-val">${notes}</div>
-              <div class="pm-stat-lbl">♪ Notes</div>
+              <div class="pm-stat-lbl">♪ Nuty</div>
             </div>
           </div>
 
           <div class="pm-ready-indicator ${readyToMove ? 'ready--yes' : 'ready--no'}">
             ${readyToMove
-              ? '✅ Ready to move on! Practiced current song 3+ times.'
-              : `📚 Still learning — practiced ${practiceRuns}/3 times this song.`}
+              ? '✅ Gotowa na dalszą naukę! Ćwiczyła obecną piosenkę 3+ razy.'
+              : `📚 Wciąż się uczy — ćwiczyła tę piosenkę ${practiceRuns}/3 razy.`}
           </div>
 
           ${practicedToday
-            ? `<div style="font-family:var(--font-heading);font-size:13px;color:var(--color-text-muted);">✨ Practiced today — great habit!</div>`
-            : `<div style="font-family:var(--font-heading);font-size:13px;color:var(--color-text-muted);">No practice yet today.</div>`}
+            ? `<div style="font-family:var(--font-heading);font-size:13px;color:var(--color-text-muted);">✨ Ćwiczyła dzisiaj — świetny nawyk!</div>`
+            : `<div style="font-family:var(--font-heading);font-size:13px;color:var(--color-text-muted);">Jeszcze nie ćwiczyła dzisiaj.</div>`}
 
-          <button class="lesson-btn" onclick="ParentDashboard._lock()" style="align-self:flex-start;">🔒 Lock Dashboard</button>`;
+          <button class="lesson-btn" onclick="ParentDashboard._lock()" style="align-self:flex-start;">🔒 Zablokuj</button>`;
       }
 
       // ── TAB 2: HISTORY ─────────────────────────────────────────
@@ -19216,13 +19683,13 @@ document.addEventListener('DOMContentLoaded', () => {
           days.push({ date:d, key, practiced: !!hist[key], isToday: i === 0 });
         }
 
-        const DAY_LABELS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        const DAY_LABELS = ['Nd','Pn','Wt','Śr','Cz','Pt','So'];
         // Fill leading blanks to align with weekday
         const startWD = days[0].date.getDay();
         const blanks  = Array.from({length:startWD}, () => '<div class="cal-day cal-day--empty"></div>');
 
         const calHtml = `
-          <div class="pm-section-title">Practice Calendar (Last 30 Days)</div>
+          <div class="pm-section-title">Kalendarz ćwiczeń (ostatnie 30 dni)</div>
           <div class="pm-calendar">
             ${DAY_LABELS.map(d => `<div class="cal-day-label">${d}</div>`).join('')}
             ${blanks.join('')}
@@ -19236,7 +19703,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const last14 = days.slice(-14);
         const maxLen  = Math.max(1, ...last14.map(d => (hist[d.key]?.minutes || 0)));
         const barHtml = `
-          <div class="pm-section-title" style="margin-top:8px;">Session Length (Last 14 Days)</div>
+          <div class="pm-section-title" style="margin-top:8px;">Długość sesji (ostatnie 14 dni)</div>
           <div class="pm-bar-chart">
             ${last14.map(d => {
               const mins   = (hist[d.key]?.minutes || 0);
@@ -19246,7 +19713,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>`;
             }).join('')}
           </div>
-          <div style="font-family:var(--font-heading);font-size:10px;color:var(--color-text-dim);text-align:right;">Minutes per day</div>`;
+          <div style="font-family:var(--font-heading);font-size:10px;color:var(--color-text-dim);text-align:right;">Minut dziennie</div>`;
 
         return calHtml + barHtml;
       }
@@ -19259,15 +19726,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Weak notes chart
         const noteNames = ['C','D','E','F','G','A','B'];
+        const noteDisplayNames = ['C','D','E','F','G','A','H'];
         const maxMisses = Math.max(1, ...noteNames.map(n => fcHist[n]?.wrong || 0));
         const weakChart = `
-          <div class="pm-section-title">Notes She Misses Most</div>
+          <div class="pm-section-title">Najczęściej mylone nuty</div>
           <div class="pm-weak-notes-chart">
-            ${noteNames.map(n => {
+            ${noteNames.map((n, i) => {
               const wrong = fcHist[n]?.wrong || 0;
               const pct   = Math.round((wrong / maxMisses) * 100);
               return `<div class="pm-note-bar-row">
-                <div class="pm-note-bar-label">${n}</div>
+                <div class="pm-note-bar-label">${noteDisplayNames[i]}</div>
                 <div class="pm-note-bar-track"><div class="pm-note-bar-fill" style="width:${pct}%"></div></div>
                 <div class="pm-note-bar-count">${wrong}</div>
               </div>`;
@@ -19279,13 +19747,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="pm-note-entry">
             <div class="pm-note-entry-date">${new Date(note.date).toLocaleDateString()}</div>
             <div class="pm-note-entry-text">${note.text}</div>
-          </div>`).join('') || `<div style="font-family:var(--font-heading);font-size:12px;color:var(--color-text-dim);">No notes yet.</div>`;
+          </div>`).join('') || `<div style="font-family:var(--font-heading);font-size:12px;color:var(--color-text-dim);">Brak notatek.</div>`;
 
         return `
           ${weakChart}
-          <div class="pm-section-title" style="margin-top:8px;">Teacher / Parent Notes</div>
-          <textarea class="pm-teacher-notes-area" id="pm-notes-input" placeholder="Add a note about today's session…" rows="3"></textarea>
-          <button class="lesson-btn lesson-btn--primary" style="align-self:flex-start;" onclick="ParentDashboard._saveNote()">Save Note</button>
+          <div class="pm-section-title" style="margin-top:8px;">Notatki rodzica</div>
+          <textarea class="pm-teacher-notes-area" id="pm-notes-input" placeholder="Dodaj notatkę o dzisiejszej sesji…" rows="3"></textarea>
+          <button class="lesson-btn lesson-btn--primary" style="align-self:flex-start;" onclick="ParentDashboard._saveNote()">Zapisz</button>
           <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">${existingNotes}</div>`;
       }
 
@@ -19300,7 +19768,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Refresh notes panel
         const panel = document.getElementById('pm-panel-2');
         if (panel) panel.innerHTML = _buildNotes();
-        Melody.speak('Note saved! 📝', 1500);
+        Melody.speak('Zapisano! 📝', 1500);
       }
 
       // ── TAB 4: SETTINGS ───────────────────────────────────────
@@ -19324,49 +19792,49 @@ document.addEventListener('DOMContentLoaded', () => {
           ).join('');
         }
         function spdOpts() {
-          return ['Gentle','Standard','Accelerated'].map(s =>
-            `<button class="pm-select-opt ${currSpd.toLowerCase()===s.toLowerCase()?'opt--active':''}" onclick="ParentDashboard._setSetting('curriculumSpeed','${s.toLowerCase()}',this)">${s}</button>`
+          return [['gentle','Łagodna'],['standard','Standardowa'],['accelerated','Przyspieszona']].map(([key,label]) =>
+            `<button class="pm-select-opt ${currSpd.toLowerCase()===key?'opt--active':''}" onclick="ParentDashboard._setSetting('curriculumSpeed','${key}',this)">${label}</button>`
           ).join('');
         }
 
         return `
           <div class="pm-settings-row">
-            <div><div class="pm-settings-label">Default Tempo</div></div>
+            <div><div class="pm-settings-label">Domyślne tempo</div></div>
             <div class="pm-select-group">${tempoOpts()}</div>
           </div>
           <div class="pm-settings-row">
-            <div><div class="pm-settings-label">Session Length</div></div>
+            <div><div class="pm-settings-label">Długość sesji</div></div>
             <div class="pm-select-group">${sessOpts()}</div>
           </div>
           <div class="pm-settings-row">
-            <div><div class="pm-settings-label">Show Note Names on Keys</div></div>
+            <div><div class="pm-settings-label">Nazwy nut na klawiszach</div></div>
             <div class="pm-toggle ${noteNms?'toggle--on':''}" id="pm-toggle-notes" onclick="ParentDashboard._toggleSetting('showNoteNames','pm-toggle-notes')"></div>
           </div>
           <div class="pm-settings-row">
             <div>
-              <div class="pm-settings-label">Left Hand World</div>
-              <div class="pm-settings-sub">Unlock two-hand songs</div>
+              <div class="pm-settings-label">Świat lewej ręki</div>
+              <div class="pm-settings-sub">Odblokuj piosenki na dwie ręce</div>
             </div>
             <div class="pm-toggle ${lhUnlock?'toggle--on':''}" id="pm-toggle-lh" onclick="ParentDashboard._toggleSetting('leftHandUnlocked','pm-toggle-lh')"></div>
           </div>
           <div class="pm-settings-row">
-            <div><div class="pm-settings-label">Curriculum Speed</div></div>
+            <div><div class="pm-settings-label">Szybkość programu</div></div>
             <div class="pm-select-group">${spdOpts()}</div>
           </div>
           <div class="pm-settings-row">
-            <div><div class="pm-settings-label">Change PIN</div></div>
+            <div><div class="pm-settings-label">Zmień PIN</div></div>
             <div class="pm-pin-change-form">
               <input class="pm-pin-change-input" id="pm-new-pin" type="password" maxlength="4" inputmode="numeric" placeholder="••••"/>
-              <button class="lesson-btn" onclick="ParentDashboard._changePin()">Save</button>
+              <button class="lesson-btn" onclick="ParentDashboard._changePin()">Zapisz</button>
             </div>
           </div>
           <div class="pm-settings-row">
-            <div><div class="pm-settings-label">Reset Progress</div><div class="pm-settings-sub">Clears all song stars</div></div>
-            <button class="pm-danger-btn" onclick="ParentDashboard._confirmReset()">Reset…</button>
+            <div><div class="pm-settings-label">Resetuj postępy</div><div class="pm-settings-sub">Usuwa wszystkie gwiazdki</div></div>
+            <button class="pm-danger-btn" onclick="ParentDashboard._confirmReset()">Resetuj…</button>
           </div>
           <div class="pm-settings-row">
-            <div><div class="pm-settings-label">Delete Profile</div><div class="pm-settings-sub">Permanently removes all data</div></div>
-            <button class="pm-danger-btn" onclick="ParentDashboard._confirmDelete()">Delete…</button>
+            <div><div class="pm-settings-label">Usuń profil</div><div class="pm-settings-sub">Trwale usuwa wszystkie dane</div></div>
+            <button class="pm-danger-btn" onclick="ParentDashboard._confirmDelete()">Usuń…</button>
           </div>`;
       }
 
@@ -19401,27 +19869,27 @@ document.addEventListener('DOMContentLoaded', () => {
         _saveUserData(data);
         input.value = '';
         input.style.borderColor = '#10B981';
-        Melody.speak('PIN changed! 🔒', 1500);
+        Melody.speak('PIN zmieniony! 🔒', 1500);
         setTimeout(() => { input.style.borderColor = ''; }, 2000);
       }
 
       function _confirmReset() {
-        if (confirm('Reset all song progress? This cannot be undone.') &&
-            confirm('Are you sure? All stars will be removed.') &&
-            confirm('Final confirmation: reset all progress?')) {
+        if (confirm('Zresetować postępy? Tej operacji nie można cofnąć.') &&
+            confirm('Na pewno? Wszystkie gwiazdki zostaną usunięte.') &&
+            confirm('Ostatnie potwierdzenie: zresetować postępy?')) {
           const data = _userData();
           data.progress = {};
           _saveUserData(data);
-          alert('Progress reset.');
+          alert('Postępy zresetowane.');
         }
       }
 
       function _confirmDelete() {
         const active = UserManager.getCurrentUser();
         if (!active) return;
-        if (confirm(`Delete profile for ${active.profile.name}? This cannot be undone.`) &&
-            confirm('All data will be permanently removed.') &&
-            confirm(`Final confirmation: delete ${active.profile.name}?`)) {
+        if (confirm(`Usunąć profil ${active.profile.name}? Tej operacji nie można cofnąć.`) &&
+            confirm('Wszystkie dane zostaną trwale usunięte.') &&
+            confirm(`Ostatnie potwierdzenie: usunąć ${active.profile.name}?`)) {
           UserManager.deleteUser(active.profile.name);
           if (typeof showScreen === 'function') showScreen('login');
         }
@@ -19433,23 +19901,23 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="data-action-cards">
             <div class="data-action-card" onclick="ParentDashboard._exportData()">
               <div class="data-action-icon">⬇️</div>
-              <div class="data-action-label">Export Data</div>
-              <div class="data-action-sub">Downloads JSON backup</div>
+              <div class="data-action-label">Eksportuj dane</div>
+              <div class="data-action-sub">Pobierz kopię zapasową JSON</div>
             </div>
             <div class="data-action-card" onclick="ParentDashboard._importTrigger()">
               <div class="data-action-icon">⬆️</div>
-              <div class="data-action-label">Import Data</div>
-              <div class="data-action-sub">Restore from JSON</div>
+              <div class="data-action-label">Importuj dane</div>
+              <div class="data-action-sub">Przywróć z pliku JSON</div>
             </div>
             <div class="data-action-card" onclick="window.print()">
               <div class="data-action-icon">🖨️</div>
-              <div class="data-action-label">Print Trophy Room</div>
-              <div class="data-action-sub">Print-friendly view</div>
+              <div class="data-action-label">Drukuj trofea</div>
+              <div class="data-action-sub">Widok do druku</div>
             </div>
             <div class="data-action-card" onclick="ParentDashboard._exportAll()">
               <div class="data-action-icon">📦</div>
-              <div class="data-action-label">Export All Students</div>
-              <div class="data-action-sub">All profiles as JSON</div>
+              <div class="data-action-label">Eksportuj wszystkich</div>
+              <div class="data-action-sub">Wszystkie profile jako JSON</div>
             </div>
           </div>
           <input type="file" id="pm-import-input" accept=".json" style="display:none" onchange="ParentDashboard._importData(event)"/>`;
@@ -19482,18 +19950,18 @@ document.addEventListener('DOMContentLoaded', () => {
           try {
             const data = JSON.parse(e.target.result);
             // Validate structure
-            if (!data.profile) throw new Error('Invalid file — no profile found');
+            if (!data.profile) throw new Error('Nieprawidłowy plik — brak profilu');
             const active = UserManager.getCurrentUser();
             if (!active) return;
             const key = `littlemaestro_${active.profile.name.toLowerCase().replace(/\s+/g,'_')}`;
             localStorage.setItem(key, JSON.stringify(data));
-            alert('Data imported successfully!');
+            alert('Dane zaimportowane!');
             // Refresh
             ParentDashboard._tab(0);
             const p = document.getElementById('pm-panel-0');
             if (p) p.innerHTML = _buildOverview();
           } catch(err) {
-            alert(`Import failed: ${err.message}`);
+            alert(`Import nie powiódł się: ${err.message}`);
           }
         };
         reader.readAsText(file);
@@ -19517,7 +19985,7 @@ document.addEventListener('DOMContentLoaded', () => {
           a.download = `LittleMaestro_AllStudents_${date}.json`;
           a.click();
           URL.revokeObjectURL(url);
-        } catch(e) { alert('Export failed'); }
+        } catch(e) { alert('Eksport nie powiódł się'); }
       }
 
       // ── Lock dashboard (return to PIN screen) ─────────────────
@@ -19630,10 +20098,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }).join('');
 
         const html = `<!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8"/>
-  <title>${name}'s Little Maestro Journey</title>
+  <title>Muzyczna Podróż — ${name}</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19674,23 +20142,23 @@ document.addEventListener('DOMContentLoaded', () => {
 </head>
 <body>
   <div class="card">
-    <h1>${profile.avatar || '🎵'} ${name}'s Musical Journey</h1>
-    <div class="subtitle">Little Maestro v${APP_VERSION} &nbsp;·&nbsp; Started ${joined}</div>
+    <h1>${profile.avatar || '🎵'} Muzyczna Podróż — ${name}</h1>
+    <div class="subtitle">Pianinkowa Marysi v${APP_VERSION} &nbsp;·&nbsp; Od ${joined}</div>
 
     <div class="stats-grid">
-      <div class="stat"><div class="stat-val">${Object.keys(prog).filter(id => prog[id].stars > 0).length}</div><div class="stat-lbl">Songs Done</div></div>
-      <div class="stat"><div class="stat-val">🔥 ${streak}</div><div class="stat-lbl">Day Streak</div></div>
-      <div class="stat"><div class="stat-val">${minutes}</div><div class="stat-lbl">Min Practiced</div></div>
-      <div class="stat"><div class="stat-val">${notes}</div><div class="stat-lbl">♪ Notes</div></div>
+      <div class="stat"><div class="stat-val">${Object.keys(prog).filter(id => prog[id].stars > 0).length}</div><div class="stat-lbl">Piosenek</div></div>
+      <div class="stat"><div class="stat-val">🔥 ${streak}</div><div class="stat-lbl">Seria dni</div></div>
+      <div class="stat"><div class="stat-val">${minutes}</div><div class="stat-lbl">Min ćwiczeń</div></div>
+      <div class="stat"><div class="stat-val">${notes}</div><div class="stat-lbl">♪ Nuty</div></div>
     </div>
 
-    <h2>Songs Learned</h2>
+    <h2>Nauczone piosenki</h2>
     ${completedSongs
       ? `<table>${completedSongs}</table>`
-      : `<p style="color:#9CA3AF;font-size:13px;">No songs completed yet — the journey has just begun!</p>`}
+      : `<p style="color:#9CA3AF;font-size:13px;">Jeszcze żadna piosenka — podróż dopiero się zaczyna!</p>`}
 
     <div class="footer">
-      This is ${name}'s Little Maestro Journey ❤️<br/>
+      Muzyczna Podróż — ${name} ❤️<br/>
       Exported ${new Date().toLocaleDateString()}
     </div>
   </div>
@@ -19876,9 +20344,9 @@ const EdgeCases = (() => {
       toast = document.createElement('div');
       toast.id = 'storage-warning-toast';
       toast.innerHTML = `
-        <div class="toast-title">⚠️ Storage Almost Full</div>
-        <div>Your browser's storage is nearly full. Export your student data to keep it safe before it's lost.</div>
-        <button class="toast-btn" onclick="this.closest('#storage-warning-toast').classList.remove('visible')">Export & Clear</button>`;
+        <div class="toast-title">⚠️ Pamięć prawie pełna</div>
+        <div>Pamięć przeglądarki jest prawie pełna. Wyeksportuj dane żeby ich nie stracić.</div>
+        <button class="toast-btn" onclick="this.closest('#storage-warning-toast').classList.remove('visible')">Eksportuj</button>`;
       document.body.appendChild(toast);
       toast.querySelector('.toast-btn').onclick = () => {
         toast.classList.remove('visible');
@@ -19899,17 +20367,17 @@ const EdgeCases = (() => {
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'import-error-toast';
-      toast.innerHTML = '<div class="toast-title">📂 Import Problem</div><div class="toast-body"></div>';
+      toast.innerHTML = '<div class="toast-title">📂 Problem z importem</div><div class="toast-body"></div>';
       document.body.appendChild(toast);
     }
-    toast.querySelector('.toast-body').textContent = message || 'That file doesn\'t look like a Little Maestro profile. Please try a different file.';
+    toast.querySelector('.toast-body').textContent = message || 'Ten plik nie wygląda na profil z Piankowej. Spróbuj inny plik.';
     requestAnimationFrame(() => toast.classList.add('visible'));
     setTimeout(() => toast.classList.remove('visible'), 6000);
   }
 
   /* 6 profiles full — overlay */
   function showProfilesFull() {
-    alert('🎹 All 6 student spots are taken!\n\nAsk a parent to remove an old profile first, then you can add a new one.');
+    alert('🎹 Wszystkie 6 miejsc jest zajętych!\n\nPoproś rodzica o usunięcie starego profilu, żeby dodać nowy.');
   }
 
   /* Song with no notes — skip gracefully */
@@ -20034,7 +20502,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const skip = document.createElement('a');
     skip.className = 'skip-to-main';
     skip.href = '#app-root';
-    skip.textContent = 'Skip to main content';
+    skip.textContent = 'Przejdź do treści';
     document.body.insertBefore(skip, document.body.firstChild);
   }
 
@@ -20042,7 +20510,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!document.getElementById('audio-init-banner')) {
     const banner = document.createElement('div');
     banner.id = 'audio-init-banner';
-    banner.innerHTML = `<span class="audio-banner-icon">🔊</span> Tap anywhere to start audio`;
+    banner.innerHTML = `<span class="audio-banner-icon">🔊</span> Kliknij gdziekolwiek żeby włączyć dźwięk`;
     document.body.appendChild(banner);
     document.addEventListener('pointerdown', () => {
       banner.classList.remove('visible');
@@ -20069,11 +20537,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const rb = document.createElement('div');
     rb.id = 'resume-lesson-banner';
     rb.innerHTML = `
-      <div class="resume-title">Resume song?</div>
-      <div class="resume-sub" style="font-size:13px;color:var(--color-text-muted)">You were in the middle of a lesson.</div>
+      <div class="resume-title">Kontynuować piosenkę?</div>
+      <div class="resume-sub" style="font-size:13px;color:var(--color-text-muted)">Byłaś w trakcie lekcji.</div>
       <div class="resume-actions">
-        <button class="resume-yes">▶ Resume</button>
-        <button class="resume-no">Start Fresh</button>
+        <button class="resume-yes">▶ Kontynuuj</button>
+        <button class="resume-no">Zacznij od nowa</button>
       </div>`;
     document.body.appendChild(rb);
   }
@@ -20085,7 +20553,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         return _origCreate(name, avatar, color);
       } catch(e) {
-        if (e.message && e.message.includes('limit')) {
+        if (e.message && (e.message.includes('limit') || e.message.includes('Maksymalnie'))) {
           EdgeCases.showProfilesFull();
         }
         throw e;
@@ -20112,7 +20580,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const grid = document.getElementById('trophy-grid-container');
       if (grid && grid.children.length === 0) {
         EdgeCases.showEmptyState('trophy-grid-container',
-          'No trophies yet!',
+          'Brak trofeów!',
           'Finish your first song to earn a trophy. Melody believes in you! 🎵');
       }
     };
@@ -20152,7 +20620,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               // Validate required fields
               if (!data.profile || !data.profile.name) {
-                throw new Error('Invalid file — no student profile found.');
+                throw new Error('Nieprawidłowy plik — brak profilu ucznia.');
               }
 
               const name    = data.profile.name;
@@ -20173,7 +20641,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               if (exists) {
                 // Ask: replace or keep both
-                const choice = confirm(`A student named "${name}" already exists.\n\nOK = Replace existing data\nCancel = Import as a new copy`);
+                const choice = confirm(`Uczeń o imieniu "${name}" już istnieje.\n\nOK = Zastąp istniejące dane\nAnuluj = Importuj jako kopię`);
                 if (choice) {
                   _doImport(name);
                 } else {
@@ -20282,10 +20750,10 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = `
           <!-- Sound -->
           <div class="settings-section">
-            <div class="settings-section-title">Sound</div>
+            <div class="settings-section-title">Dźwięk</div>
             <div class="settings-row">
               <div class="settings-row-info">
-                <div class="settings-row-label">🔊 Master Volume</div>
+                <div class="settings-row-label">🔊 Głośność</div>
               </div>
               <input type="range" class="settings-volume-slider" id="vol-slider"
                      min="0" max="1" step="0.05" value="${vol}"
@@ -20293,8 +20761,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="settings-row">
               <div class="settings-row-info">
-                <div class="settings-row-label">🎵 Default Tempo</div>
-                <div class="settings-row-sub">Starting speed for new lessons</div>
+                <div class="settings-row-label">🎵 Domyślne tempo</div>
+                <div class="settings-row-sub">Początkowe tempo nowych lekcji</div>
               </div>
               <div class="settings-opts">
                 ${['turtle','normal','rabbit','rocket'].map(t =>
@@ -20308,19 +20776,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <!-- Display -->
           <div class="settings-section">
-            <div class="settings-section-title">Display</div>
+            <div class="settings-section-title">Wyświetlanie</div>
             <div class="settings-row">
               <div class="settings-row-info">
-                <div class="settings-row-label">🎹 Note Names on Keys</div>
-                <div class="settings-row-sub">Show letter labels on piano keys</div>
+                <div class="settings-row-label">🎹 Nazwy nut na klawiszach</div>
+                <div class="settings-row-sub">Pokaż nazwy nut na klawiszach</div>
               </div>
               <div class="settings-toggle ${noteNames?'tog--on':''}" id="tog-notenames"
                    onclick="SettingsScreen._toggle('showNoteNames','tog-notenames')"></div>
             </div>
             <div class="settings-row">
               <div class="settings-row-info">
-                <div class="settings-row-label">🌙 Light Mode</div>
-                <div class="settings-row-sub">Switch to light color theme</div>
+                <div class="settings-row-label">🌙 Jasny motyw</div>
+                <div class="settings-row-sub">Przełącz na jasny motyw</div>
               </div>
               <div class="settings-toggle ${lightMode?'tog--on':''}" id="tog-light"
                    onclick="SettingsScreen._toggleTheme()"></div>
@@ -20329,11 +20797,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <!-- Melody -->
           <div class="settings-section">
-            <div class="settings-section-title">Melody Mascot</div>
+            <div class="settings-section-title">Maskotka Melody</div>
             <div class="settings-row">
               <div class="settings-row-info">
-                <div class="settings-row-label">🎵 Show Melody</div>
-                <div class="settings-row-sub">Melody cheers you on during lessons</div>
+                <div class="settings-row-label">🎵 Pokaż Melody</div>
+                <div class="settings-row-sub">Melody dopinguje Cię podczas lekcji</div>
               </div>
               <div class="settings-toggle ${melodyOn?'tog--on':''}" id="tog-melody"
                    onclick="SettingsScreen._toggle('melodyEnabled','tog-melody')"></div>
@@ -20342,36 +20810,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <!-- MIDI -->
           <div class="settings-section">
-            <div class="settings-section-title">Piano Connection</div>
+            <div class="settings-section-title">Połączenie z pianinem</div>
             <div class="settings-row">
               <div class="settings-row-info">
-                <div class="settings-row-label">🎹 MIDI Device</div>
-                <div class="settings-row-sub" id="midi-device-name">Checking…</div>
+                <div class="settings-row-label">🎹 Urządzenie MIDI</div>
+                <div class="settings-row-sub" id="midi-device-name">Sprawdzam…</div>
               </div>
-              <button class="lesson-btn" onclick="MIDIManager.init().then(()=>SettingsScreen._updateMidiStatus())">Reconnect</button>
+              <button class="lesson-btn" onclick="MIDIManager.init().then(()=>SettingsScreen._updateMidiStatus())">Połącz ponownie</button>
             </div>
             <div class="settings-row">
               <div class="settings-row-info">
-                <div class="settings-row-label">🔧 MIDI Test Panel</div>
-                <div class="settings-row-sub">Show live MIDI event log</div>
+                <div class="settings-row-label">🔧 Panel testowy MIDI</div>
+                <div class="settings-row-sub">Pokaż dziennik zdarzeń MIDI</div>
               </div>
               <div class="settings-toggle ${midiTest?'tog--on':''}" id="tog-midi"
                    onclick="SettingsScreen._toggle('showMidiTest','tog-midi'); SettingsScreen._toggleMidiPanel()"></div>
             </div>
             <div class="midi-test-panel" id="midi-test-panel" style="${midiTest?'':'display:none'}">
-              MIDI Log (last 10 events):
-              <div class="midi-test-log" id="midi-log-display">Waiting for input…</div>
+              Dziennik MIDI (ostatnie 10):
+              <div class="midi-test-log" id="midi-log-display">Czekam na sygnał…</div>
             </div>
           </div>
 
           <!-- About -->
           <div class="settings-section">
-            <div class="settings-section-title">About</div>
+            <div class="settings-section-title">O aplikacji</div>
             <div class="settings-about">
               <div class="settings-about-logo">🎼</div>
-              <div class="settings-about-name">Little Maestro</div>
-              <div class="settings-about-ver">Version 1.0</div>
-              <div class="settings-about-tagline">Made with ❤️ for young musicians</div>
+              <div class="settings-about-name">Pianinkowa Marysi</div>
+              <div class="settings-about-ver">Wersja 1.0</div>
+              <div class="settings-about-tagline">Zrobione z ❤️ dla młodych muzyków</div>
             </div>
           </div>`;
 
@@ -20425,10 +20893,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const status = MIDIManager.getStatus();
         const name   = MIDIManager.getDeviceName();
         el.textContent = status === 'connected'
-          ? `✅ Connected: ${name}`
+          ? `✅ Połączono: ${name}`
           : status === 'unsupported'
-            ? '⚠️ MIDI not supported in this browser'
-            : '❌ No piano connected';
+            ? '⚠️ MIDI nie jest wspierane w tej przeglądarce'
+            : '❌ Pianino niepodłączone';
       }
       SettingsScreen._updateMidiStatus = _updateMidiStatus;
 
@@ -20515,8 +20983,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="recital-header">
             <div class="recital-header-icon">🎤</div>
             <div class="recital-header-text">
-              <h2>Recital Mode</h2>
-              <p>Pick any song — even locked ones — to prepare for your recital.</p>
+              <h2>Tryb recitalu</h2>
+              <p>Wybierz dowolną piosenkę — nawet zablokowaną — żeby przygotować się do recitalu.</p>
             </div>
           </div>
 
@@ -20525,30 +20993,30 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="recital-song-icon">🎵</div>
             <div class="recital-song-info">
               <div class="recital-song-title">${song.title}</div>
-              <div class="recital-song-meta">${song.composer || 'Traditional'} · Difficulty ${song.difficulty}/10 · World ${song.world || '?'}</div>
+              <div class="recital-song-meta">${song.composer || 'Tradycyjna'} · Trudność ${song.difficulty}/10 · Świat ${song.world || '?'}</div>
             </div>
-            <button class="recital-change-btn" onclick="RecitalManager.showPicker()">Change Song</button>
+            <button class="recital-change-btn" onclick="RecitalManager.showPicker()">Zmień piosenkę</button>
           </div>
 
           <button class="recital-practice-btn" onclick="RecitalManager.startSession()">
-            🎤 Start Recital Practice
+            🎤 Zacznij ćwiczenie
           </button>
           ` : `
           <div class="recital-song-card" style="justify-content:center;border-color:rgba(255,165,0,0.2);">
             <div style="text-align:center;width:100%">
               <div style="font-size:32px;margin-bottom:8px;">🎵</div>
-              <div class="recital-song-title" style="font-size:15px;">No recital song chosen yet</div>
-              <div class="recital-song-meta" style="margin-top:6px;">Tap below to pick your recital song</div>
+              <div class="recital-song-title" style="font-size:15px;">Nie wybrano jeszcze piosenki</div>
+              <div class="recital-song-meta" style="margin-top:6px;">Kliknij poniżej żeby wybrać</div>
             </div>
           </div>
 
           <button class="recital-practice-btn" onclick="RecitalManager.showPicker()" style="background:linear-gradient(135deg,#d97706,#b45309);">
-            🎵 Choose Recital Song
+            🎵 Wybierz piosenkę
           </button>
           `}
 
           ${_scoreHistory.length > 0 ? `
-          <div class="recital-scores-title">Recent Practice Runs</div>
+          <div class="recital-scores-title">Ostatnie próby</div>
           ${_scoreHistory.slice(-8).reverse().map((s, i) => {
             const acc = Math.round(s.accuracy * 100);
             const stars = acc >= 90 ? '⭐⭐⭐' : acc >= 70 ? '⭐⭐' : '⭐';
@@ -20559,12 +21027,12 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="recital-score-stars">${stars}</div>
               <div class="recital-score-bar-wrap">
                 <div class="recital-score-pct" style="color:${color};">${acc}%</div>
-                <div class="recital-score-detail">${s.hits} hit · ${s.misses} missed · streak ${s.bestStreak}</div>
+                <div class="recital-score-detail">${s.hits} traf. · ${s.misses} pud. · seria ${s.bestStreak}</div>
               </div>
-              <div class="recital-score-date">${new Date(s.date).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div>
+              <div class="recital-score-date">${new Date(s.date).toLocaleDateString('pl-PL',{month:'short',day:'numeric'})}</div>
             </div>`;
           }).join('')}
-          ` : (song ? `<div style="text-align:center;font-family:var(--font-heading);font-size:12px;color:var(--color-text-muted);padding:20px 0;">No runs yet — start practicing!</div>` : '')}
+          ` : (song ? `<div style="text-align:center;font-family:var(--font-heading);font-size:12px;color:var(--color-text-muted);padding:20px 0;">Brak prób — zacznij ćwiczyć!</div>` : '')}
         `;
       }
 
@@ -20576,7 +21044,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Group songs by world
         const worldGroups = {};
         SONGS.forEach(s => {
-          const w = s.isBonus ? 'Bonus' : `World ${s.world}`;
+          const w = s.isBonus ? 'Bonus' : `Świat ${s.world}`;
           if (!worldGroups[w]) worldGroups[w] = [];
           worldGroups[w].push(s);
         });
@@ -20592,7 +21060,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="recital-picker-song-icon">${s.isBonus ? '⭐' : '🎵'}</div>
                 <div class="recital-picker-song-info">
                   <div class="recital-picker-song-title">${s.title}</div>
-                  <div class="recital-picker-song-meta">${s.composer || 'Traditional'}</div>
+                  <div class="recital-picker-song-meta">${s.composer || 'Tradycyjna'}</div>
                 </div>
                 <div class="recital-picker-song-difficulty" style="font-size:8px;letter-spacing:-1px;">${diff}</div>
               </div>`;
@@ -20605,8 +21073,8 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.innerHTML = `
           <div class="recital-picker-sheet">
             <div class="recital-picker-header">
-              <div class="recital-picker-title">🎤 Choose Recital Song</div>
-              <button class="recital-picker-close" onclick="document.getElementById('recital-picker-overlay')?.remove()">✕ Close</button>
+              <div class="recital-picker-title">🎤 Wybierz piosenkę</div>
+              <button class="recital-picker-close" onclick="document.getElementById('recital-picker-overlay')?.remove()">✕ Zamknij</button>
             </div>
             <div class="recital-picker-list">${songsHtml}</div>
           </div>`;
@@ -20662,7 +21130,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div style="padding:12px 16px;display:flex;gap:10px;flex-shrink:0;border-top:1px solid rgba(255,165,0,0.15);">
             <button class="lesson-btn" onclick="RecitalManager.endSession(true)">⏹ Stop</button>
             <div style="flex:1;font-family:var(--font-heading);font-size:11px;color:var(--color-text-muted);display:flex;align-items:center;">
-              Play each highlighted note on your piano
+              Zagraj każdą podświetloną nutę na pianinie
             </div>
           </div>`;
         document.body.appendChild(overlay);
@@ -20791,7 +21259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pct   = Math.round(acc * 100);
         const stars = pct >= 90 ? '⭐⭐⭐' : pct >= 70 ? '⭐⭐' : '⭐';
         const color = pct >= 90 ? '#10B981' : pct >= 70 ? '#F59E0B' : '#EF4444';
-        const grade = pct >= 90 ? 'Recital Ready! 🏆' : pct >= 70 ? 'Almost There! 💪' : 'Keep Practicing! 🎯';
+        const grade = pct >= 90 ? 'Gotowa na recital! 🏆' : pct >= 70 ? 'Prawie! 💪' : 'Ćwicz dalej! 🎯';
 
         if (!aborted && total > 0) {
           _scoreHistory.push({ date: new Date().toISOString(), accuracy: acc, hits, misses, bestStreak });
@@ -20814,20 +21282,20 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="recital-result-breakdown">
             <div class="recital-result-stat">
               <div class="recital-result-stat-val" style="color:#10B981;">${hits}</div>
-              <div class="recital-result-stat-lbl">Hit</div>
+              <div class="recital-result-stat-lbl">Trafione</div>
             </div>
             <div class="recital-result-stat">
               <div class="recital-result-stat-val" style="color:#EF4444;">${misses}</div>
-              <div class="recital-result-stat-lbl">Missed</div>
+              <div class="recital-result-stat-lbl">Pudło</div>
             </div>
             <div class="recital-result-stat">
               <div class="recital-result-stat-val" style="color:#F59E0B;">${bestStreak}</div>
-              <div class="recital-result-stat-lbl">Best Streak</div>
+              <div class="recital-result-stat-lbl">Najl. seria</div>
             </div>
           </div>
           <div class="recital-result-btns">
-            <button class="lesson-btn lesson-btn--primary" onclick="document.getElementById('recital-session-overlay')?.remove(); RecitalManager.startSession();">↺ Practice Again</button>
-            <button class="lesson-btn" onclick="document.getElementById('recital-session-overlay')?.remove(); RecitalManager.render();">Done</button>
+            <button class="lesson-btn lesson-btn--primary" onclick="document.getElementById('recital-session-overlay')?.remove(); RecitalManager.startSession();">↺ Ćwicz ponownie</button>
+            <button class="lesson-btn" onclick="document.getElementById('recital-session-overlay')?.remove(); RecitalManager.render();">Gotowe</button>
           </div>`;
         sessionEl.style.position = 'relative';
         sessionEl.appendChild(result);
@@ -20853,7 +21321,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Melody dances in corner
         Melody.setState('excited');
-        Melody.speak('Play anything! 🎵', 3000);
+        Melody.speak('Graj co chcesz! 🎵', 3000);
         setTimeout(() => Melody.setState('idle'), 3500);
 
         // Wire MIDI for note names + trail
@@ -20876,7 +21344,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!layout) return;
         layout.innerHTML = `
           <div class="freeplay-top-bar">
-            <h2 class="freeplay-title">Free Play 🎹</h2>
+            <h2 class="freeplay-title">Wolna gra 🎹</h2>
             <div>
               <span class="freeplay-timer" id="fp-timer">⏱ 2:00</span>
               &nbsp;
@@ -20887,7 +21355,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="keyboard-container" id="freeplay-keyboard"></div>
           </div>
           <div class="freeplay-trail-wrap" id="fp-trail">
-            <span style="font-family:var(--font-heading);font-size:11px;font-weight:700;color:var(--color-text-dim);">Notes played:</span>
+            <span style="font-family:var(--font-heading);font-size:11px;font-weight:700;color:var(--color-text-dim);">Zagrane nuty:</span>
           </div>
           <div class="freeplay-melody-corner" id="fp-melody-corner"></div>`;
 
@@ -20925,7 +21393,7 @@ document.addEventListener('DOMContentLoaded', () => {
         _secondsLeft += 60;
         const el = document.getElementById('fp-timer');
         if (el) el.classList.remove('timer--ending');
-        Melody.speak('One more minute! 🎵', 1500);
+        Melody.speak('Jeszcze minuta! 🎵', 1500);
       }
       FreePlayManager.extend = extend;
 
@@ -20933,7 +21401,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(_timerInterval);
         FreePlayManager._handlerId = null;
         GamificationManager.awardNotes(5, 'free play session');
-        Melody.speak('Great playing! 🌟', 3000);
+        Melody.speak('Świetnie grasz! 🌟', 3000);
         setTimeout(() => {
           if (typeof showScreen === 'function') showScreen('home');
         }, 3200);
