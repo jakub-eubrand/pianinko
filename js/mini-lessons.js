@@ -1,22 +1,3 @@
-    document.addEventListener('DOMContentLoaded', () => {
-
-      // Wire "Start Session" button on quest map (if it exists)
-      // Quest Map node clicks already call LessonEngine.startLesson via QuestMap.nodeClick
-
-      // Ensure lesson screen has position:relative for overlay placement
-      const lessonScreen = document.getElementById('screen-lesson');
-      const lessonContent = lessonScreen?.querySelector('.screen-content');
-      if (lessonContent) lessonContent.style.position = 'relative';
-
-      // Build lesson control bar on page load
-      const controlBarCheck = document.getElementById('lesson-controls-bar');
-      if (!controlBarCheck && lessonScreen) {
-        // Build it immediately so it's ready
-        LessonEngine._ensureControlBar && LessonEngine._ensureControlBar();
-      }
-    });
-
-
     /* ============================================================
        LITTLE MAESTRO — PHASE 10
        Pre-Curriculum Mini-Lessons · Parent Mode Dashboard
@@ -1069,3 +1050,22 @@
 
     /* ────────────────────────────────────────────────────────────
        PHASE 10 — DOMContentLoaded wiring
+       ──────────────────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Render mini-lessons when precurriculum screen becomes visible
+      // Hook into showScreen wrapper from Phase 8
+      const _origShow10 = window.showScreen;
+      if (_origShow10) {
+        window.showScreen = function(screenId) {
+          _origShow10(screenId);
+          if (screenId === 'home')          { setTimeout(renderHomeScreen, 220); }
+          if (screenId === 'precurriculum') { setTimeout(MiniLessons.render, 220); }
+          if (screenId === 'parentmode')    { setTimeout(ParentDashboard.render, 220); }
+        };
+      }
+
+      // Initial render if on those screens
+      MiniLessons.render();
+      ParentDashboard.render();
+    });

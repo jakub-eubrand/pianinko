@@ -152,7 +152,7 @@
           </div>
 
           <h1 class="login-title">
-            Little <span class="accent">Maestro</span>
+            Pianinkowa <span class="accent">Marysi</span>
           </h1>
           <p class="login-subtitle">Twoja muzyczna podróż zaczyna się tutaj</p>
 
@@ -304,9 +304,9 @@
           <div class="sheet-header">
             <span class="sheet-song-title" id="sheet-song-title">Wybierz piosenkę</span>
             <div class="sheet-header-toggles">
-              <button class="sheet-toggle-btn" id="sheet-bg-toggle" title="Toggle white background" onclick="LessonEngine._toggleSheetBg(this)">☀️ White</button>
+              <button class="sheet-toggle-btn" id="sheet-bg-toggle" title="Jasne tło" onclick="LessonEngine._toggleSheetBg(this)">☀️ Jasne</button>
               <button class="sheet-toggle-btn" id="piano-vis-toggle" title="Pokaż/ukryj pianino" onclick="LessonEngine._togglePiano(this)">🎹 Pianino</button>
-              <span class="sheet-mode-pill" id="sheet-mode-pill">Full View</span>
+              <span class="sheet-mode-pill" id="sheet-mode-pill">Pełny widok</span>
             </div>
           </div>
 
@@ -319,19 +319,19 @@
           </div>
 
           <!-- Notation legend (World 1 only) -->
-          <div class="notation-legend legend--hidden" id="notation-legend" aria-label="Note value guide">
-            <span class="legend-title">Note Guide</span>
+          <div class="notation-legend legend--hidden" id="notation-legend" aria-label="Wartości nut">
+            <span class="legend-title">Przewodnik</span>
             <div class="legend-item">
               <span class="legend-note legend-quarter"><span class="legend-notehead"></span></span>
-              <span class="legend-text">Quarter = 1 beat</span>
+              <span class="legend-text">Ćwierćnuta = 1 takt</span>
             </div>
             <div class="legend-item">
               <span class="legend-note legend-half"><span class="legend-notehead"></span></span>
-              <span class="legend-text">Half = 2 beats</span>
+              <span class="legend-text">Półnuta = 2 takty</span>
             </div>
             <div class="legend-item">
               <span class="legend-note legend-whole"><span class="legend-notehead"></span></span>
-              <span class="legend-text">Whole = 4 beats</span>
+              <span class="legend-text">Cała nuta = 4 takty</span>
             </div>
           </div>
 
@@ -365,7 +365,7 @@
       <div class="screen-content">
         <div class="trophy-header">
           <div class="trophy-header-title">🏆 Trofea</div>
-          <div class="trophy-header-count" id="trophy-count">0 Songs</div>
+          <div class="trophy-header-count" id="trophy-count">0 Piosenek</div>
         </div>
         <div class="trophy-scroll">
           <div id="trophy-grid-container">
@@ -592,15 +592,15 @@
        ============================================================ -->
   <aside id="midi-test-panel" aria-label="MIDI Test Log" aria-hidden="true">
     <div class="midi-test-header">
-      <span class="midi-test-title">MIDI Event Log</span>
-      <button class="midi-test-close-btn" onclick="toggleMIDITestPanel()" aria-label="Close MIDI log">✕</button>
+      <span class="midi-test-title">Dziennik MIDI</span>
+      <button class="midi-test-close-btn" onclick="toggleMIDITestPanel()" aria-label="Zamknij dziennik MIDI">✕</button>
     </div>
     <div id="midi-test-log">
-      <span class="midi-log-empty">Waiting for MIDI input…</span>
+      <span class="midi-log-empty">Czekam na sygnał…</span>
     </div>
     <div class="midi-test-status-row">
       <div class="midi-test-dot dot-disconnected" id="midi-test-dot"></div>
-      <span id="midi-test-status-label">Piano not connected</span>
+      <span id="midi-test-status-label">Pianino niepodłączone</span>
     </div>
   </aside>
 
@@ -610,9 +610,9 @@
        PHASE 5: FIRST-TIME WELCOME OVERLAY
        Shown when no users exist in localStorage.
        ============================================================ -->
-  <div id="welcome-overlay" aria-live="polite" aria-label="Witaj w Aplikacji Piankowej Marysi">
+  <div id="welcome-overlay" aria-live="polite" aria-label="Witaj w Aplikacji Pianinkowej Marysi">
     <div class="welcome-icon" aria-hidden="true">🎹</div>
-    <h2 class="welcome-title">Witaj w Aplikacji Piankowej!</h2>
+    <h2 class="welcome-title">Witaj w Aplikacji Pianinkowej!</h2>
     <p class="welcome-sub">Stwórzmy Twój pierwszy profil.</p>
   </div>
 

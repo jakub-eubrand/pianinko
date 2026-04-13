@@ -1,22 +1,5 @@
-       ──────────────────────────────────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', () => {
 
-      // Render mini-lessons when precurriculum screen becomes visible
-      // Hook into showScreen wrapper from Phase 8
-      const _origShow10 = window.showScreen;
-      if (_origShow10) {
-        window.showScreen = function(screenId) {
-          _origShow10(screenId);
-          if (screenId === 'home')          { setTimeout(renderHomeScreen, 220); }
-          if (screenId === 'precurriculum') { setTimeout(MiniLessons.render, 220); }
-          if (screenId === 'parentmode')    { setTimeout(ParentDashboard.render, 220); }
-        };
-      }
 
-      // Initial render if on those screens
-      MiniLessons.render();
-      ParentDashboard.render();
-    });
 
     /* ============================================================
        LITTLE MAESTRO — PHASE 11
@@ -590,8 +573,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-      window.addEventListener('load', () => {
-          .then(reg => console.log('[SW] Registered:', reg.scope))
-          .catch(err => console.warn('[SW] Registration failed:', err));
-      });
-    }

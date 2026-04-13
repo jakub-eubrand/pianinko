@@ -1,9 +1,3 @@
-        sessionStorage.setItem(introKey, '1');
-        setTimeout(() => Melody.introduce(), 1500);
-      }
-    });
-
-
     /* ============================================================
        LITTLE MAESTRO — PHASE 9
        LessonEngine · SessionManager · FlashcardGame
@@ -1491,3 +1485,22 @@
 
 
     /* ────────────────────────────────────────────────────────────
+       PHASE 9 — DOMContentLoaded wiring
+       ──────────────────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Wire "Start Session" button on quest map (if it exists)
+      // Quest Map node clicks already call LessonEngine.startLesson via QuestMap.nodeClick
+
+      // Ensure lesson screen has position:relative for overlay placement
+      const lessonScreen = document.getElementById('screen-lesson');
+      const lessonContent = lessonScreen?.querySelector('.screen-content');
+      if (lessonContent) lessonContent.style.position = 'relative';
+
+      // Build lesson control bar on page load
+      const controlBarCheck = document.getElementById('lesson-controls-bar');
+      if (!controlBarCheck && lessonScreen) {
+        // Build it immediately so it's ready
+        LessonEngine._ensureControlBar && LessonEngine._ensureControlBar();
+      }
+    });

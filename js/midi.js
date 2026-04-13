@@ -213,7 +213,7 @@ function _updateStatusUI() {
       cls   = 'midi-pill--warn';
       break;
     default: // disconnected
-      label = '🎹 Piano Not Connected';
+      label = '🎹 Pianino niepodłączone';
       cls   = 'midi-pill--disconnected';
   }
 
@@ -252,7 +252,7 @@ function _updateTestPanel() {
   if (!log) return;
   const events = MIDIManager.getLog();
   if (events.length === 0) {
-    log.innerHTML = '<span class="midi-log-empty">Waiting for MIDI input…</span>';
+    log.innerHTML = '<span class="midi-log-empty">Czekam na sygnał MIDI…</span>';
   } else {
     log.innerHTML = events.map(e =>
       `<div class="midi-log-entry">${e}</div>`
@@ -309,10 +309,10 @@ document.addEventListener('DOMContentLoaded', () => {
       label.textContent = MIDIManager.getDeviceName() || 'Connected';
     } else if (s === 'unsupported') {
       dot.classList.add('dot-unsupported');
-      label.textContent = 'Web MIDI not supported';
+      label.textContent = 'Web MIDI nie jest wspierane';
     } else {
       dot.classList.add('dot-disconnected');
-      label.textContent = 'Piano not connected';
+      label.textContent = 'Pianino niepodłączone';
     }
   }
   // Patch _updateStatusUI to also refresh test panel dot

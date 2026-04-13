@@ -1,9 +1,3 @@
-      if (user && user.settings) {
-        PianoKeyboard.showNoteNames(user.settings.showNoteNames !== false);
-      }
-    });
-
-
     /* ============================================================
        LITTLE MAESTRO — PHASE 7
        VexFlow Sheet Music Renderer
@@ -417,3 +411,9 @@
         render,
         highlightNote,
         markCorrect,
+        markIncorrect,
+        setMode,
+        showNoteNamesBelow,
+        showFingerNumbers,
+      };
+    })();

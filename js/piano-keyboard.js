@@ -1,9 +1,3 @@
-    }
-
-    return { init, start, stop, show, hide, markSongEnded, hideStarScreen,
-             onNoteInput, buildSchedule, getResults };
-  })();
-
     /* ============================================================
        LITTLE MAESTRO — PHASE 6
        On-Screen Piano Keyboard (Visual Reference)
@@ -348,3 +342,9 @@
         PianoKeyboard.clearPlaying(fullNote);
       });
 
+      // Respect user setting: show/hide note names on keyboard
+      const user = typeof UserManager !== 'undefined' ? UserManager.getCurrentUser() : null;
+      if (user && user.settings) {
+        PianoKeyboard.showNoteNames(user.settings.showNoteNames !== false);
+      }
+    });

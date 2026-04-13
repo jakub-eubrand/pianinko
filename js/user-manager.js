@@ -566,3 +566,9 @@
             showScreen(savedScreen);
           } else {
             showScreen('home');
+          }
+        } catch(e) {
+          sessionStorage.removeItem('lm_active_user');
+        }
+      }
+    });

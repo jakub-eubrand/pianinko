@@ -1,9 +1,3 @@
-        showNoteNamesBelow,
-        showFingerNumbers,
-      };
-    })();
-
-
     /* ============================================================
        LITTLE MAESTRO — PHASE 8
        Melody Mascot · Quest Map · GamificationManager · Trophy Room
@@ -1019,3 +1013,9 @@
       renderTrophyRoom();
 
       // Introduce Melody after short delay (only on first-ever load)
+      const introKey = 'lm_melody_intro_done';
+      if (!sessionStorage.getItem(introKey)) {
+        sessionStorage.setItem(introKey, '1');
+        setTimeout(() => Melody.introduce(), 1500);
+      }
+    });

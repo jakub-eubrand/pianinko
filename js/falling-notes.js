@@ -1,9 +1,3 @@
-          sessionStorage.removeItem('lm_active_user');
-        }
-      }
-    });
-
-
   /* ============================================================
      LITTLE MAESTRO — FALLING NOTES HIGHWAY
      Guitar Hero–style note highway for Phase 4 play-along.
@@ -450,3 +444,9 @@
       const total = _hits + _misses;
       const acc   = total > 0 ? _hits / total : 0;
       return { score: _score, hits: _hits, misses: _misses, accuracy: acc, bestStreak: _bestStreak,
+               stars: acc >= 0.9 ? 3 : acc >= 0.7 ? 2 : 1 };
+    }
+
+    return { init, start, stop, show, hide, markSongEnded, hideStarScreen,
+             onNoteInput, buildSchedule, getResults };
+  })();
