@@ -10,24 +10,26 @@
 
 const SONGS = [
   // ================================================================
-  // WORLD 14 — PIOSENKI SANAH
-  // Uproszczone melodie polskiego popu dla Marysi
+  // WORLD 14 — PIOSENKI SANAH (zweryfikowane z "Jak zagrać na Fortepianie #5")
+  // Wszystkie transponowane do C-dur (bez krzyżyków/bemoli) dla początkujących
+  // Tempo, tonacja, progresja akordów pochodzą z nut fortepianowych Sanah
+  // Melodie uproszczone do zakresu C4-A4, ćwierć/półnuty
   // ================================================================
 
-  // --- 1. Szampan ---
+  // --- 1. Szampan (oryg. A-dur, ♩=130) ---
   {
     id: 201,
     title: "Szampan",
     composer: "Sanah",
     world: 14,
     difficulty: 2,
-    funFact: "\"Szampan\" to jeden z największych hitów Sanah — piosenka o tęsknocie i miłości. Sanah gra na skrzypcach od 5 roku życia!",
+    funFact: "\"Szampan\" to jeden z największych hitów Sanah! Oryginał jest w A-dur, tempo ♩=130. Tu uproszczone do C-dur dla początkujących. Sanah gra na skrzypcach od 5 roku życia!",
     rightHandOnly: true,
     isBonus: false,
     alwaysUnlocked: true,
-    bpm: { turtle: 56, normal: 76, rabbit: 96, rocket: 112 },
+    bpm: { turtle: 60, normal: 84, rabbit: 104, rocket: 120 },
     notes: [
-      // Refren uproszczony: "Szam-pan, szam-pan..."
+      // Refren: "Szam-pan szam-pan szam-pan noc..." — progresja Am F C G
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
@@ -35,10 +37,7 @@ const SONGS = [
       { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
       { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      // Druga fraza
+      // "co w sypialni..." — wznoszenie do G
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
@@ -46,13 +45,215 @@ const SONGS = [
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
       { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
-      // Powtórzenie refrenu
+      // Druga fraza
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 2. Siebie zapytasz (oryg. C-dur, ♩=86) ---
+  {
+    id: 202,
+    title: "Siebie zapytasz",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "Medytacyjna piosenka Sanah o szukaniu siebie. Oryginał w C-dur, tempo ♩=86 (wolne). Idealna do spokojnego ćwiczenia.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 50, normal: 68, rabbit: 86, rocket: 100 },
+    notes: [
+      // Intro/zwrotka — opadająca linia: E D C progresja C-Am-F-G
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
       { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
       { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      // Druga fraza — wznoszenie
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      // Refren — opadająca melodia medytacyjna
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 3. Aniołom szepnij to (oryg. G-dur, ♩=54) ---
+  {
+    id: 203,
+    title: "Aniołom szepnij to",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "Bardzo spokojna ballada Sanah (♩=54 — wolniej niż bicie serca!). Oryginał w G-dur, tu w C-dur. Gra się ją delikatnie, jakby szeptało się aniołom.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 44, normal: 60, rabbit: 76, rocket: 90 },
+    notes: [
+      // Spokojna, opadająca melodia — progresja C-G-Am-F
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      // "Szepnij to anioł..."
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'whole',   hand: 'right', finger: 3 },
+      // Wznoszenie do końca
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 4. Idź (oryg. F-dur, ♩=75) ---
+  {
+    id: 204,
+    title: "Idź",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "\"Idź\" ma energiczny pulsujący rytm. Oryginał w F-dur, ♩=75, tu w C-dur. Motyw \"idź, idź, idź\" powtarza się z determinacją.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 50, normal: 70, rabbit: 88, rocket: 104 },
+    notes: [
+      // Hook "idź idź idź" — powtarzające się G
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      // Powtórzenie z wariacją
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 5. Królowa dram (oryg. Bb-dur, ♩=100) ---
+  {
+    id: 205,
+    title: "Królowa dram",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "Sanah śmieje się tu z dramatów w życiu. Oryginał w Bb-dur, ♩=100 (tempo marszowe), tu w C-dur. Teatralna, dumna melodia!",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 58, normal: 78, rabbit: 98, rocket: 114 },
+    notes: [
+      // Dramatyczny wstęp — progresja Am-F-C-G
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'B3', duration: 'half',    hand: 'right', finger: 1 },
+      // Wznoszący się refren "królowa!"
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 6. Oto cała ja (oryg. Ab-dur, ♩=100) ---
+  {
+    id: 206,
+    title: "Oto cała ja",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "Afirmacja Sanah — \"oto cała ja, taka jaka jestem\". Oryginał w Ab-dur (4 bemole!), tu w C-dur. Dumna, pełna siebie melodia.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 58, normal: 78, rabbit: 98, rocket: 114 },
+    notes: [
+      // Wznoszący akord C-E-G-C (afirmacja)
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      // "oto cała ja"
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      // Powtórzenie wyżej
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+    ],
+  },
+
+  // --- 7. projekt nieznajomy nie kłamie (oryg. C-dur, ♩=150) ---
+  {
+    id: 207,
+    title: "projekt nieznajomy nie kłamie",
+    composer: "Sanah",
+    world: 14,
+    difficulty: 2,
+    funFact: "Najszybsza z tej kolekcji! Oryginał w C-dur, ♩=150. Sanah gra tu z zespołem Bogdan Kondracki, Dawid Podsiadło, Bartosz Dziedzic, Karolina Kozak.",
+    rightHandOnly: true,
+    isBonus: false,
+    alwaysUnlocked: true,
+    bpm: { turtle: 62, normal: 88, rabbit: 112, rocket: 130 },
+    notes: [
+      // Żywa melodia pop, progresja C-G-Am-F
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      // Refren z hookiem
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
+      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
@@ -61,20 +262,20 @@ const SONGS = [
     ],
   },
 
-  // --- 2. Ten Stan ---
+  // --- 8. Ten Stan (weryfikacja: znany hit, a-moll) ---
   {
-    id: 202,
+    id: 208,
     title: "Ten Stan",
     composer: "Sanah",
     world: 14,
     difficulty: 2,
-    funFact: "\"Ten Stan\" ma ponad 200 milionów wyświetleń na YouTube! Sanah napisała tę piosenkę w zaledwie kilka godzin.",
+    funFact: "\"Ten Stan\" ma ponad 200 milionów wyświetleń na YouTube! Melodia w a-moll (bez krzyżyków). Emocjonalny, delikatny hit.",
     rightHandOnly: true,
     isBonus: false,
     alwaysUnlocked: true,
     bpm: { turtle: 54, normal: 72, rabbit: 92, rocket: 108 },
     notes: [
-      // "Ten stan, gdy ty na mnie patrzysz..."
+      // a-moll — "Ten stan, gdy ty..."
       { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
       { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
@@ -82,7 +283,7 @@ const SONGS = [
       { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
       { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
-      // "i ja nie wiem co mam robić..."
+      // "i ja nie wiem..."
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
       { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
@@ -93,327 +294,69 @@ const SONGS = [
       { note: 'A4', duration: 'half',    hand: 'right', finger: 5 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'F4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
       { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
       { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
-      // Coda
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 4 },
-      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
     ],
   },
 
-  // --- 3. Nic dwa razy ---
+  // --- 9. Nic dwa razy (weryfikacja: Szymborska, a-moll) ---
   {
-    id: 203,
+    id: 209,
     title: "Nic dwa razy",
     composer: "Sanah (sł. W. Szymborska)",
     world: 14,
     difficulty: 2,
-    funFact: "Tekst tej piosenki to wiersz Wisławy Szymborskiej — polskiej noblistki! Sanah dała mu nowe życie jako piosence.",
-    rightHandOnly: true,
-    isBonus: false,
-    alwaysUnlocked: true,
-    bpm: { turtle: 52, normal: 68, rabbit: 88, rocket: 104 },
-    notes: [
-      // "Nic dwa razy się nie zdarza..."
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      // "i z tego powodu..."
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
-      // Druga zwrotka
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
-      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'F4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
-      // Zakończenie
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
-    ],
-  },
-
-  // --- 4. Ostatnia nadzieja ---
-  {
-    id: 204,
-    title: "Ostatnia nadzieja",
-    composer: "Sanah ft. Kwiat Jabłoni",
-    world: 14,
-    difficulty: 2,
-    funFact: "Ta piosenka to duet z rodzeństwem Kwiat Jabłoni. Nagrana na żywo w jednym ujęciu — czujesz w niej prawdziwe emocje!",
-    rightHandOnly: true,
-    isBonus: false,
-    alwaysUnlocked: true,
-    bpm: { turtle: 50, normal: 66, rabbit: 84, rocket: 100 },
-    notes: [
-      // Melodia delikatna, balladowa
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      // Refren
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
-      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'F4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
-      // Outro
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
-    ],
-  },
-
-  // --- 5. Ale jazz! ---
-  {
-    id: 205,
-    title: "Ale jazz!",
-    composer: "Sanah ft. Vito Bambino",
-    world: 14,
-    difficulty: 2,
-    funFact: "\"Ale jazz!\" łączy pop z jazzowymi harmoniami. Sanah studiowała skrzypce w Akademii Muzycznej w Katowicach!",
-    rightHandOnly: true,
-    isBonus: false,
-    alwaysUnlocked: true,
-    bpm: { turtle: 58, normal: 80, rabbit: 100, rocket: 116 },
-    notes: [
-      // Energiczny motyw
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      // "Ale jazz!"
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
-      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 1 },
-      // Bridge
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 4 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
-    ],
-  },
-
-  // --- 6. Cześć, jak się masz? ---
-  {
-    id: 206,
-    title: "Cześć, jak się masz?",
-    composer: "Sanah ft. Miętha",
-    world: 14,
-    difficulty: 2,
-    funFact: "Sanah i Miętha nagrały tę piosenkę w jeden dzień. Pokazuje że muzyka najlepsza jest gdy jest spontaniczna!",
-    rightHandOnly: true,
-    isBonus: false,
-    alwaysUnlocked: true,
-    bpm: { turtle: 56, normal: 76, rabbit: 96, rocket: 112 },
-    notes: [
-      // "Cześć, jak się masz?"
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
-      // Odpowiedź
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
-      { note: 'F4', duration: 'half',    hand: 'right', finger: 4 },
-      // Zakończenie refrenu
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
-    ],
-  },
-
-  // --- 7. Szary świat ---
-  {
-    id: 207,
-    title: "Szary świat",
-    composer: "Sanah ft. Kwiat Jabłoni",
-    world: 14,
-    difficulty: 2,
-    funFact: "Kolejna współpraca z Kwiatem Jabłoni — tym razem o szukaniu kolorów w szarym świecie. Idealna melodia do grania wieczorem.",
-    rightHandOnly: true,
-    isBonus: false,
-    alwaysUnlocked: true,
-    bpm: { turtle: 50, normal: 66, rabbit: 84, rocket: 100 },
-    notes: [
-      // Melancholijna melodia
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'A4', duration: 'half',    hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 4 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'D4', duration: 'whole',   hand: 'right', finger: 1 },
-      // Refren
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
-    ],
-  },
-
-  // --- 8. Etc. ---
-  {
-    id: 208,
-    title: "Etc.",
-    composer: "Sanah",
-    world: 14,
-    difficulty: 2,
-    funFact: "\"Etc.\" to skrót od \"et cetera\" — i tak dalej. Sanah uwielbia bawić się słowami w swoich piosenkach!",
-    rightHandOnly: true,
-    isBonus: false,
-    alwaysUnlocked: true,
-    bpm: { turtle: 60, normal: 84, rabbit: 104, rocket: 120 },
-    notes: [
-      // Taneczny, dyskotekowy motyw
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      // Hook
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'A4', duration: 'half',    hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 4 },
-      // Powtórzenie z wariacją
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
-    ],
-  },
-
-  // --- 9. Melodia ---
-  {
-    id: 209,
-    title: "Melodia",
-    composer: "Sanah",
-    world: 14,
-    difficulty: 2,
-    funFact: "Piosenka o melodii, którą grasz na pianinie — jak pięknie się to układa! Sanah mówi że każdy człowiek ma w sobie swoją melodię.",
+    funFact: "Tekst to wiersz Wisławy Szymborskiej — noblistki literatury! Sanah dała mu drugie życie jako piosence w a-moll.",
     rightHandOnly: true,
     isBonus: false,
     alwaysUnlocked: true,
     bpm: { turtle: 52, normal: 70, rabbit: 88, rocket: 104 },
     notes: [
-      // Liryczna, spokojna
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'whole',   hand: 'right', finger: 2 },
-      // Refren
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
+      // a-moll, "Nic dwa razy się nie zdarza..."
       { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
       { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'F4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
+      // "i z tego powodu..."
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
       { note: 'D4', duration: 'half',    hand: 'right', finger: 1 },
       { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
-      // Outro
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
+      // Zakończenie
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'half',    hand: 'right', finger: 1 },
+      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
+      { note: 'A3', duration: 'whole',   hand: 'right', finger: 1 },
     ],
   },
 
-  // --- 10. Eldorado ---
+  // --- 10. Eldorado (weryfikacja: duet z Darią Zawiałow) ---
   {
     id: 210,
     title: "Eldorado",
     composer: "Sanah ft. Daria Zawiałow",
     world: 14,
     difficulty: 2,
-    funFact: "Eldorado to mityczne miasto ze złota. Sanah i Daria Zawiałow razem tworzą muzyczne złoto — dwa mocne głosy w jednej piosence!",
+    funFact: "Eldorado to mityczne miasto ze złota. Sanah i Daria Zawiałow łączą tu dwa mocne głosy — muzyczne złoto!",
     rightHandOnly: true,
     isBonus: false,
     alwaysUnlocked: true,
-    bpm: { turtle: 56, normal: 76, rabbit: 96, rocket: 112 },
+    bpm: { turtle: 58, normal: 78, rabbit: 98, rocket: 114 },
     notes: [
       // Mocny wstęp
       { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'G4', duration: 'half',    hand: 'right', finger: 5 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
       { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
       { note: 'E4', duration: 'half',    hand: 'right', finger: 3 },
-      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
-      // "Eldorado"
+      // "Eldorado" — wznoszenie
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
       { note: 'A4', duration: 'half',    hand: 'right', finger: 5 },
@@ -421,17 +364,13 @@ const SONGS = [
       { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
       { note: 'E4', duration: 'half',    hand: 'right', finger: 2 },
       { note: 'D4', duration: 'half',    hand: 'right', finger: 1 },
-      // Refren
+      // Refren zakończenie
       { note: 'C4', duration: 'quarter', hand: 'right', finger: 1 },
       { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 4 },
       { note: 'G4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'A4', duration: 'quarter', hand: 'right', finger: 5 },
-      { note: 'G4', duration: 'quarter', hand: 'right', finger: 4 },
-      { note: 'F4', duration: 'quarter', hand: 'right', finger: 3 },
-      { note: 'E4', duration: 'quarter', hand: 'right', finger: 2 },
-      { note: 'D4', duration: 'quarter', hand: 'right', finger: 1 },
-      { note: 'C4', duration: 'dotted_half', hand: 'right', finger: 1 },
+      { note: 'E4', duration: 'quarter', hand: 'right', finger: 3 },
+      { note: 'D4', duration: 'half',    hand: 'right', finger: 2 },
+      { note: 'C4', duration: 'whole',   hand: 'right', finger: 1 },
     ],
   },
 
