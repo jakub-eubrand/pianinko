@@ -1637,7 +1637,8 @@
     .fn-highway {
       position: absolute;
       left: 0; right: 0; top: 0;
-      /* bottom set by JS to stop just above keyboard */
+      /* height set by JS via show() — default 0 so it doesn't overlay */
+      height: 0;
       z-index: 25;
       overflow: hidden;
       background: #080612;
@@ -3542,13 +3543,35 @@
 
     .listen-instruction {
       font-family: var(--font-heading);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--color-text-muted);
-      padding: 4px 12px;
-      background: rgba(124,58,237,0.1);
-      border: 1px solid rgba(124,58,237,0.2);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--color-text);
+      padding: 10px 20px;
+      background: rgba(124,58,237,0.15);
+      border: 2px solid rgba(124,58,237,0.4);
       border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .listen-instruction:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      color: var(--color-text-muted);
+    }
+    .listen-instruction:not(:disabled) {
+      background: linear-gradient(135deg, #7C3AED, #2563EB);
+      color: white;
+      border-color: transparent;
+      animation: listen-ready-pulse 1.4s ease-in-out infinite;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.5);
+    }
+    .listen-instruction:not(:disabled):hover {
+      transform: scale(1.05);
+      animation-play-state: paused;
+    }
+    @keyframes listen-ready-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(124,58,237,0.4); transform: scale(1); }
+      50%      { box-shadow: 0 4px 30px rgba(124,58,237,0.9); transform: scale(1.03); }
     }
 
     /* Bouncing ball that moves over sheet music during playback */

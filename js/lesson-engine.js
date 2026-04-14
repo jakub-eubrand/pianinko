@@ -212,6 +212,8 @@
       function _startPhase1() {
         _s.phase = 1;
         const meta = _meta(_s.songId);
+        // Ensure falling notes highway is hidden (shows only in Phase 4)
+        if (typeof FallingNotes !== 'undefined') FallingNotes.hide();
 
         _setPhaseUI('Krok 1 · Poznaj piosenkę', true, '');
         _setProgress(0, 5, 'Lekcja');
@@ -448,8 +450,8 @@
           const readyBtn = document.getElementById('listen-ready-btn');
           if (readyBtn && readyBtn.disabled) {
             readyBtn.disabled = false;
-            Melody.setState('idle');
-            Melody.speak('Gotowa kiedy chcesz! ✨', 3000);
+            Melody.setState('excited');
+            Melody.speak('Kliknij "Jestem gotowa" żeby zacząć grać 👇', 5000);
           }
         }, 3000);
 
@@ -470,8 +472,10 @@
           // Enable "I'm Ready" after 1 listen
           const readyBtn = document.getElementById('listen-ready-btn');
           if (readyBtn) readyBtn.disabled = false;
-          Melody.setState('idle');
-          Melody.speak(_s.listenCount === 1 ? 'Posłuchaj jeszcze raz! 🎵' : 'Gotowa kiedy chcesz! ✨', 3000);
+          Melody.setState('excited');
+          Melody.speak(_s.listenCount === 1
+            ? 'Posłuchaj jeszcze raz lub kliknij "Jestem gotowa" 👇'
+            : 'Klikaj "Jestem gotowa" gdy jesteś gotowa! 👇', 5000);
         });
       }
 

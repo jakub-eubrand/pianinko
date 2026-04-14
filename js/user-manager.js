@@ -199,6 +199,10 @@
         // Show / hide nav + header
         if (nav)    nav.style.display    = isLogin ? 'none' : '';
         if (header) header.style.display = isLogin ? 'none' : '';
+        // Hide falling notes highway when leaving lesson screen
+        if (screenId !== 'lesson' && typeof FallingNotes !== 'undefined') {
+          try { FallingNotes.hide(); } catch(e) {}
+        }
         sessionStorage.setItem('lm_current_screen', screenId);
       };
 
