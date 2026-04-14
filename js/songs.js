@@ -7030,6 +7030,7 @@ const SONGS = [
 
   {
     id: 211,
+    autoTranscribed: true,
     title: "Cząstka",
     composer: "Sanah",
     world: 14,
@@ -7085,6 +7086,7 @@ const SONGS = [
 
   {
     id: 212,
+    autoTranscribed: true,
     title: "No sory",
     composer: "Sanah",
     world: 14,
@@ -7140,6 +7142,7 @@ const SONGS = [
 
   {
     id: 213,
+    autoTranscribed: true,
     title: "Tęsknię sobie",
     composer: "Sanah ft. Artur Rojek",
     world: 14,

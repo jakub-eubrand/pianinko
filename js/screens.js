@@ -327,6 +327,8 @@
           if (isCompleted)      stateClass = 'qm-node--completed';
           else if (isCurrent)   stateClass = 'qm-node--current';
           else if (isLocked)    stateClass = 'qm-node--locked';
+          // Auto-transcribed songs (from Basic Pitch) — visual marker
+          if (song.autoTranscribed) stateClass += ' qm-node--auto';
 
           // Star display
           let stars = '☆☆☆';

@@ -2613,6 +2613,16 @@
       box-shadow: 0 0 12px rgba(124,58,237,0.3), 0 4px 12px rgba(0,0,0,0.3);
       cursor: pointer;
     }
+    /* Auto-transcribed (AI, Basic Pitch) — pomarańczowo-złote kółko */
+    .qm-node--auto .qm-node-circle {
+      background: linear-gradient(135deg, #F59E0B, #D97706) !important;
+      border-color: #FBBF24 !important;
+      box-shadow: 0 0 14px rgba(245,158,11,0.5), 0 4px 12px rgba(0,0,0,0.3) !important;
+    }
+    .qm-node--auto .qm-node-label::after {
+      content: " 🎧";
+      font-size: 0.9em;
+    }
 
     @keyframes node-pulse {
       0%, 100% { box-shadow: 0 0 20px rgba(124,58,237,0.5), 0 4px 12px rgba(0,0,0,0.3); }
