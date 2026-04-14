@@ -117,7 +117,7 @@
               ${_buildSVG('idle', size)}
             </div>
             ${!isSmall ? `<div class="melody-bubble bubble--hidden" id="${containerId}__bubble"></div>
-            <div class="melody-name">Melody</div>` : ''}
+            <div class="melody-name">Melodia</div>` : ''}
           </div>`;
 
         _s.containers.push({ id: containerId, small: isSmall, size });
@@ -165,9 +165,9 @@
       // ── Introduction sequence ──────────────────────────────────
       function introduce() {
         const msgs = [
-          { state: 'idle',     text: 'Hi! I\'m Melody! 🎵', delay: 0 },
-          { state: 'excited',  text: 'I\'ll help you learn piano!', delay: 2000 },
-          { state: 'idle',     text: 'Let\'s make music together!', delay: 4200 },
+          { state: 'idle',     text: 'Cześć! Jestem Melodia! 🎵', delay: 0 },
+          { state: 'excited',  text: 'Pomogę Ci nauczyć się pianina!', delay: 2000 },
+          { state: 'idle',     text: 'Zagramy razem! ✨', delay: 4200 },
           { state: 'idle',     text: null, delay: 7000 },
         ];
         msgs.forEach(({ state, text, delay }) => {

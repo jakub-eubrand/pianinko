@@ -82,7 +82,7 @@
       function loadUser(name) {
         const idx = _getIndex();
         const found = idx.find(n => n.toLowerCase() === name.toLowerCase());
-        if (!found) throw new Error('Student "' + name + '" not found');
+        if (!found) throw new Error('Nie znaleziono profilu: "' + name + '"');
         const data = JSON.parse(localStorage.getItem(_key(found)));
         _current = data;
         sessionStorage.setItem('lm_active_user', found);
@@ -124,13 +124,13 @@
       function exportUser(name) {
         const idx   = _getIndex();
         const found = idx.find(n => n.toLowerCase() === name.toLowerCase());
-        if (!found) throw new Error('Student not found');
+        if (!found) throw new Error('Nie znaleziono profilu');
         return localStorage.getItem(_key(found));
       }
 
       function importUser(jsonString) {
         const data = JSON.parse(jsonString);
-        if (!data.profile || !data.profile.name) throw new Error('Invalid profile data');
+        if (!data.profile || !data.profile.name) throw new Error('Nieprawidłowe dane profilu');
         const name = data.profile.name;
         const idx  = _getIndex();
         if (!idx.some(n => n.toLowerCase() === name.toLowerCase())) {
@@ -173,7 +173,7 @@
       if (screenId.startsWith('screen-')) screenId = screenId.slice(7);
 
       const nav    = document.getElementById('bottom-nav');
-      const header = document.getElementById('app-header');
+      const header = document.getElementById('global-header');
       const isLogin = screenId === 'login';
 
       const doSwap = () => {
@@ -405,7 +405,7 @@
       const modal = document.getElementById('pin-modal');
       if (!modal) {
         // Fallback: browser prompt
-        const pin = prompt((message || '') + '\n\nEnter PIN rodzica:');
+        const pin = prompt((message || '') + '\n\nWpisz PIN rodzica:');
         const users = UserManager.getAllUsers();
         const validPin = users.length > 0 && users[0].settings
           ? (users[0].settings.parentPin || '1234') : '1234';
@@ -483,7 +483,7 @@
           btn.type = 'button';
           btn.className = 'avatar-opt';
           btn.textContent = emoji;
-          btn.title = 'Select ' + emoji;
+          btn.title = 'Wybierz ' + emoji;
           btn.addEventListener('click', () => {
             form.querySelectorAll('.avatar-opt').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
@@ -546,7 +546,7 @@
 
       // On page load, hide bottom-nav and header (login screen is first)
       const nav    = document.getElementById('bottom-nav');
-      const header = document.getElementById('app-header');
+      const header = document.getElementById('global-header');
       if (nav)    nav.style.display    = 'none';
       if (header) header.style.display = 'none';
 

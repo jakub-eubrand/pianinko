@@ -1,6 +1,5 @@
 
 
-
     /* ============================================================
        LITTLE MAESTRO — PHASE 11
        ExportManager · SettingsScreen · FreePlay · Final Wiring
@@ -139,6 +138,7 @@
       Exported ${new Date().toLocaleDateString()}
     </div>
   </div>
+
 
 /* === PHASE 12 JS === */
 /* ============================================================
@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (grid && grid.children.length === 0) {
         EdgeCases.showEmptyState('trophy-grid-container',
           'Brak trofeów!',
-          'Finish your first song to earn a trophy. Melody believes in you! 🎵');
+          'Ukończ pierwszą piosenkę żeby zdobyć trofeum. Melodia w Ciebie wierzy! 🎵');
       }
     };
   }
@@ -565,11 +565,989 @@ document.addEventListener('DOMContentLoaded', () => {
   // Quest map empty state guard
   document.addEventListener('lm:questmap-empty', () => {
     EdgeCases.showEmptyState('questmap-path-container',
-      'No songs available',
-      'Complete the Mini-Lessons first to unlock your first song!');
+      'Brak piosenek',
+      'Najpierw ukończ mini-lekcje żeby odblokować pierwszą piosenkę!');
   });
 
   console.log('[LittleMaestro] Phase 12 — Final polish loaded. SoundFX & EdgeCases active.');
 });
 
+</script>
+</body>
+</html>`;
 
+        const blob = new Blob([html], { type: 'text/html' });
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        const date = new Date().toISOString().slice(0,10);
+        a.href     = url;
+        a.download = `LittleMaestro_${name.replace(/\s+/g,'_')}_Keepsake_${date}.html`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      // ── Import JSON user ──────────────────────────────────────
+      function importUser(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            try {
+              const data = JSON.parse(e.target.result);
+
+              // Validate required fields
+              if (!data.profile || !data.profile.name) {
+                throw new Error('Nieprawidłowy plik — brak profilu ucznia.');
+              }
+
+              const name    = data.profile.name;
+              const key     = `littlemaestro_${name.toLowerCase().replace(/\s+/g,'_')}`;
+              const index   = JSON.parse(localStorage.getItem('littlemaestro__index') || '[]');
+              const exists  = index.includes(name.toLowerCase().replace(/\s+/g,'_'));
+
+              const _doImport = (keepName) => {
+                const finalName = keepName || name;
+                const finalKey  = `littlemaestro_${finalName.toLowerCase().replace(/\s+/g,'_')}`;
+                if (!index.includes(finalName.toLowerCase().replace(/\s+/g,'_'))) {
+                  index.push(finalName.toLowerCase().replace(/\s+/g,'_'));
+                  localStorage.setItem('littlemaestro__index', JSON.stringify(index));
+                }
+                localStorage.setItem(finalKey, JSON.stringify(data));
+                resolve(finalName);
+              };
+
+              if (exists) {
+                // Ask: replace or keep both
+                const choice = confirm(`Uczeń o imieniu "${name}" już istnieje.\n\nOK = Zastąp istniejące dane\nAnuluj = Importuj jako kopię`);
+                if (choice) {
+                  _doImport(name);
+                } else {
+                  _doImport(`${name} (imported)`);
+                }
+              } else {
+                _doImport(name);
+              }
+            } catch(err) {
+              reject(err);
+            }
+          };
+          reader.readAsText(file);
+        });
+      }
+
+      // ── Wire drag-and-drop on login screen ────────────────────
+      function wireLoginImport() {
+        const zone = document.getElementById('login-import-zone');
+        if (!zone) return;
+
+        // Click to open file picker
+        zone.addEventListener('click', () => {
+          const input = document.createElement('input');
+          input.type   = 'file';
+          input.accept = '.json';
+          input.onchange = (e) => _handleImportFile(e.target.files[0]);
+          input.click();
+        });
+
+        // Drag events
+        zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('zone--hover'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('zone--hover'));
+        zone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          zone.classList.remove('zone--hover');
+          const file = e.dataTransfer.files[0];
+          if (file) _handleImportFile(file);
+        });
+      }
+
+      function _handleImportFile(file) {
+        if (!file) return;
+        importUser(file).then((importedName) => {
+          Melody.setState('excited');
+          Melody.speak(`Witaj ponownie, ${importedName}! 🎵`, 3000);
+          // Refresh login screen
+          if (typeof UserManager !== 'undefined' && UserManager.renderLoginScreen) {
+            UserManager.renderLoginScreen();
+          } else if (typeof renderLoginScreen !== 'undefined') {
+            renderLoginScreen();
+          }
+        }).catch((err) => {
+          Melody.setState('wrong');
+          Melody.speak(`Oops! ${err.message}`, 3000);
+          setTimeout(() => Melody.setState('idle'), 3500);
+        });
+      }
+
+      return { exportUser, exportKeepsake, importUser, wireLoginImport };
+    })();
+
+
+    /* ────────────────────────────────────────────────────────────
+       SETTINGS SCREEN
+       Student-accessible (no PIN). Volume, tempo, toggles, theme.
+       ──────────────────────────────────────────────────────────── */
+    const SettingsScreen = (() => {
+
+      // ── Load/save helpers ─────────────────────────────────────
+      function _getSettings() {
+        try {
+          const active = UserManager.getCurrentUser();
+          if (!active) return {};
+          const key    = `littlemaestro_${active.profile.name.toLowerCase().replace(/\s+/g,'_')}`;
+          const data   = JSON.parse(localStorage.getItem(key) || '{}');
+          return data.settings || {};
+        } catch(e) { return {}; }
+      }
+
+      function _saveSetting(key, value) {
+        try {
+          const active = UserManager.getCurrentUser();
+          if (!active) return;
+          const stKey  = `littlemaestro_${active.profile.name.toLowerCase().replace(/\s+/g,'_')}`;
+          const data   = JSON.parse(localStorage.getItem(stKey) || '{}');
+          if (!data.settings) data.settings = {};
+          data.settings[key] = value;
+          localStorage.setItem(stKey, JSON.stringify(data));
+        } catch(e) {}
+      }
+
+      // ── Build and inject settings HTML ────────────────────────
+      function render() {
+        const container = document.getElementById('settings-container');
+        if (!container) return;
+        const s = _getSettings();
+
+        const vol       = s.masterVolume     ?? 0.7;
+        const tempo     = s.tempoPreference  || 'normal';
+        const noteNames = s.showNoteNames    !== false;
+        const melodyOn  = s.melodyEnabled    !== false;
+        const lightMode = s.lightMode        || false;
+        const midiTest  = s.showMidiTest     || false;
+
+        container.innerHTML = `
+          <!-- Sound -->
+          <div class="settings-section">
+            <div class="settings-section-title">Dźwięk</div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <div class="settings-row-label">🔊 Głośność</div>
+              </div>
+              <input type="range" class="settings-volume-slider" id="vol-slider"
+                     min="0" max="1" step="0.05" value="${vol}"
+                     oninput="SettingsScreen._setVol(this.value)"/>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <div class="settings-row-label">🎵 Domyślne tempo</div>
+                <div class="settings-row-sub">Początkowe tempo nowych lekcji</div>
+              </div>
+              <div class="settings-opts">
+                ${['turtle','normal','rabbit','rocket'].map(t =>
+                  `<button class="settings-opt ${tempo===t?'opt--on':''}"
+                    onclick="SettingsScreen._setOpt('tempoPreference','${t}',this,'settings-opts')"
+                  >${{turtle:'🐢',normal:'🎵',rabbit:'🐇',rocket:'🚀'}[t]}</button>`
+                ).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Display -->
+          <div class="settings-section">
+            <div class="settings-section-title">Wyświetlanie</div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <div class="settings-row-label">🎹 Nazwy nut na klawiszach</div>
+                <div class="settings-row-sub">Pokaż nazwy nut na klawiszach</div>
+              </div>
+              <div class="settings-toggle ${noteNames?'tog--on':''}" id="tog-notenames"
+                   onclick="SettingsScreen._toggle('showNoteNames','tog-notenames')"></div>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <div class="settings-row-label">🌙 Jasny motyw</div>
+                <div class="settings-row-sub">Przełącz na jasny motyw</div>
+              </div>
+              <div class="settings-toggle ${lightMode?'tog--on':''}" id="tog-light"
+                   onclick="SettingsScreen._toggleTheme()"></div>
+            </div>
+          </div>
+
+          <!-- Melody -->
+          <div class="settings-section">
+            <div class="settings-section-title">Maskotka Melody</div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <div class="settings-row-label">🎵 Pokaż Melody</div>
+                <div class="settings-row-sub">Melody dopinguje Cię podczas lekcji</div>
+              </div>
+              <div class="settings-toggle ${melodyOn?'tog--on':''}" id="tog-melody"
+                   onclick="SettingsScreen._toggle('melodyEnabled','tog-melody')"></div>
+            </div>
+          </div>
+
+          <!-- MIDI -->
+          <div class="settings-section">
+            <div class="settings-section-title">Połączenie z pianinem</div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <div class="settings-row-label">🎹 Urządzenie MIDI</div>
+                <div class="settings-row-sub" id="midi-device-name">Sprawdzam…</div>
+              </div>
+              <button class="lesson-btn" onclick="MIDIManager.init().then(()=>SettingsScreen._updateMidiStatus())">Połącz ponownie</button>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <div class="settings-row-label">🔧 Panel testowy MIDI</div>
+                <div class="settings-row-sub">Pokaż dziennik zdarzeń MIDI</div>
+              </div>
+              <div class="settings-toggle ${midiTest?'tog--on':''}" id="tog-midi"
+                   onclick="SettingsScreen._toggle('showMidiTest','tog-midi'); SettingsScreen._toggleMidiPanel()"></div>
+            </div>
+            <div class="midi-test-panel" id="midi-test-panel" style="${midiTest?'':'display:none'}">
+              Dziennik MIDI (ostatnie 10):
+              <div class="midi-test-log" id="midi-log-display">Czekam na sygnał…</div>
+            </div>
+          </div>
+
+          <!-- About -->
+          <div class="settings-section">
+            <div class="settings-section-title">O aplikacji</div>
+            <div class="settings-about">
+              <div class="settings-about-logo">🎼</div>
+              <div class="settings-about-name">Pianinkowa Marysi</div>
+              <div class="settings-about-ver">Wersja 1.0</div>
+              <div class="settings-about-tagline">Zrobione z ❤️ dla młodych muzyków</div>
+            </div>
+          </div>`;
+
+        _updateMidiStatus();
+        _startMidiLog();
+      }
+
+      // ── Volume ────────────────────────────────────────────────
+      SettingsScreen._setVol = function(val) {
+        const v = parseFloat(val);
+        AudioEngine.setVolume(v);
+        _saveSetting('masterVolume', v);
+      };
+
+      // ── Option buttons (grouped) ──────────────────────────────
+      SettingsScreen._setOpt = function(key, value, btn, groupClass) {
+        _saveSetting(key, value);
+        const group = btn.closest('.settings-opts');
+        if (group) group.querySelectorAll('.settings-opt').forEach(b => b.classList.toggle('opt--on', b === btn));
+      };
+
+      // ── Toggle ────────────────────────────────────────────────
+      SettingsScreen._toggle = function(key, togId) {
+        const s      = _getSettings();
+        const newVal = !(s[key] !== false); // default true except lightMode
+        _saveSetting(key, newVal);
+        const tog = document.getElementById(togId);
+        if (tog) tog.classList.toggle('tog--on', newVal);
+      };
+
+      // ── Theme toggle ──────────────────────────────────────────
+      SettingsScreen._toggleTheme = function() {
+        const s        = _getSettings();
+        const newLight = !s.lightMode;
+        _saveSetting('lightMode', newLight);
+        document.body.classList.toggle('theme--light', newLight);
+        const tog = document.getElementById('tog-light');
+        if (tog) tog.classList.toggle('tog--on', newLight);
+      };
+
+      // ── MIDI panel toggle ─────────────────────────────────────
+      SettingsScreen._toggleMidiPanel = function() {
+        const panel = document.getElementById('midi-test-panel');
+        if (panel) panel.style.display = panel.style.display === 'none' ? '' : 'none';
+      };
+
+      // ── MIDI status display ───────────────────────────────────
+      function _updateMidiStatus() {
+        const el = document.getElementById('midi-device-name');
+        if (!el) return;
+        const status = MIDIManager.getStatus();
+        const name   = MIDIManager.getDeviceName();
+        el.textContent = status === 'connected'
+          ? `✅ Połączono: ${name}`
+          : status === 'unsupported'
+            ? '⚠️ MIDI nie jest wspierane w tej przeglądarce'
+            : '❌ Pianino niepodłączone';
+      }
+      SettingsScreen._updateMidiStatus = _updateMidiStatus;
+
+      // ── Live MIDI log ─────────────────────────────────────────
+      let _midiLogLines = [];
+      function _startMidiLog() {
+        MIDIManager.onNoteOn(({ fullNote, velocity }) => {
+          const el = document.getElementById('midi-log-display');
+          if (!el) return;
+          _midiLogLines.unshift(`noteOn  ${fullNote}  vel:${velocity}`);
+          if (_midiLogLines.length > 10) _midiLogLines.pop();
+          el.textContent = _midiLogLines.join('\n');
+        });
+      }
+
+      // ── Apply saved settings on startup ──────────────────────
+      function applyOnLoad() {
+        try {
+          const active = UserManager.getCurrentUser();
+          if (!active) return;
+          const key  = `littlemaestro_${active.profile.name.toLowerCase().replace(/\s+/g,'_')}`;
+          const data = JSON.parse(localStorage.getItem(key) || '{}');
+          const s    = data.settings || {};
+          if (s.masterVolume !== undefined) AudioEngine.setVolume(s.masterVolume);
+          if (s.lightMode)   document.body.classList.add('theme--light');
+          if (s.melodyEnabled === false) {
+            document.querySelectorAll('.melody-figure, .melody-nav-companion').forEach(el => el.style.display = 'none');
+          }
+        } catch(e) {}
+      }
+
+      return { render, applyOnLoad };
+    })();
+
+
+    /* ────────────────────────────────────────────────────────────
+       FREE PLAY SCREEN — Enhanced with timer, note trail, Melody
+       ──────────────────────────────────────────────────────────── */
+    /* ════════════════════════════════════════════════════════════
+       RECITAL MANAGER
+       Lets the student pick ANY song (even locked) as a recital
+       piece, practice it with per-note scoring, and track a
+       score history. Parent can change the recital song at any time.
+       ════════════════════════════════════════════════════════════ */
+    const RecitalManager = (() => {
+      const STORAGE_KEY_SUFFIX = '_recital';
+      let _recitalSongId = null;
+      let _scoreHistory  = [];
+      let _activeSession = null; // { hits, misses, timing[], noteIndex }
+      let _sessionActive = false; // flag used by long-lived MIDI handler
+
+      // ── Persistence helpers ───────────────────────────────────
+      function _key() {
+        try {
+          const u = UserManager.getCurrentUser();
+          return u ? `littlemaestro_${u.profile.name.toLowerCase().replace(/\s+/g,'_')}${STORAGE_KEY_SUFFIX}` : null;
+        } catch(e) { return null; }
+      }
+      function _load() {
+        try {
+          const k = _key(); if (!k) return;
+          const d = JSON.parse(localStorage.getItem(k) || '{}');
+          _recitalSongId = d.songId || null;
+          _scoreHistory  = d.scores || [];
+        } catch(e) {}
+      }
+      function _save() {
+        try {
+          const k = _key(); if (!k) return;
+          localStorage.setItem(k, JSON.stringify({ songId: _recitalSongId, scores: _scoreHistory }));
+        } catch(e) {}
+      }
+
+      // ── Main render ───────────────────────────────────────────
+      function render() {
+        _load();
+        const container = document.getElementById('recital-content');
+        if (!container) return;
+
+        const song = _recitalSongId && typeof SONGS !== 'undefined'
+          ? SONGS.find(s => s.id === _recitalSongId) : null;
+
+        container.innerHTML = `
+          <div class="recital-header">
+            <div class="recital-header-icon">🎤</div>
+            <div class="recital-header-text">
+              <h2>Tryb recitalu</h2>
+              <p>Wybierz dowolną piosenkę — nawet zablokowaną — żeby przygotować się do recitalu.</p>
+            </div>
+          </div>
+
+          ${song ? `
+          <div class="recital-song-card">
+            <div class="recital-song-icon">🎵</div>
+            <div class="recital-song-info">
+              <div class="recital-song-title">${song.title}</div>
+              <div class="recital-song-meta">${song.composer || 'Tradycyjna'} · Trudność ${song.difficulty}/10 · Świat ${song.world || '?'}</div>
+            </div>
+            <button class="recital-change-btn" onclick="RecitalManager.showPicker()">Zmień piosenkę</button>
+          </div>
+
+          <button class="recital-practice-btn" onclick="RecitalManager.startSession()">
+            🎤 Zacznij ćwiczenie
+          </button>
+          ` : `
+          <div class="recital-song-card" style="justify-content:center;border-color:rgba(255,165,0,0.2);">
+            <div style="text-align:center;width:100%">
+              <div style="font-size:32px;margin-bottom:8px;">🎵</div>
+              <div class="recital-song-title" style="font-size:15px;">Nie wybrano jeszcze piosenki</div>
+              <div class="recital-song-meta" style="margin-top:6px;">Kliknij poniżej żeby wybrać</div>
+            </div>
+          </div>
+
+          <button class="recital-practice-btn" onclick="RecitalManager.showPicker()" style="background:linear-gradient(135deg,#d97706,#b45309);">
+            🎵 Wybierz piosenkę
+          </button>
+          `}
+
+          ${_scoreHistory.length > 0 ? `
+          <div class="recital-scores-title">Ostatnie próby</div>
+          ${_scoreHistory.slice(-8).reverse().map((s, i) => {
+            const acc = Math.round(s.accuracy * 100);
+            const stars = acc >= 90 ? '⭐⭐⭐' : acc >= 70 ? '⭐⭐' : '⭐';
+            const color = acc >= 90 ? '#10B981' : acc >= 70 ? '#F59E0B' : '#EF4444';
+            return `
+            <div class="recital-score-row">
+              <div class="recital-score-num">#${_scoreHistory.length - i}</div>
+              <div class="recital-score-stars">${stars}</div>
+              <div class="recital-score-bar-wrap">
+                <div class="recital-score-pct" style="color:${color};">${acc}%</div>
+                <div class="recital-score-detail">${s.hits} traf. · ${s.misses} pud. · seria ${s.bestStreak}</div>
+              </div>
+              <div class="recital-score-date">${new Date(s.date).toLocaleDateString('pl-PL',{month:'short',day:'numeric'})}</div>
+            </div>`;
+          }).join('')}
+          ` : (song ? `<div style="text-align:center;font-family:var(--font-heading);font-size:12px;color:var(--color-text-muted);padding:20px 0;">Brak prób — zacznij ćwiczyć!</div>` : '')}
+        `;
+      }
+
+      // ── Song picker bottom sheet ───────────────────────────────
+      function showPicker() {
+        document.getElementById('recital-picker-overlay')?.remove();
+        if (typeof SONGS === 'undefined') return;
+
+        // Group songs by world
+        const worldGroups = {};
+        SONGS.forEach(s => {
+          const w = s.isBonus ? 'Bonus' : `Świat ${s.world}`;
+          if (!worldGroups[w]) worldGroups[w] = [];
+          worldGroups[w].push(s);
+        });
+
+        let songsHtml = '';
+        Object.entries(worldGroups).forEach(([worldLabel, songs]) => {
+          songsHtml += `<div class="recital-picker-world">${worldLabel}</div>`;
+          songs.forEach(s => {
+            const isSelected = s.id === _recitalSongId;
+            const diff = '●'.repeat(Math.min(s.difficulty, 10));
+            songsHtml += `
+              <div class="recital-picker-song ${isSelected ? 'picker-selected' : ''}" onclick="RecitalManager.selectSong(${s.id})">
+                <div class="recital-picker-song-icon">${s.isBonus ? '⭐' : '🎵'}</div>
+                <div class="recital-picker-song-info">
+                  <div class="recital-picker-song-title">${s.title}</div>
+                  <div class="recital-picker-song-meta">${s.composer || 'Tradycyjna'}</div>
+                </div>
+                <div class="recital-picker-song-difficulty" style="font-size:8px;letter-spacing:-1px;">${diff}</div>
+              </div>`;
+          });
+        });
+
+        const overlay = document.createElement('div');
+        overlay.id = 'recital-picker-overlay';
+        overlay.className = 'recital-picker-overlay';
+        overlay.innerHTML = `
+          <div class="recital-picker-sheet">
+            <div class="recital-picker-header">
+              <div class="recital-picker-title">🎤 Wybierz piosenkę</div>
+              <button class="recital-picker-close" onclick="document.getElementById('recital-picker-overlay')?.remove()">✕ Zamknij</button>
+            </div>
+            <div class="recital-picker-list">${songsHtml}</div>
+          </div>`;
+        document.body.appendChild(overlay);
+      }
+
+      function selectSong(songId) {
+        _recitalSongId = songId;
+        _scoreHistory = []; // reset history when song changes
+        _save();
+        document.getElementById('recital-picker-overlay')?.remove();
+        render();
+      }
+
+      // ── Recital practice session ───────────────────────────────
+      function startSession() {
+        const song = _recitalSongId && typeof SONGS !== 'undefined'
+          ? SONGS.find(s => s.id === _recitalSongId) : null;
+        if (!song) { showPicker(); return; }
+
+        // Get right-hand notes
+        const notes = song.notes.filter(n => !n.hand || n.hand === 'right');
+        if (!notes.length) return;
+
+        _activeSession = {
+          notes,
+          noteIndex: 0,
+          hits: 0,
+          misses: 0,
+          bestStreak: 0,
+          currentStreak: 0,
+          timing: [],
+          startTime: Date.now(),
+          midiHandler: null,
+        };
+
+        // Render session UI
+        const overlay = document.createElement('div');
+        overlay.id = 'recital-session-overlay';
+        overlay.className = 'recital-session-overlay';
+        overlay.innerHTML = `
+          <div class="recital-session-header">
+            <div class="recital-session-title">🎤 ${song.title} — Recital</div>
+            <div class="recital-session-stats">
+              <span class="recital-stat-hit" id="rs-hits">✓ 0</span>
+              <span class="recital-stat-miss" id="rs-miss">✗ 0</span>
+              <span class="recital-stat-acc" id="rs-acc">—%</span>
+            </div>
+          </div>
+          <div class="recital-session-body">
+            <div class="recital-notes-grid" id="rs-notes-grid"></div>
+          </div>
+          <div style="padding:12px 16px;display:flex;gap:10px;flex-shrink:0;border-top:1px solid rgba(255,165,0,0.15);">
+            <button class="lesson-btn" onclick="RecitalManager.endSession(true)">⏹ Stop</button>
+            <div style="flex:1;font-family:var(--font-heading);font-size:11px;color:var(--color-text-muted);display:flex;align-items:center;">
+              Zagraj każdą podświetloną nutę na pianinie
+            </div>
+          </div>`;
+        document.body.appendChild(overlay);
+
+        // Build note chips
+        const grid = document.getElementById('rs-notes-grid');
+        if (grid) {
+          notes.forEach((n, i) => {
+            const chip = document.createElement('div');
+            chip.className = 'recital-note-chip chip-pending';
+            chip.id = `rs-chip-${i}`;
+            chip.textContent = n.note;
+            grid.appendChild(chip);
+          });
+        }
+
+        _activateChip(0);
+        _sessionActive = true;
+
+        // Play demo audio for first note
+        _playCurrentNote();
+
+        // Wire MIDI — push-only pattern; use _sessionActive flag to gate
+        if (typeof MIDIManager !== 'undefined') {
+          MIDIManager.onNoteOn(({ fullNote }) => {
+            if (_sessionActive) _handleNoteInput(fullNote);
+          });
+        }
+        // Wire on-screen keyboard
+        if (typeof PianoKeyboard !== 'undefined') {
+          PianoKeyboard.setClickCallback((note) => {
+            if (_sessionActive) _handleNoteInput(note);
+          });
+          PianoKeyboard.setClickEnabled(true);
+        }
+      }
+
+      function _normalize(note) {
+        const MAP = {'Db':'C#','Eb':'D#','Fb':'E','Gb':'F#','Ab':'G#','Bb':'A#','Cb':'B'};
+        const m = note.match(/^([A-G][b#]?)(\d)$/);
+        if (!m) return note;
+        return (MAP[m[1]] || m[1]) + m[2];
+      }
+
+      function _activateChip(idx) {
+        // Deactivate previous
+        const prev = document.getElementById(`rs-chip-${idx - 1}`);
+        if (prev && !prev.classList.contains('chip-hit') && !prev.classList.contains('chip-miss')) {
+          prev.classList.remove('chip-active');
+        }
+        const chip = document.getElementById(`rs-chip-${idx}`);
+        if (chip) {
+          chip.classList.remove('chip-pending');
+          chip.classList.add('chip-active');
+          chip.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+      }
+
+      function _playCurrentNote() {
+        if (!_activeSession) return;
+        const n = _activeSession.notes[_activeSession.noteIndex];
+        if (!n) return;
+        try { AudioEngine.playNoteInstant(_normalize(n.note), 60); } catch(e) {}
+      }
+
+      function _handleNoteInput(played) {
+        if (!_activeSession) return;
+        const { notes, noteIndex } = _activeSession;
+        if (noteIndex >= notes.length) return;
+
+        const expected = _normalize(notes[noteIndex].note);
+        const playedN  = _normalize(played);
+        const isHit    = expected === playedN;
+
+        // Update chip
+        const chip = document.getElementById(`rs-chip-${noteIndex}`);
+        if (chip) {
+          chip.classList.remove('chip-active', 'chip-pending');
+          chip.classList.add(isHit ? 'chip-hit' : 'chip-miss');
+        }
+
+        if (isHit) {
+          _activeSession.hits++;
+          _activeSession.currentStreak++;
+          _activeSession.bestStreak = Math.max(_activeSession.bestStreak, _activeSession.currentStreak);
+          try { AudioEngine.playNoteInstant(_normalize(notes[noteIndex].note), 90); } catch(e) {}
+        } else {
+          _activeSession.misses++;
+          _activeSession.currentStreak = 0;
+        }
+
+        _activeSession.timing.push({ note: notes[noteIndex].note, hit: isHit, time: Date.now() - _activeSession.startTime });
+        _activeSession.noteIndex++;
+
+        // Update HUD
+        const total = _activeSession.hits + _activeSession.misses;
+        const acc   = total > 0 ? _activeSession.hits / total : 0;
+        const hEl   = document.getElementById('rs-hits');
+        const mEl   = document.getElementById('rs-miss');
+        const aEl   = document.getElementById('rs-acc');
+        if (hEl) hEl.textContent = `✓ ${_activeSession.hits}`;
+        if (mEl) mEl.textContent = `✗ ${_activeSession.misses}`;
+        if (aEl) aEl.textContent = `${Math.round(acc * 100)}%`;
+
+        if (_activeSession.noteIndex >= notes.length) {
+          setTimeout(() => endSession(false), 400);
+        } else {
+          _activateChip(_activeSession.noteIndex);
+          // Play next note hint with slight delay
+          setTimeout(_playCurrentNote, 150);
+        }
+      }
+
+      function endSession(aborted) {
+        if (!_activeSession) return;
+
+        // Deactivate MIDI / screen input via flag
+        _sessionActive = false;
+        if (typeof PianoKeyboard !== 'undefined') {
+          PianoKeyboard.setClickEnabled(false);
+        }
+
+        const { hits, misses, bestStreak, noteIndex, notes } = _activeSession;
+        const total = hits + misses;
+        const acc   = total > 0 ? hits / total : 0;
+        const pct   = Math.round(acc * 100);
+        const stars = pct >= 90 ? '⭐⭐⭐' : pct >= 70 ? '⭐⭐' : '⭐';
+        const color = pct >= 90 ? '#10B981' : pct >= 70 ? '#F59E0B' : '#EF4444';
+        const grade = pct >= 90 ? 'Gotowa na recital! 🏆' : pct >= 70 ? 'Prawie! 💪' : 'Ćwicz dalej! 🎯';
+
+        if (!aborted && total > 0) {
+          _scoreHistory.push({ date: new Date().toISOString(), accuracy: acc, hits, misses, bestStreak });
+          if (_scoreHistory.length > 20) _scoreHistory = _scoreHistory.slice(-20);
+          _save();
+        }
+
+        _activeSession = null;
+
+        // Show result overlay inside session
+        const sessionEl = document.getElementById('recital-session-overlay');
+        if (!sessionEl) return;
+
+        const result = document.createElement('div');
+        result.className = 'recital-session-result';
+        result.innerHTML = `
+          <div class="recital-result-score" style="color:${color};">${pct}%</div>
+          <div style="font-family:var(--font-heading);font-size:22px;font-weight:900;color:var(--color-text);">${grade}</div>
+          <div style="font-size:28px;">${stars}</div>
+          <div class="recital-result-breakdown">
+            <div class="recital-result-stat">
+              <div class="recital-result-stat-val" style="color:#10B981;">${hits}</div>
+              <div class="recital-result-stat-lbl">Trafione</div>
+            </div>
+            <div class="recital-result-stat">
+              <div class="recital-result-stat-val" style="color:#EF4444;">${misses}</div>
+              <div class="recital-result-stat-lbl">Pudło</div>
+            </div>
+            <div class="recital-result-stat">
+              <div class="recital-result-stat-val" style="color:#F59E0B;">${bestStreak}</div>
+              <div class="recital-result-stat-lbl">Najl. seria</div>
+            </div>
+          </div>
+          <div class="recital-result-btns">
+            <button class="lesson-btn lesson-btn--primary" onclick="document.getElementById('recital-session-overlay')?.remove(); RecitalManager.startSession();">↺ Ćwicz ponownie</button>
+            <button class="lesson-btn" onclick="document.getElementById('recital-session-overlay')?.remove(); RecitalManager.render();">Gotowe</button>
+          </div>`;
+        sessionEl.style.position = 'relative';
+        sessionEl.appendChild(result);
+      }
+
+      return { render, showPicker, selectSong, startSession, endSession };
+    })();
+    window.RecitalManager = RecitalManager;
+
+
+    const FreePlayManager = (() => {
+
+      const SESSION_DURATION = 120; // 2 minutes in seconds
+      let _secondsLeft = SESSION_DURATION;
+      let _timerInterval = null;
+      let _trailNotes    = [];
+
+      function start() {
+        _secondsLeft = SESSION_DURATION;
+        _trailNotes  = [];
+        _buildUI();
+        _startTimer();
+
+        // Melody dances in corner
+        Melody.setState('excited');
+        Melody.speak('Graj co chcesz! 🎵', 3000);
+        setTimeout(() => Melody.setState('idle'), 3500);
+
+        // Wire MIDI for note names + trail
+        const handlerId = Date.now();
+        FreePlayManager._handlerId = handlerId;
+
+        MIDIManager.onNoteOn(({ fullNote }) => {
+          if (FreePlayManager._handlerId !== handlerId) return;
+          _showFloatingNote(fullNote);
+          _addTrailNote(fullNote);
+          AudioEngine.playNoteInstant(fullNote, 85);
+          if (typeof PianoKeyboard !== 'undefined') {
+            PianoKeyboard.highlightPlaying(fullNote);
+          }
+        });
+      }
+
+      function _buildUI() {
+        const layout = document.querySelector('.freeplay-layout');
+        if (!layout) return;
+        layout.innerHTML = `
+          <div class="freeplay-top-bar">
+            <h2 class="freeplay-title">Wolna gra 🎹</h2>
+            <div>
+              <span class="freeplay-timer" id="fp-timer">⏱ 2:00</span>
+              &nbsp;
+              <button class="freeplay-extend-btn" onclick="FreePlayManager.extend()">+1 min</button>
+            </div>
+          </div>
+          <div class="freeplay-keyboard-wrap">
+            <div class="keyboard-container" id="freeplay-keyboard"></div>
+          </div>
+          <div class="freeplay-trail-wrap" id="fp-trail">
+            <span style="font-family:var(--font-heading);font-size:11px;font-weight:700;color:var(--color-text-dim);">Zagrane nuty:</span>
+          </div>
+          <div class="freeplay-melody-corner" id="fp-melody-corner"></div>`;
+
+        // Re-mount keyboard
+        if (typeof PianoKeyboard !== 'undefined') {
+          PianoKeyboard.mount('freeplay-keyboard');
+        }
+
+        // Mount Melody in corner
+        Melody.mount('fp-melody-corner', { small: true });
+      }
+
+      function _startTimer() {
+        clearInterval(_timerInterval);
+        _timerInterval = setInterval(() => {
+          _secondsLeft--;
+          _updateTimerDisplay();
+          if (_secondsLeft <= 0) _end();
+          else if (_secondsLeft <= 20) {
+            const el = document.getElementById('fp-timer');
+            if (el) el.classList.add('timer--ending');
+          }
+        }, 1000);
+      }
+
+      function _updateTimerDisplay() {
+        const el  = document.getElementById('fp-timer');
+        if (!el) return;
+        const m   = Math.floor(_secondsLeft / 60);
+        const s   = String(_secondsLeft % 60).padStart(2, '0');
+        el.textContent = `⏱ ${m}:${s}`;
+      }
+
+      function extend() {
+        _secondsLeft += 60;
+        const el = document.getElementById('fp-timer');
+        if (el) el.classList.remove('timer--ending');
+        Melody.speak('Jeszcze minuta! 🎵', 1500);
+      }
+      FreePlayManager.extend = extend;
+
+      function _end() {
+        clearInterval(_timerInterval);
+        FreePlayManager._handlerId = null;
+        GamificationManager.awardNotes(5, 'free play session');
+        Melody.speak('Świetnie grasz! 🌟', 3000);
+        setTimeout(() => {
+          if (typeof showScreen === 'function') showScreen('home');
+        }, 3200);
+      }
+
+      function stop() {
+        clearInterval(_timerInterval);
+        FreePlayManager._handlerId = null;
+      }
+
+      // ── Floating note label ────────────────────────────────────
+      function _showFloatingNote(note) {
+        const kbd  = document.getElementById('freeplay-keyboard');
+        if (!kbd) return;
+        const keys = kbd.querySelectorAll(`[data-note="${note}"]`);
+        const rect = keys[0] ? keys[0].getBoundingClientRect() : kbd.getBoundingClientRect();
+        const el   = document.createElement('div');
+        el.className   = 'fp-float-note';
+        el.textContent = note.replace(/\d/,'');
+        el.style.left  = `${rect.left + rect.width/2}px`;
+        el.style.top   = `${rect.top - 8}px`;
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }
+
+      // ── Trail note pill ────────────────────────────────────────
+      function _addTrailNote(note) {
+        _trailNotes.push(note);
+        if (_trailNotes.length > 24) _trailNotes.shift();
+        const trail = document.getElementById('fp-trail');
+        if (!trail) return;
+        const existing = trail.querySelectorAll('.fp-trail-note');
+        if (existing.length >= 24) existing[0].remove();
+        const pill = document.createElement('div');
+        pill.className   = 'fp-trail-note';
+        pill.textContent = note.replace(/\d/,'');
+        trail.appendChild(pill);
+      }
+
+      return { start, stop, extend };
+    })();
+
+
+    /* ────────────────────────────────────────────────────────────
+       FINAL WIRING — Complete journey + screen hooks
+       ──────────────────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // ── 1. Apply saved settings on every launch ───────────────
+      // Deferred until user is active
+      const _applySettingsWhenReady = () => {
+        try {
+          if (typeof UserManager !== 'undefined' && UserManager.getCurrentUser()) {
+            SettingsScreen.applyOnLoad();
+          }
+        } catch(e) {}
+      };
+
+      // ── 2. Hook showScreen for settings + freeplay ────────────
+      const _origShow11 = window.showScreen;
+      if (_origShow11) {
+        window.showScreen = function(screenId) {
+          _origShow11(screenId);
+
+          // Settings
+          if (screenId === 'settings') {
+            setTimeout(SettingsScreen.render, 220);
+          }
+
+          // Free play — start timer and enhanced UI
+          if (screenId === 'freeplay') {
+            setTimeout(() => FreePlayManager.start(), 220);
+          } else {
+            // Leaving freeplay — stop timer
+            FreePlayManager.stop();
+          }
+
+          // Recital — render the screen
+          if (screenId === 'recital') {
+            setTimeout(() => { if (typeof RecitalManager !== 'undefined') RecitalManager.render(); }, 220);
+          }
+
+          // Apply settings when switching away from login
+          if (screenId !== 'login') _applySettingsWhenReady();
+        };
+      }
+
+      // ── 3. Wire Import drag-drop on login screen ──────────────
+      ExportManager.wireLoginImport();
+
+      // ── 4. Wire nav items with correct screen IDs ─────────────
+      // Ensure all nav buttons point to their screen correctly
+      // (Phase 2 wired these, but free play needs to trigger manager)
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        const target = btn.dataset.target;
+        if (target === 'screen-freeplay') {
+          btn.addEventListener('click', () => {
+            if (typeof showScreen === 'function') showScreen('freeplay');
+          });
+        }
+        if (target === 'screen-recital') {
+          btn.addEventListener('click', () => {
+            if (typeof showScreen === 'function') showScreen('recital');
+          });
+        }
+      });
+
+      // ── 5. Wire export buttons in Parent Dashboard data tab ───
+      // ParentDashboard already wires _exportData; add keepsake option
+      window.exportKeepsake = function() {
+        const active = typeof UserManager !== 'undefined' ? UserManager.getCurrentUser() : null;
+        if (active) ExportManager.exportKeepsake(active.profile.name);
+      };
+
+      // ── 6. Settings screen render ─────────────────────────────
+      SettingsScreen.render();
+
+      // ── 7. Initial free play UI build ─────────────────────────
+      // (Just build the basic layout; timer starts on screen enter)
+      const fpLayout = document.querySelector('.freeplay-layout');
+      if (fpLayout && !document.getElementById('fp-timer')) {
+        // Ensure keyboard is mounted (Phase 6 mounts it; this is fallback)
+        const fpKbd = document.getElementById('freeplay-keyboard');
+        if (fpKbd && typeof PianoKeyboard !== 'undefined') {
+          PianoKeyboard.mount('freeplay-keyboard');
+        }
+      }
+
+      // ── 8. Persist last screen across page closes ─────────────
+      // Already handled in Phase 2 UserManager DOMContentLoaded hook.
+      // Add: save screen on nav clicks for cross-session persistence.
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          try {
+            const active = UserManager.getCurrentUser();
+            if (active) sessionStorage.setItem('lm_last_screen', btn.dataset.target);
+          } catch(e) {}
+        });
+      });
+
+      // ── 9. Pre-curriculum → Quest Map unlock check ─────────────
+      // When all 5 mini-lessons done, unlock quest map nav
+      function _checkPrecurrDone() {
+        try {
+          const active = UserManager.getCurrentUser();
+          if (!active) return false;
+          const key    = `littlemaestro_${active.profile.name.toLowerCase().replace(/\s+/g,'_')}`;
+          const data   = JSON.parse(localStorage.getItem(key) || '{}');
+          return (data.precurriculum || []).every(Boolean);
+        } catch(e) { return false; }
+      }
+      window._isPrecurrDone = _checkPrecurrDone;
+
+      // ── 10. Wire parent mode button on login screen ───────────
+      const parentBtn = document.querySelector('.login-parent-btn');
+      if (parentBtn) {
+        parentBtn.addEventListener('click', () => {
+          if (typeof showScreen === 'function') showScreen('parentmode');
+        });
+      }
+
+      // ── 11. Export keepsake from parent data tab ──────────────
+      // Patch ParentDashboard data tab to include keepsake export
+      const _origBuildData = typeof ParentDashboard !== 'undefined' && ParentDashboard._buildData;
+
+      // ── 12. MIDI: connect on load ─────────────────────────────
+      if (typeof MIDIManager !== 'undefined') {
+        MIDIManager.init().then(() => {
+          if (typeof SettingsScreen !== 'undefined') SettingsScreen._updateMidiStatus && SettingsScreen._updateMidiStatus();
+        }).catch(() => {});
+      }
+
+    }); // end DOMContentLoaded

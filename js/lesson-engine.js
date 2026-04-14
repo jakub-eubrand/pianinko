@@ -1349,8 +1349,19 @@
         _s.startTime = Date.now();
 
         // Phase 1: Flashcard warmup (skip for Sanah/film worlds — Suzuki method)
-        const currentSong = typeof LessonEngine !== 'undefined' && LessonEngine._currentSong
-          ? LessonEngine._currentSong() : null;
+        // Check both LessonEngine state and UserManager's current song progress
+        let currentSong = null;
+        try {
+          if (typeof LessonEngine !== 'undefined' && LessonEngine._state) {
+            currentSong = LessonEngine._state().song;
+          }
+          // Fallback: look up song by user's currentSong id
+          if (!currentSong && typeof UserManager !== 'undefined' && typeof SONGS !== 'undefined') {
+            const u = UserManager.getCurrentUser();
+            const sid = u && u.progress && u.progress.currentSong;
+            if (sid) currentSong = SONGS.find(s => s.id === sid);
+          }
+        } catch(e) {}
         const skipWarmup = currentSong && currentSong.world >= 14;
         const afterWarmup = () => {
           // Phase 2: Review last passed song (abbreviated)

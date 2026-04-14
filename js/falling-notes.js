@@ -383,10 +383,17 @@
 
       const total  = _hits + _misses;
       const acc    = total > 0 ? _hits / total : 0;
-      const stars  = acc >= 0.90 ? 3 : acc >= 0.70 ? 2 : 1;
+      // Beginner-friendly thresholds for Sanah/film worlds (14+): 80/55/any
+      // Standard thresholds for primer/classical: 90/70/any
+      const song   = (typeof LessonEngine !== 'undefined' && LessonEngine._state)
+        ? LessonEngine._state().song : null;
+      const beginnerFriendly = song && song.world >= 14;
+      const stars  = beginnerFriendly
+        ? (acc >= 0.80 ? 3 : acc >= 0.55 ? 2 : 1)
+        : (acc >= 0.90 ? 3 : acc >= 0.70 ? 2 : 1);
       const pct    = Math.round(acc * 100);
 
-      const titles = ['Ćwicz dalej! 💪', 'Nieźle! 👍', 'ŚWIETNIE! 🌟'];
+      const titles = ['Dobry początek! 🌱', 'Nieźle! 👍', 'ŚWIETNIE! 🌟'];
       const title  = titles[stars - 1];
 
       const starHtml = [1,2,3].map(i =>
