@@ -119,7 +119,7 @@
 <body>
   <div class="card">
     <h1>${profile.avatar || '🎵'} Muzyczna Podróż — ${name}</h1>
-    <div class="subtitle">Pianinkowa Marysi v${APP_VERSION} &nbsp;·&nbsp; Od ${joined}</div>
+    <div class="subtitle">Pianinkowy Świat Marysi v${APP_VERSION} &nbsp;·&nbsp; Od ${joined}</div>
 
     <div class="stats-grid">
       <div class="stat"><div class="stat-val">${Object.keys(prog).filter(id => prog[id].stars > 0).length}</div><div class="stat-lbl">Piosenek</div></div>
@@ -813,7 +813,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="settings-section-title">O aplikacji</div>
             <div class="settings-about">
               <div class="settings-about-logo">🎼</div>
-              <div class="settings-about-name">Pianinkowa Marysi</div>
+              <div class="settings-about-name">Pianinkowy Świat Marysi</div>
               <div class="settings-about-ver">Wersja 1.0</div>
               <div class="settings-about-tagline">Zrobione z ❤️ dla młodych muzyków</div>
             </div>

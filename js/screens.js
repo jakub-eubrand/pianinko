@@ -554,9 +554,9 @@
         <div class="home-songs-list">
           ${mainSongs.map((song, idx) => {
             const stars = songProgress[song.id] || 0;
-            // Song is unlocked if first song, OR previous song was completed
+            // Song is unlocked if: alwaysUnlocked flag, first song, OR previous song was completed
             const prevStars = idx > 0 ? (songProgress[songs[idx-1]?.id] || 0) : 1;
-            const isLocked = idx > 0 && prevStars === 0;
+            const isLocked = !song.alwaysUnlocked && idx > 0 && prevStars === 0;
             return `
             <div class="home-song-row">
               <span class="home-song-emoji">${song.emoji || (idx===0?'🎵':idx===1?'🐑':idx===2?'⭐':'🎶')}</span>
