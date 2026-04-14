@@ -1,0 +1,9 @@
+# PDF z nutami (copyright © Strefa Muzyka, ZAiKS) — do lokalnego referencji
+*.pdf
+pdf_pages/
+sanah_piano_*.pdf
+
+# Temp/build
+*.log
+.DS_Store
+Thumbs.db
