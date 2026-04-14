@@ -27,6 +27,11 @@ import sys
 import tempfile
 from pathlib import Path
 
+# Wymuszenie UTF-8 dla stdout na Windows
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+
 import mido
 from basic_pitch.inference import predict
 from basic_pitch import ICASSP_2022_MODEL_PATH
@@ -90,8 +95,13 @@ def finger_for_note(note_name: str, hand: str = 'right') -> int:
 def download_yt_audio(url: str, output_dir: Path) -> Path:
     """Pobiera audio z YouTube jako MP3."""
     out = output_dir / 'audio.mp3'
+    # Find yt-dlp: prefer same venv as current Python
+    python_dir = Path(sys.executable).parent
+    yt_dlp_exe = python_dir / 'yt-dlp.exe'
+    if not yt_dlp_exe.exists():
+        yt_dlp_exe = 'yt-dlp'  # fallback to PATH
     cmd = [
-        'yt-dlp', '-x', '--audio-format', 'mp3',
+        str(yt_dlp_exe), '-x', '--audio-format', 'mp3',
         '-o', str(out.with_suffix('.%(ext)s')),
         url
     ]
@@ -121,12 +131,18 @@ def audio_to_midi(mp3_path: Path, output_dir: Path) -> Path:
     return midi_out
 
 
-def extract_melody_from_midi(midi_path: Path, debug_out: Path = None):
+def extract_melody_from_midi(midi_path: Path, debug_out: Path = None,
+                              min_pitch: int = 60, max_pitch: int = 84):
     """
-    Z polifonicznego MIDI wyciąga "melodię" = ścieżka najwyższych nut w każdym momencie.
-    Heurystyka: bierzemy TOP NOTE w każdym przedziale czasowym (to zwykle linia wokalna/melodia).
+    Z polifonicznego MIDI wyciąga melodię wokalną.
+    Heurystyka:
+    1. Filtruj nuty w typowym zakresie wokalnym (C4-C6, MIDI 60-84)
+       — to odrzuca bas, akordy akompaniamentu
+    2. Top-note w każdym momencie czasu = melodia
+
+    min_pitch=60 (C4), max_pitch=84 (C6) = zakres wokalu popowego
     """
-    print(f'[3/4] Wyciąganie melodii (top-note strategy)...')
+    print(f'[3/4] Wyciąganie melodii (top-note strategy, pitch {min_pitch}-{max_pitch})...')
     mid = mido.MidiFile(str(midi_path))
     tempo = 500000  # default 120 BPM (microseconds per beat)
     all_notes = []  # (start_tick, end_tick, pitch, velocity)
@@ -144,7 +160,9 @@ def extract_melody_from_midi(midi_path: Path, debug_out: Path = None):
             elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
                 if msg.note in active:
                     start = active.pop(msg.note)
-                    all_notes.append((start, abs_tick, msg.note, msg.velocity))
+                    # FILTR: tylko nuty w zakresie wokalnym
+                    if min_pitch <= msg.note <= max_pitch:
+                        all_notes.append((start, abs_tick, msg.note, msg.velocity))
 
     if not all_notes:
         return [], 120.0
