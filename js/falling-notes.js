@@ -443,7 +443,12 @@
     }
     function hide() {
       const hw = document.getElementById('falling-notes-highway');
-      if (hw) hw.classList.add('fn-highway--hidden');
+      if (hw) {
+        hw.classList.add('fn-highway--hidden');
+        // Reset inline styles set by show() to avoid residual visible layout
+        hw.style.height = '0';
+        hw.style.top    = '';
+      }
       stop();
     }
 

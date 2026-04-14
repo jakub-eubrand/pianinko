@@ -1018,7 +1018,7 @@
         document.getElementById('input-mode-overlay')?.remove();
         document.getElementById('lesson-mode-select-overlay')?.remove();
         document.querySelectorAll('.celebration-overlay,.confetti-wrap,.fn-star-screen,.parent-review-overlay').forEach(el => el.remove());
-        if (typeof FallingNotes !== 'undefined') FallingNotes.stop();
+        if (typeof FallingNotes !== 'undefined') FallingNotes.hide();
         if (typeof showScreen === 'function') showScreen('home');
       }
 
