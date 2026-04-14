@@ -7,3 +7,10 @@ sanah_piano_*.pdf
 *.log
 .DS_Store
 Thumbs.db
+
+# Admin midi_tools: venv, downloaded audio, raw MIDI
+midi_tools/.venv/
+midi_tools/song_output/
+midi_tools/__pycache__/
+*.mid
+*.mp3
