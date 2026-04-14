@@ -322,9 +322,11 @@
           const side = nodeCount % 2 === 0 ? 'left' : 'right';
           nodeCount++;
 
-          let stateClass = 'qm-node--locked';
-          if (isCompleted) stateClass = 'qm-node--completed';
-          else if (isCurrent) stateClass = 'qm-node--current';
+          // State precedence: completed > current > locked > available
+          let stateClass = 'qm-node--available';
+          if (isCompleted)      stateClass = 'qm-node--completed';
+          else if (isCurrent)   stateClass = 'qm-node--current';
+          else if (isLocked)    stateClass = 'qm-node--locked';
 
           // Star display
           let stars = '☆☆☆';
@@ -342,7 +344,7 @@
             }
           } catch(e) {}
 
-          const nodeIcon = isCompleted ? '✓' : isCurrent ? song.emoji || '🎵' : '🔒';
+          const nodeIcon = isCompleted ? '✓' : isLocked ? '🔒' : (song.emoji || '🎵');
 
           html += `
             <div class="questmap-connector ${isCompleted ? 'questmap-connector--active' : ''}"></div>
