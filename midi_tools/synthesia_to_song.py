@@ -375,18 +375,18 @@ def duration_to_name(sec):
     return 'whole'
 
 
-def events_to_song(events, title, composer, bpm_estimate=100, rh_only=False, transpose=True):
+def events_to_song(events, title, composer, bpm_estimate=100, rh_only=False, transpose=True, max_notes=40):
     print(f'[5/5] Konwersja do formatu apki...')
 
     # Filter to RH only if requested
     if rh_only:
         events = [e for e in events if e[3] == 'right']
 
-    # Limit length (max 40 notes)
-    if len(events) > 40:
+    # Limit length
+    if max_notes > 0 and len(events) > max_notes:
         # Keep evenly distributed
-        step = len(events) / 40
-        events = [events[int(i * step)] for i in range(40)]
+        step = len(events) / max_notes
+        events = [events[int(i * step)] for i in range(max_notes)]
 
     # Transpose to C4-A5 if out of range
     if transpose and events:
@@ -467,6 +467,7 @@ def main():
     ap.add_argument('--debug', action='store_true', help='Zapisz klatki z adnotacjami')
     ap.add_argument('--section', default=None, help='Fragment video, np. "20-60"')
     ap.add_argument('--bpm', type=int, default=100)
+    ap.add_argument('--max-notes', type=int, default=40, help='Max notes to keep (0 = all)')
     args = ap.parse_args()
 
     if not args.url and not args.video:
@@ -490,7 +491,8 @@ def main():
         sys.exit(1)
 
     song = events_to_song(events, args.title, args.composer, bpm_estimate=args.bpm,
-                           rh_only=args.rh_only, transpose=not args.no_transpose)
+                           rh_only=args.rh_only, transpose=not args.no_transpose,
+                           max_notes=args.max_notes)
 
     # Save
     js = format_song_js(song)
