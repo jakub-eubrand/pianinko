@@ -13,7 +13,13 @@ midi_tools/.venv/
 midi_tools/song_output/
 midi_tools/synthesia_output/
 midi_tools/synthesia_test/
+midi_tools/vocal_pipeline/.venv/
+midi_tools/vocal_pipeline/output/
+midi_tools/vocal_pipeline/separated/
+midi_tools/vocal_pipeline/test/
 midi_tools/__pycache__/
+**/__pycache__/
 *.mid
 *.mp3
 *.mp4
+*.wav
