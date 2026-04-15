@@ -8,9 +8,12 @@ sanah_piano_*.pdf
 .DS_Store
 Thumbs.db
 
-# Admin midi_tools: venv, downloaded audio, raw MIDI
+# Admin midi_tools: venv, downloaded audio/video, raw MIDI
 midi_tools/.venv/
 midi_tools/song_output/
+midi_tools/synthesia_output/
+midi_tools/synthesia_test/
 midi_tools/__pycache__/
 *.mid
 *.mp3
+*.mp4
